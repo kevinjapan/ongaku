@@ -1,10 +1,18 @@
-
+import HeroBanner from '../components/HeroBanner/HeroBanner'
 
 export default function AboutView() {
 
 
    return (
-      <h3>AboutView</h3>
+      <>
+
+         <HeroBanner 
+            overlayHeading="about" 
+            featureImg="/assets/imgs/edk-workstation.jpg"
+         />
+
+
+      </>
    )
 
 }

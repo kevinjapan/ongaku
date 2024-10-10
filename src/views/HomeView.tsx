@@ -1,10 +1,20 @@
+import HeroBanner from '../components/HeroBanner/HeroBanner'
 
 
 export default function HomeView() {
 
 
    return (
-      <h3>HomeView</h3>
+      <>
+
+         <HeroBanner 
+            overlayHeading="evolution desu ka" 
+            featureImg="/assets/imgs/soundscapes.jpg"
+         />
+
+
+      </>
    )
+   
 
 }
