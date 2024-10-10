@@ -29,4 +29,13 @@ interface Album {
    title:string,
    slug:string,
    created_at:string,
+   feature_img:string,
+}
+
+
+// Component Props
+
+interface HeroBannerProps {
+   overlayHeading:string,
+   featureImg:string,
 }
