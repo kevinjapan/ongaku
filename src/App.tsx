@@ -1,23 +1,32 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
-import AppNav from './components/App/AppNav/AppNav'
 import './App.css'
+import AppNav from './components/App/AppNav/AppNav'
+import AudioPlayer from './components/AudioPlayer/AudioPlayer'
+import BubbleAnimator from './components/BubbleAnimator/BubbleAnimator'
+import AppFooter from './components/App/AppFooter/AppFooter'
 
-function App() {
-//   const [count, setCount] = useState(0)
 
 
+export default function App() {
+
+   
    return (
       <>
-         <AppNav />
+         <AppNav/>
+
          <main>
-            this is App (not Home)
-            <Outlet/>
+            
+            <Suspense fallback={<>loading</>}>
+               <Outlet/>
+            </Suspense>
          </main>
+
+         <AudioPlayer/>
+
+         <BubbleAnimator/>
+
+         <AppFooter/>
       </>
    )
 }
-
-export default App
