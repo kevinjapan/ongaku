@@ -2,12 +2,13 @@
 
 export default function HeroBanner(props: HeroBannerProps) {
 
-   console.log('props',props.featureImg)
+   // to do : place dimmer over img to make text clear
+
    return (
-      <section className="cover_block bg_navy ">
+      <section className="cover_block hero_block bg_navy ">
          <img className="bg_img" src={props.featureImg} />
-         <div className="overlay slide_in_from_left_init">
-            <h1>about</h1>
+         <div className="overlay ">
+            <h1>{props.overlayHeading}</h1>
          </div>
       </section>
    )
