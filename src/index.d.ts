@@ -2,6 +2,9 @@
 declare module 'HomeView'
 
 
+// Type Aliases
+type QueryOutcome = 'success' | 'fail'      // to do : use in reqInit etc
+
 // Errors
 
 interface RouteError {
