@@ -1,8 +1,24 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+// import { useRef } from 'react'
+
+
+// AppNav
+// our nav was built around keeping dropdown open on hover, which worked fine with new pages reloading the nav; 
+// in this SPA, however, the hover works against us, keeping the dropdown open when entering a new view
+// workaround - we useState w/ 'reset' to reset the nav on new views opening
+// we lose the fade/slide-up animation but do get clean views
+// future : still slight awkward on clicking on top level nav - re-opens dropdown abruptly
+
 
 export default function AppNav() {
 
-   // to do : onClick menu item, close dropdown (if open) immediately
+   const [reset, setReset] = useState(true)
+
+   const reset_nav = () => {
+      setReset(false)
+      setTimeout(() => setReset(true),500)
+   }
 
    // to do : expand - get dropdown menu items from these objects:
    const nav_links = [
@@ -59,14 +75,23 @@ export default function AppNav() {
          <ul className="nav_list flex gap_2">
             {nav_links.map(link => 
                <li key={link.label}>
-                  <Link to={`${link.route ? link.route : link.label}`} data-list="services" className="nav_list_label">{link.label}</Link>
-                  <ul className="nav_list_dropdown">
-                     <li>
-                        {link.children?.map(child => {
-                           return <Link to={`albums${child.route}`} key={child.id}>{child.label}</Link>
-                        })}
-                     </li>
-                  </ul>
+                  <Link to={`${link.route ? link.route : link.label}`} data-list="services" className="nav_list_label" onClick={reset_nav}>
+                     {link.label}
+                  </Link>
+                  {reset ? 
+                     <ul className="nav_list_dropdown">
+                        <li>
+                           {link.children?.map(child => {
+                              return (
+                                 <Link to={`albums${child.route}`} key={child.id} 
+                                    onClick={reset_nav}>{child.label}
+                                 </Link>
+                              )
+                           })}
+                        </li>
+                     </ul>
+                     : null
+                  }
                </li>
             )}
          </ul>

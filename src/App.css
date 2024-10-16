@@ -625,6 +625,15 @@ nav ul.nav_list li ul li a {margin:1rem; }
       /* we add a slight delay to allow user to cleanly click on top-level 'label' link */
       transition:transform .5s ease-in-out .2s,opacity .5s ease-in-out,border .5s ease-in-out;
    }
+   /* we close dropdown on click open a new view */
+   nav ul.nav_list li a.nav_list_label + .nav_list_dropdown.temp_disabled {
+      -webkit-transform:translateY(-100%);
+      -ms-transform:translateY(-100%);
+      transform:translateY(-100%);
+      opacity:0;
+      /* we add a slight delay to allow user to cleanly click on top-level 'label' link */
+      /* transition:transform .5s ease-in-out .25s,opacity 3s ease-in-out .2s,border .25s ease-in-out; */
+   }
 }
 
 
@@ -1096,3 +1105,5 @@ section.feature_tiles p {
 .p_2 {padding:2rem;}
 
 .border {border:solid 1px lightgrey;}
+
+.bg_yellow {background:yellow;}
