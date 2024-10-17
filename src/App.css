@@ -47,7 +47,7 @@
    --bg_primary_text:          white;
    .bg_primary    {color:var(--bg_primary_text);   background-color:var(--bg_primary);}
 
-
+   
    /* 
    z-index layers 
    */
@@ -72,6 +72,14 @@
    --logo_block_z:50;
 
    --bg_primary:transparent;
+}
+
+html {
+   scroll-behavior:smooth;
+   box-sizing: border-box;
+}
+*, *:before, *:after {
+   box-sizing: inherit;
 }
 
 #root {
@@ -121,6 +129,10 @@ body,main,section,img {
 ul {
    list-style:none;
 }
+a {
+   cursor:pointer;
+   color:white;
+}
 
 
 /* section headings */
@@ -165,7 +177,6 @@ h4 {
    padding-top:1rem;
    padding-bottom:1rem;
 }
-
 h5 {
    font-size:var(--h5_size);
    font-weight:300;
@@ -173,7 +184,6 @@ h5 {
    padding-top:1rem;
    padding-bottom:1rem;
 }
-
 h6 {
    font-size:var(--h6_size);
    font-weight:300;
@@ -182,8 +192,10 @@ h6 {
    padding-bottom:.5rem;
 }
 
-/* 
-//    main nav component 
+/* //    main nav component 
+// to do : nav is too complicated - changes are too costly (time/complicated)
+// started @ 464 lines of CSS
+// 1st pass: @ 320 lines of CSS (25% reduction)
 */
 nav {
    position:-webkit-sticky;
@@ -195,20 +207,12 @@ nav {
    display:-webkit-box;
    display:-ms-flexbox;
    display:flex;
-
    -webkit-box-align:center;
    -ms-flex-align:center;
    align-items:center;
 
-   gap:0;
-
    width:100%;
-   max-width:100%;
-   margin:0;
-   padding:0;
    height:var(--nav_bar_height);
-   /* background-color:var(--bg_primary); */background:transparent;
-   transition:transform .25s ease-in;
 }
 /* background or transparent nav over hero_block */
 nav::before {
@@ -224,43 +228,28 @@ nav::before {
 nav.transparent::before {
    background-color:transparent;
 }
-
+/* to do : can remove flex-grow if we space-between on parent? */
 nav div.logo_block    {
    position:relative;
    z-index:var(--logo_block_z);
-
-   display:-webkit-box;
-   display:-ms-flexbox;
-   display:flex;
-   
-   -webkit-box-align:center;
-   -ms-flex-align:center;
-   align-items:center;
-
    -webkit-box-flex:2;
    -ms-flex-positive:2;
    flex-grow:2;
-
+   text-align:left;
    height:var(--nav_bar_height);
-
    color:white;
-   /* background-color:var(--bg_primary); */
 }
-nav div.logo_block a,
-footer div.logo_block a {
-   text-decoration:none;
+nav div.logo_block a, footer div.logo_block a {
    font-size:3rem;
    font-weight:900;
 }
-
-nav ul   {list-style:none;}
-nav li * {padding-top:0;padding-bottom:0;}
-nav a    {
+nav a {
    font-size:var(--nav_font_size);
-   cursor:pointer;
-   color:white;
    white-space:nowrap;
    margin-left:1rem;
+}
+nav a:hover {
+   color:white;
 }
 
 nav ul.nav_list {
@@ -273,20 +262,14 @@ nav ul.nav_list {
    
    -ms-flex-item-align:start;
    align-self:flex-start;
-
    -webkit-box-orient:vertical;     
    -webkit-box-direction:normal;
    -ms-flex-direction:column;
    flex-direction:column;
-
-   gap:0;
    
-   padding:0 0 1rem 0;
-   padding-top:10rem;       /* extra padding provides bg underneath transparent nav */
+   padding-top:10rem; /* extra padding provides bg underneath transparent nav */
    background-color:var(--bg_primary);
 
-   border-bottom:none;
-   
    -webkit-transform:translateY(0);
    -ms-transform:translateY(0);
    transform:translateY(0);
@@ -308,33 +291,7 @@ nav.transparent ul.nav_list::before {
    background-color:transparent;
 }
 
-/* mobile menu toggle */
-nav > div.nav_toggle_wrap {
-   display:-webkit-box;
-   display:-ms-flexbox;
-   display:flex;
-
-   -webkit-box-orient:vertical;
-   -webkit-box-direction:normal;
-   -ms-flex-direction:column;
-   flex-direction:column;
-   
-   -webkit-box-pack:center;
-   -ms-flex-pack:center;
-   justify-content:center;
-
-   -webkit-box-align:center;
-   -ms-flex-align:center;
-   align-items:center;
-
-   width:40px;
-   height:100%;
-   margin:0;
-   padding-right:1rem;
-   padding-left:0;
-   border:none;
-   /* background-color:var(--bg_primary);  */ 
-}
+/* mobile menu hamburger btn toggle */
 nav div.nav_toggle {
    position:relative;
    z-index:3;
@@ -342,38 +299,28 @@ nav div.nav_toggle {
    display:-webkit-box;
    display:-ms-flexbox;
    display:flex;
-
    -webkit-box-orient:vertical;
    -webkit-box-direction:normal;
    -ms-flex-direction:column;
    flex-direction:column;
-   
-   -webkit-box-pack:center;
-   -ms-flex-pack:center;
-   justify-content:center;
-
    -webkit-box-align:center;
    -ms-flex-align:center;
    align-items:center;
 
-   padding:0;
-   width:100%;
+   padding:1rem;
+   margin-right:1rem;
+   width:20px;
    height:20px;
-   /* background-color:white; */
-   /* background-color:var(--bg_primary); */
    cursor:pointer;
 }
 nav div.nav_toggle .toggle_bar {
-
    position:absolute;
    top:0;
-
    display:block;
    width:100%;
    height:2px;
    margin-bottom:5px;
    background:white;
-
    -webkit-transform:rotate(0);
    -ms-transform:rotate(0);
    transform:rotate(0deg);
@@ -387,7 +334,7 @@ nav div.nav_toggle .toggle_bar:nth-child(1) {top:0px;}
 nav div.nav_toggle .toggle_bar:nth-child(2) {top:5px;opacity:1;transition:.5s ease-in-out;left:0;width:100%;}
 nav div.nav_toggle .toggle_bar:nth-child(3) {top:10px;}
 
-/* on open dropdown */
+/* rotate hamburger bars on toggle sm dropdown */
 nav div.nav_toggle.selected_toggle .toggle_bar:nth-child(1) {
    top:5px;
    -webkit-transform:rotate(135deg);
@@ -409,48 +356,40 @@ nav div.nav_toggle.selected_toggle .toggle_bar:nth-child(3) {
    transition:.25s ease-in-out;
 }
 
-/* we hide all submenu dropdowns on mobile */
+nav ul.nav_list > li {
+   text-align:center;
+}
+
+/* we hide all submenu dropdowns on mobile.. */
 nav ul.nav_list li ul,
 nav ul.nav_list li a  {
    display:none;
    text-decoration:none;
-   padding-left:2rem;
-   padding-right:2rem;
 }
-
-nav ul.nav_list > li {
-   text-align:center;
-}
-/* then restore the top level label links */
+/* ..then restore the top level label links */
 nav ul.nav_list > li > a  {
    position:relative;
    display:block;
    font-size:2rem;
-   margin:0 auto 0 auto;
-   margin-top:1rem;
+   margin:1rem auto 0 auto;
    padding:.5rem;
-   padding-top:.5rem;
-   padding-bottom:.5rem;
-   /* background-color:white; */
-   /* background-color:var(--bg_primary); */
 }
 
 /* toggle sm/mobile nav dropdown */
 nav ul.nav_list.extended_nav_dropdown {
+   background:hsl(190, 87%, 41%);
    -webkit-transform:translateY(110vh);
    -ms-transform:translateY(110vh);
    transform:translateY(110vh);
    opacity:1;
    transition:transform .5s ease-in-out,opacity .5s ease-in-out;
 }
-
 /* maintain <a> spacing on transitions */
 nav ul.nav_list li ul li a {margin:1rem; }
 
-
 /* 
-//    lg top main nav and full dropdown 
-//    we support from 1045px determined by four cols of reasonable text in dropdown 
+   lg top main nav and full dropdown 
+   we support dropdown width @1045px determined by four cols of reasonable text length 
 */
 @media screen and (min-width: 1045px) {
    /* logo_block provides overlay in front of moving dropdown */
@@ -466,57 +405,45 @@ nav ul.nav_list li ul li a {margin:1rem; }
    nav ul.nav_list > li {
       display:-webkit-box;
       display:-ms-flexbox;
-      display:flex;
-      
+      display:flex;      
       -webkit-box-align:center;
       -ms-flex-align:center;
-      align-items:center;
-   
+      align-items:center;   
       min-height:var(--nav_bar_height);
-      /* background-color:var(--bg_primary); */
    }
    nav ul.nav_list li a.nav_list_label {
-      padding-left:2rem;
-      padding-right:2rem;
       margin:0;
+      padding:1rem 2rem 1rem 2rem;
    }
-   nav ul.nav_list li a.nav_list_label:hover {
-      color:white;
+   /* toggle sm/mobile nav dropdown */
+   nav ul.nav_list.extended_nav_dropdown {
+      background:hsl(190, 87%, 41%);
+      -webkit-transform:0;
+      -ms-transform:0;
+      transform:0;
+      opacity:1;
+      transition:transform .5s ease-in-out,opacity .5s ease-in-out;
    }
+
+   nav ul.nav_list li a.nav_list_label:hover,
    nav ul.nav_list a:hover {
       color:white;
    }
    nav ul.nav_list {
-      position:static;
+      position:unset;
 
       display:-webkit-box;
       display:-ms-flexbox;
       display:flex;
-
-      -webkit-box-pack:end;
-      -ms-flex-pack:end;
-      justify-content:flex-end;
-
       -webkit-box-orient:horizontal;
       -webkit-box-direction:normal;
       -ms-flex-direction:row;
       flex-direction:row;
-
-      -webkit-box-flex:0;
-      -ms-flex-positive:0;
-      flex-grow:0;
-
-      gap:.5rem;
-
       width:unset;
       height:100%;
       margin:0;
-      padding:0;
-      padding-right:1rem;
-      /* background-color:white; */
-      /* background-color:var(--bg_primary); */
+      padding:0 1rem 0 0;
       border-bottom:none;
-
       transform:unset;
       opacity:1;
       transition:none;
@@ -537,27 +464,24 @@ nav ul.nav_list li ul li a {margin:1rem; }
       position:absolute;
       top:0;
       left:0;
-      z-index:-99;
+      z-index:-99; /* to do : use var() */
 
+      display:-webkit-box;
+      display:-ms-flexbox;
+      display:flex;
       -webkit-box-orient:horizontal;
       -webkit-box-direction:normal;
       -ms-flex-direction:row;
       flex-direction:row;
-
       -webkit-box-pack:end;
       -ms-flex-pack:end;
       justify-content:flex-end;
 
-      gap:.25rem;
-      
-      background: hsl(190, 87%, 41%);
-      color:white;
-      z-index:-9;
-
       width:100%;
       margin:0;
-      padding:0;
-      padding-top:5rem;       /* extra padding provides bg underneath transparent nav */
+      padding:5rem 0 0 0; /* extra padding provides bg underneath transparent nav */
+      background: hsl(190, 87%, 41%);
+      color:white;
       text-align:right;
       font-size:1.25rem;
 
@@ -569,52 +493,21 @@ nav ul.nav_list li ul li a {margin:1rem; }
    
    }
    nav ul.nav_list > li > a {font-size:1.75rem;font-weight:400;}
-   nav ul.nav_list:hover li >a  {
+   nav ul.nav_list:hover li > a  {
       display:block;
    }
    .nav_list_dropdown li {
       display:-webkit-box;
       display:-ms-flexbox;
       display:flex;
-
       -webkit-box-orient:vertical;
       -webkit-box-direction:normal;
       -ms-flex-direction:column;
       flex-direction:column;
 
-      -webkit-box-align:start;
-      -ms-flex-align:start;
-      align-items:flex-start;
-      
-      gap:.5rem;
-
       text-align:left;
    }
 
-   /* to do : this duplicates class two classes up!  */
-   nav ul.nav_list .nav_list_dropdown {
-
-      display:-webkit-box;
-      display:-ms-flexbox;
-      display:flex;
-
-      /* -webkit-box-pack:justify;
-      -ms-flex-pack:justify;
-      justify-content:space-between; */justify-content:flex-end;
-
-      gap:.25rem;
-
-      width:100%;
-      max-width:100%;
-      /* padding:1rem; */
-      padding-top:5rem;       /* extra padding provides bg underneath transparent nav */
-
-      -webkit-transform:translateY(-100%);
-      -ms-transform:translateY(-100%);
-      transform:translateY(-100%);
-      opacity:0;
-      transition:transform .5s ease-in-out .25s,opacity 3s ease-in-out .2s,border .25s ease-in-out;
-   }
    /* open it and keep it open */
    nav ul.nav_list li a.nav_list_label:hover + .nav_list_dropdown,
    nav ul.nav_list li a.nav_list_label + .nav_list_dropdown:hover {
@@ -624,15 +517,6 @@ nav ul.nav_list li ul li a {margin:1rem; }
       opacity:1;
       /* we add a slight delay to allow user to cleanly click on top-level 'label' link */
       transition:transform .5s ease-in-out .2s,opacity .5s ease-in-out,border .5s ease-in-out;
-   }
-   /* we close dropdown on click open a new view */
-   nav ul.nav_list li a.nav_list_label + .nav_list_dropdown.temp_disabled {
-      -webkit-transform:translateY(-100%);
-      -ms-transform:translateY(-100%);
-      transform:translateY(-100%);
-      opacity:0;
-      /* we add a slight delay to allow user to cleanly click on top-level 'label' link */
-      /* transition:transform .5s ease-in-out .25s,opacity 3s ease-in-out .2s,border .25s ease-in-out; */
    }
 }
 
@@ -800,7 +684,7 @@ section.cover_block {
    height:fit-content;
    height:var(--cover_block_height);
    overflow:hidden;
-   background:blue;
+   background:hsl(190, 87%, 41%);
 }
 section.hero_block {
    margin-top:-120px !important; /* displace nav_bar height */
@@ -911,7 +795,8 @@ section.cover_block h1 {
 }
 section.cover_block h4 {
    font-weight:300;
-   background:var(--bg_accent_darker);
+   background:hsl(47, 81%, 37%);
+   color:white;
    margin-top:1rem;
    width:fit-content;
    padding:0 2rem 0 1rem;padding-right:4rem;
