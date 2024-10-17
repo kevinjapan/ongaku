@@ -10,7 +10,7 @@ export default function AlbumView() {
       <>
 
          <HeroBanner 
-            overlayHeading="album" 
+            overlayHeading={title} 
             featureImg={feature_img}
          />
 

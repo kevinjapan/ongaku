@@ -40,5 +40,6 @@ interface Album {
 
 interface HeroBannerProps {
    overlayHeading:string,
+   overlayTagline:string,
    featureImg:string,
 }
