@@ -17,7 +17,7 @@ export default function App() {
 
          <main>
             
-            <Suspense fallback={<>loading</>}>
+            <Suspense>
                <Outlet/>
             </Suspense>
          </main>
