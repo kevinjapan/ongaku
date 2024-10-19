@@ -1,18 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { is_sm_screen } from '../../../utilities/screen/screen'
+import { get_nav_links } from '../../../utilities/data/data'
 
 
 // AppNav
-// our nav was built around keeping dropdown open on hover, which worked fine with new pages reloading the nav; 
-// in this SPA, however, the hover works against us, keeping the dropdown open when entering a new view
-// workaround - we 'reset' the nav on new views opening. We lose the fade/slide-up animation but get clean views
-// future : still slight awkward on clicking on top level nav - re-opens dropdown abruptly
-
-// to do : bring in hiding nav on scroll down / show nav on scroll up (see orig. EDK) (transparent over hero_block only)
-// to do : bug : click on logo, opens dropdown immediately.
-// to do : bug : on sm, dropdown loses bg color before scrolling up to hidden position
-// to do : improve transition on opening new screen - scroll up nav (?) / fade in new hero_banner cover block img
+// from orig edk site, first pass migrating this solution into react, future : review code : improve
+// orig kept dropdown open on hover, not effective in spa with no reload, so we 'reset' on opening views.
 
 export default function AppNav() {
 
@@ -24,6 +18,11 @@ export default function AppNav() {
 
 
    // methods
+
+   const load_view = () => {
+      window.scroll(0,0)
+      reset_nav()
+   }
 
    const reset_nav = () => {
       setReset(false)
@@ -50,47 +49,63 @@ export default function AppNav() {
       }
    }
 
-   // to do : expand - get dropdown menu items from these objects:
-   const nav_links = [
-      {
-         label:'Albums',
-         route:'albums',
-         children:[
-            {
-               id:1,
-               label:'beneath the waves',
-               route:'/beneath-the-waves'
-            },
-            {
-               id:2,
-               label:'river',
-               route:'/river'
-            },
-            {
-               id:3,
-               label:"life's a rhetorical question",
-               route:'/lifes-a-rhetorical-question'
-            },
-            {
-               id:4,
-               label:'rough not ready',
-               route:'/rough-not-ready'
-            },
-            {
-               id:5,
-               label:'the wee song sketchbook',
-               route:'/the-wee-song-sketchbook'
+   // to do : move to useData() equivalent - static or db 
+   const nav_links = get_nav_links ()
+
+   // hides when user is scrolling down
+   const init_nav_scroll_listener = () => {
+
+      let last_scroll = 0
+      const nav_bar = document.querySelector('nav')
+
+      if(nav_bar) {
+         window.addEventListener('scroll', () => {
+            const current_scroll = window.scrollY         
+            // to prevent disappear in ios safari bounce, we don't hide < 80px from top
+            if((current_scroll > last_scroll) && (current_scroll > 80)) {
+               nav_bar.classList.add('invisible_nav')    // user is scrolling downwards - hide nav bar ( if below 80px )
+            } else {
+               nav_bar.classList.remove('invisible_nav')    // scrolling upwards - show hide bar
             }
-         ]
-      },
-      {label:'About',route:'about',
-         children:[
-            {
-               id:1,
-               label:'beneath the waves',
-               route:'/beneath-the-waves'
-            },]},
-   ]
+            last_scroll = current_scroll
+         })
+      }
+   }
+   setTimeout(init_nav_scroll_listener,200)
+
+   // transparent over Cover Blocks with class .hero_block
+   const init_nav_behaviour = () => {
+
+      const nav = document.querySelector('.nav')
+      const frontcover = document.querySelectorAll('.hero_block') // only interested in first one
+      
+      const newOptions = {
+         threshold: 0,
+         rootMargin: "-400px 0px 0px 0px"
+      }
+      if(nav) {
+         const modifyNav = new IntersectionObserver(
+            function(entries){
+               if(nav) {
+                  entries.forEach(entry => {
+                     if(!entry.isIntersecting) {
+                        nav.classList.remove('transparent')
+                     } else {
+                        nav.classList.add('transparent')
+                     }
+                     //modifyNav.unobserve(entry.target)    // second arg to this func after 'entries'
+                  })
+               }
+         },newOptions)
+         if(frontcover.length > 0) {
+            nav.classList.add('transparent')
+            frontcover.forEach(frontcover => {
+               modifyNav.observe(frontcover)
+            })
+         }  
+      }
+   }
+   setTimeout(init_nav_behaviour,200)
 
    return (
       <nav id="nav" className="nav">
@@ -108,7 +123,7 @@ export default function AppNav() {
          <ul className="nav_list gap_2">
             {nav_links.map(link => 
                <li key={link.label}>
-                  <Link to={`${link.route ? link.route : link.label}`} className="nav_list_label" onClick={reset_nav}>
+                  <Link to={`${link.route ? link.route : link.label}`} className="nav_list_label" onClick={load_view}>
                      {link.label}
                   </Link>
                   {reset ? 
@@ -117,7 +132,7 @@ export default function AppNav() {
                            {link.children?.map(child => {
                               return (
                                  <Link to={`albums${child.route}`} key={child.id} 
-                                    onClick={reset_nav}>{child.label}
+                                    onClick={load_view}>{child.label}
                                  </Link>
                               )
                            })}
