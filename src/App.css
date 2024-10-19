@@ -45,6 +45,8 @@
    --bg_primary:               hsl(190, 87%, 41%);
    --bg_primary:               hsl(190, 87%, 41%); /* #0EA5C3 */
    --bg_primary_text:          white;
+
+   /* utility classes for vars */
    .bg_primary    {color:var(--bg_primary_text);   background-color:var(--bg_primary);}
 
    
@@ -213,6 +215,7 @@ nav {
 
    width:100%;
    height:var(--nav_bar_height);
+   transition:transform .25s ease-in;
 }
 /* background or transparent nav over hero_block */
 nav::before {
@@ -223,10 +226,15 @@ nav::before {
    z-index:-10;
    width:100%;
    height:100%;
-   background-color:var(--bg_primary);
+   background:hsl(190, 87%, 41%);
 }
 nav.transparent::before {
    background-color:transparent;
+}
+nav.invisible_nav {
+   -webkit-transform:translateY(-100%);
+   transform:translateY(-100%);
+   transition:transform .25s ease-in;
 }
 /* to do : can remove flex-grow if we space-between on parent? */
 nav div.logo_block    {
@@ -268,7 +276,7 @@ nav ul.nav_list {
    flex-direction:column;
    
    padding-top:10rem; /* extra padding provides bg underneath transparent nav */
-   background-color:var(--bg_primary);
+   background:hsl(190, 87%, 41%);
 
    -webkit-transform:translateY(0);
    -ms-transform:translateY(0);
@@ -377,7 +385,6 @@ nav ul.nav_list > li > a  {
 
 /* toggle sm/mobile nav dropdown */
 nav ul.nav_list.extended_nav_dropdown {
-   background:hsl(190, 87%, 41%);
    -webkit-transform:translateY(110vh);
    -ms-transform:translateY(110vh);
    transform:translateY(110vh);
@@ -686,10 +693,25 @@ section.cover_block {
    overflow:hidden;
    background:hsl(190, 87%, 41%);
 }
+.fade_in {
+   animation: fade-in 2s;
+}
+.pre_fade_in {
+   opacity:0;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
 section.hero_block {
    margin-top:-120px !important; /* displace nav_bar height */
    margin-bottom:2rem;
-}
+   background:hsl(190, 87%, 41%);
+ }
 section.cover_block p {
    margin-left:0;
    margin-right:0;
@@ -992,3 +1014,4 @@ section.feature_tiles p {
 .border {border:solid 1px lightgrey;}
 
 .bg_yellow {background:yellow;}
+
