@@ -2,9 +2,12 @@
 declare module 'HomeView'
 
 
-// Type Aliases
-type QueryOutcome = 'success' | 'fail'      // to do : use in reqInit etc
-
+// EndPoint
+interface EndPoint {
+   request_method:string,
+   route:string, 
+   route_url_params?:string
+}
 
 // QueryParams
 // signature type - we can get any valid url query key/value pairing
@@ -12,35 +15,24 @@ interface QueryParams {
    [index: string]: string;
 }
 
-// data object we pass in POST query - can be any valid type
-// interface QueryBody {
-   
-// }
 
 // DataPackage returned from server on a request
-// server level  - is this superfluous - just use DataPackageContents ?
-interface DataPackage {
-   data?:DataPackageContents,
-   error:string
-}
+// to do : remove this once sure not necessary
+// server level  - future : review : is this superfluous - just use DataPackageContents ?
+// interface DataPackage {
+//    data?:DataPackageContents,
+//    error:string
+// }
 
-// Contents of DataPackage - 'success'/'fail' and data (optional)
-// application level
+// Type Aliases
+type QueryOutcome = 'success' | 'fail'
+
+// Contents of DataPackage - 'success'/'fail' | data (optional)  | error (optional)
 interface DataPackageContents<T> {
-   outcome:string,
+   outcome:QueryOutcome,
    data?:T,
    error?:string
 }
-
-// interface GenericIdentityFn {
-//    <Type>(arg: Type): Type;
-//  }
-  
-//  function identity<Type>(arg: Type): Type {
-//    return arg;
-//  }
-  
-//  let myIdentity: GenericIdentityFn = identity;
 
 
 // Errors
@@ -71,6 +63,7 @@ interface Album {
    slug:string,
    created_at:string,
    feature_img:string,
+   playlist?:string
 }
 
 
