@@ -1,19 +1,16 @@
+import { Link } from 'react-router-dom'
 
-
-
-// Components have only one parameter which is the props object,
-// so type we them by applying types inside the props:
 
 export default function AlbumTeaser(props: { album: Album }) {
 
-   // to do :  target=”_blank” in youtube link below
-
    return (
-            <li>
-               <img src={props.album.feature_img} />
-               <h4>{props.album.title}</h4>
-               <button><a href={props.album.slug}>Tracks & Lyrics</a></button>
-               <button><a href="https://www.youtube.com/watch?v=ME1ScAtrn28&list=PLKBwV2II2uYLVaidMrnYDB_rwPp7dyPX0">YouTube Playlist</a></button>
-            </li>
+      <li className="flex flex_col gap_1">
+         <img src={props.album.feature_img} />
+         <h4>{props.album.title}</h4>
+         <div className="flex px_2 space_around">
+            <Link className="link" to={props.album.slug} >Tracks & Lyrics</Link>      
+            {props.album.playlist && <a href={props.album.playlist} target="_blank">YouTube Playlist</a>}
+         </div>
+      </li>
    )
 }
