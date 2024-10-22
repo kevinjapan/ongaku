@@ -1,46 +1,58 @@
-import { useLoaderData } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import use_data from '../utilities/useData/useData'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
 import AlbumTeaser from '../components/Albums/AlbumTeaser/AlbumTeaser'
 
 
+// ALbumsListView
+
 export default function AlbumsListView() {
 
-   // Type Assertion (Type Casting) - ' as ' or <AlbumsList>useLoaderData()
-   // but we can't use <...? in react tsx files
-   const { albums } = useLoaderData() as AlbumsList // This hook provides the value returned from your route loader.
+   // to do : verify my types setup here permits/handles []
+   // to do : review - just reduce to data/error (remove 'outcome' - superfluous?)
 
+   const [albums_list, setAlbumList] = useState<Album[] | null>()
+   
+   // load albums_list
+   // we moved from useLoaderData to access async and context
+   useEffect(() => {
 
-   // to do : fade_in etc won't work since it only runs on index.html load (as w/ static edk site)
-   // we need to run/initiate on every component load
-   // effect fade_in on cover_block on component mounting?
+      async function fetchData() {
+         try {
+            const { data, error, outcome } = await use_data<AlbumsList>('albums_list',[],{},null)
+            if(data) {
+               if(outcome === 'success') setAlbumList(data.albums_list) 
+            }
+            else {
+               throw error
+            }
+         }
+         catch(error) {
+            console.log('error',error)
+         }
+      }
+      fetchData()
+   },[])
 
    return (
       <>
-      
          <HeroBanner 
             overlayHeading="albums" 
-            featureImg="/assets/imgs/all-sorts-of-questions.jpg"
-         />
+            featureImg="/assets/imgs/all-sorts-of-questions.jpg" />
 
          <h3 className="ml_2">Albums</h3>
 
-         
          <section className="feature_tiles">
             <ul>
-               {albums.length ? 
-                  albums.map((album: Album) => (                 
+               {albums_list?.length ? 
+                  albums_list.map((album: Album) => (                 
                      <AlbumTeaser
                         key={album.id}  
-                        album={album} 
-                     />
+                        album={album} />
                   ))
-                  : (
-                     <p><i>No albums</i></p>
-                  )}
+                  : (<p><i>No albums</i></p>)}
             </ul>
          </section>
-
       </>
    )
-
 }
