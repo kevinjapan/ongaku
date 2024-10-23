@@ -1,4 +1,4 @@
-
+// to do : locate this somewhere better (not in utilities)
 
 export function get_nav_links () {
    return [
@@ -9,27 +9,27 @@ export function get_nav_links () {
             {
                id:1,
                label:'beneath the waves',
-               route:'/beneath-the-waves'
+               route:'albums/beneath-the-waves'
             },
             {
                id:2,
                label:'river',
-               route:'/river'
+               route:'albums/river'
             },
             {
                id:3,
                label:"life's a rhetorical question",
-               route:'/lifes-a-rhetorical-question'
+               route:'albums/lifes-a-rhetorical-question'
             },
             {
                id:4,
                label:'rough not ready',
-               route:'/rough-not-ready'
+               route:'albums/rough-not-ready'
             },
             {
                id:5,
                label:'the wee song sketchbook',
-               route:'/the-wee-song-sketchbook'
+               route:'albums/the-wee-song-sketchbook'
             }
          ]
       },
@@ -37,8 +37,8 @@ export function get_nav_links () {
          children:[
             {
                id:1,
-               label:'beneath the waves',
-               route:'/beneath-the-waves'
+               label:'about',
+               route:'/about'
             },]},
    ]
 }
