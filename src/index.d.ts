@@ -22,20 +22,11 @@ interface QueryParams {
    [index: string]: string;
 }
 
-
-// DataPackage returned from server on a request
-// to do : remove this once sure not necessary
-// server level  - future : review : is this superfluous - just use DataPackageContents ?
-// interface DataPackage {
-//    data?:DataPackageContents,
-//    error:string
-// }
-
 // Type Aliases
 type QueryOutcome = 'success' | 'fail'
 
 // Contents of DataPackage - 'success'/'fail' | data (optional)  | error (optional)
-interface DataPackageContents<T> {
+interface DataPackage<T> {
    outcome:QueryOutcome,
    data?:T,
    error?:string
