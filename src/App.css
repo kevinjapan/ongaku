@@ -2,9 +2,21 @@
 
 :root {
 
+   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+   line-height: 1.5;
+   font-weight: 400;
+ 
+   color-scheme: light dark;
+   color: rgba(255, 255, 255, 0.87);
+   background-color: #242424;
+ 
+   font-synthesis: none;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
    --cover_block_height:105vh;
 
-      /* 
+   /* 
    //   LAYOUTS
    */
    --header_height:450px;
@@ -53,11 +65,11 @@
    /* 
    z-index layers 
    */
-
-   --app_status_z-index:1000;
+   --app_status_layer:1000;
    --over_over_nav_layer:999;
    --over_nav_layer:998;
    --nav_layer:900;
+   --under_nav_layer:-10;
 
    /* layers within body element */
    --nav_z:1000;
@@ -71,7 +83,6 @@
 
    /* local layers within components */
    --cover_block_before_z:100;
-   --logo_block_z:50;
 
    --bg_primary:transparent;
 }
@@ -131,10 +142,7 @@ body,main,section,img {
 ul {
    list-style:none;
 }
-a {
-   cursor:pointer;
-   color:white;
-}
+
 
 
 /* section headings */
@@ -194,17 +202,27 @@ h6 {
    padding-bottom:.5rem;
 }
 
-/* //    main nav component 
-// to do : nav is too complicated - changes are too costly (time/complicated)
-// started @ 464 lines of CSS
-// 1st pass: @ 320 lines of CSS (25% reduction)
+a {
+   font-weight: 500;
+   color: #646cff;
+   text-decoration: inherit;
+}
+ a:hover {
+   color: #535bf2;
+}
+
+
+
+
+/* 
+   main nav component
 */
 nav {
    position:-webkit-sticky;
    position:sticky;
    top:0;
    left:0;
-   z-index:var(--nav_z);
+   z-index:var(--nav_layer);
    
    display:-webkit-box;
    display:-ms-flexbox;
@@ -236,10 +254,10 @@ nav.invisible_nav {
    transform:translateY(-100%);
    transition:transform .25s ease-in;
 }
-/* to do : can remove flex-grow if we space-between on parent? */
+
 nav div.logo_block    {
    position:relative;
-   z-index:var(--logo_block_z);
+   z-index:var(--over_over_nav_layer);
    -webkit-box-flex:2;
    -ms-flex-positive:2;
    flex-grow:2;
@@ -255,6 +273,8 @@ nav a {
    font-size:var(--nav_font_size);
    white-space:nowrap;
    margin-left:1rem;
+   color:white;
+   cursor:pointer;
 }
 nav a:hover {
    color:white;
@@ -262,7 +282,7 @@ nav a:hover {
 
 nav ul.nav_list {
    position:absolute;
-   z-index:2;
+   z-index:var(--over_nav_layer);
    top:-120vh;    /* default is hidden dropdown - prevents flicker on resizing browser */
    left:0;
    width:100%;
@@ -290,7 +310,7 @@ nav ul.nav_list::before {
    position:absolute;
    top:0;
    left:0;
-   z-index:-10;
+   z-index:var(--under_nav_layer);
    width:100%;
    height:100%;
    background-color:var(--bg_primary);
@@ -302,7 +322,7 @@ nav.transparent ul.nav_list::before {
 /* mobile menu hamburger btn toggle */
 nav div.nav_toggle {
    position:relative;
-   z-index:3;
+   z-index:var(--over_over_nav_layer);
 
    display:-webkit-box;
    display:-ms-flexbox;
@@ -421,6 +441,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
    nav ul.nav_list li a.nav_list_label {
       margin:0;
       padding:1rem 2rem 1rem 2rem;
+      z-index:var(--over_over_nav_layer);
    }
    /* toggle sm/mobile nav dropdown */
    nav ul.nav_list.extended_nav_dropdown {
@@ -471,7 +492,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
       position:absolute;
       top:0;
       left:0;
-      z-index:-99; /* to do : use var() */
+      z-index:var(--nav_layer);
 
       display:-webkit-box;
       display:-ms-flexbox;
@@ -688,7 +709,7 @@ section.cover_block {
    justify-content:center;
 
    width:100%;
-   height:fit-content;
+   min-height:75vh;
    height:var(--cover_block_height);
    overflow:hidden;
    background:hsl(190, 87%, 41%);
@@ -722,11 +743,13 @@ section.cover_block .bg_img {
    top:0;
    right:0;
    z-index:1;
+   /* to do : review - we want to init dimensions to fix spacing - values here ok? */
    min-width:100%;
    height:100%;
+   min-height:75vh;
    object-fit: cover;
 }
-
+.z_n1 {z-index:-1;}
 
 /* we can start w/ dim if img is too bright */
 section.cover_block::before {
@@ -989,6 +1012,22 @@ section.feature_tiles p {
    display:-ms-flexbox;
    display:flex;
 }
+.flex_col {
+   -webkit-box-orient:vertical;
+   -webkit-box-direction:normal;
+   -ms-flex-direction:column;
+   flex-direction:column;
+}
+.flex_row {
+   -webkit-box-orient:horizontal;
+   -webkit-box-direction:normal;
+   -ms-flex-direction:row;
+   flex-direction:row;
+}
+.space_around {
+   -ms-flex-pack:distribute;
+   justify-content:space-around;
+}
 .justify_end {
    -webkit-box-pack:end;
    -ms-flex-pack:end;
@@ -1005,13 +1044,19 @@ section.feature_tiles p {
 .text_left {text-align:left;}
 .w_100 {width:100%;}
 
+.m_1 {margin:1rem;}
+.m_2 {margin:2rem;}
 .ml_2 {margin-left:2rem;}
 .mt_0 {margin-top:0 !important;}
 
 .p_1 {padding:1rem;}
 .p_2 {padding:2rem;}
+.px_2 {padding-left:2rem;padding-right:2rem;}
 
 .border {border:solid 1px lightgrey;}
 
 .bg_yellow {background:yellow;}
 
+.link {
+   color: #646cff;
+}
