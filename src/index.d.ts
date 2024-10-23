@@ -2,6 +2,13 @@
 declare module 'HomeView'
 
 
+// AppContext
+interface AppContext {
+   app_api:string,
+   prev_feature_img:string,
+   set_prev_feature_img(img:string): void
+}
+
 // EndPoint
 interface EndPoint {
    request_method:string,
