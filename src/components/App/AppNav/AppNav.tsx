@@ -24,7 +24,7 @@ export default function AppNav() {
    // effects
 
    useEffect(() => {
-      init_nav_scroll_listener()
+      init_show_only_ascending()
       init_transparent_nav()
    })
 
@@ -43,16 +43,16 @@ export default function AppNav() {
    const reset_nav = () => {
       setReset(false)
       setTimeout(() => setReset(true),500)
-      if(is_sm_screen()) toggle()
+      if(is_sm_screen()) toggle_sm_dropdown()
    }
 
-   const toggle = () => {
+   const toggle_sm_dropdown = () => {
 
       const dropdown = document.querySelector('nav ul.nav_list')
       const nav_toggle = document.querySelector('.nav_toggle')
 
       if(dropdown && nav_toggle) {
-         // classList.toggle was not working, so we use our own 'extended' state to track
+         // classList.toggle not working, so we use our own 'extended' state to track
          if(extended) {
             dropdown.classList.remove('extended_nav_dropdown')
             nav_toggle.classList.remove('selected_toggle')
@@ -65,7 +65,7 @@ export default function AppNav() {
       }
    }
 
-   const init_nav_scroll_listener = () => {
+   const init_show_only_ascending = () => {
 
       let last_scroll = 0
       const nav_bar = document.querySelector('nav')
@@ -123,7 +123,7 @@ export default function AppNav() {
             <Link to="/" >edk</Link>
          </div>
 
-         <div className="nav_toggle" onClick={toggle}>
+         <div className="nav_toggle" onClick={toggle_sm_dropdown}>
             <div className="toggle_bar"></div>
             <div className="toggle_bar"></div>
             <div className="toggle_bar"></div>
