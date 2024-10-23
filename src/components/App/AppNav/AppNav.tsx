@@ -1,14 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { is_sm_screen } from '../../../utilities/screen/screen'
-import { get_nav_links } from '../../../utilities/data/data'
+import { get_nav_links } from '../../../utilities/appNav/appNav'
 
 
 // AppNav
+
 // from orig edk site, first pass migrating this solution into react, future : review code : improve
 // orig kept dropdown open on hover, not effective in spa with no reload, so we 'reset' on opening views.
 
 export default function AppNav() {
+
+   const { pathname } = useLocation()
+   const nav_links = get_nav_links()
 
    // reset nav on opening new view (we close extended dropdown)
    const [reset, setReset] = useState(true)
@@ -16,6 +21,17 @@ export default function AppNav() {
    // track extended and toggle extended_nav_dropdown
    const [extended, setExtended] = useState(false)
 
+   // effects
+
+   useEffect(() => {
+      init_nav_scroll_listener()
+      init_transparent_nav()
+   })
+
+   // root path will not re-render AppNav, so we force init nav there
+   useEffect(() => {
+      if(pathname === "/") init_transparent_nav()
+   },[pathname])
 
    // methods
 
@@ -49,10 +65,6 @@ export default function AppNav() {
       }
    }
 
-   // to do : move to useData() equivalent - static or db 
-   const nav_links = get_nav_links ()
-
-   // hides when user is scrolling down
    const init_nav_scroll_listener = () => {
 
       let last_scroll = 0
@@ -63,21 +75,19 @@ export default function AppNav() {
             const current_scroll = window.scrollY         
             // to prevent disappear in ios safari bounce, we don't hide < 80px from top
             if((current_scroll > last_scroll) && (current_scroll > 80)) {
-               nav_bar.classList.add('invisible_nav')    // user is scrolling downwards - hide nav bar ( if below 80px )
+               nav_bar.classList.add('invisible_nav') // user is scrolling downwards - hide nav bar
             } else {
-               nav_bar.classList.remove('invisible_nav')    // scrolling upwards - show hide bar
+               nav_bar.classList.remove('invisible_nav') // scrolling upwards - show hide bar
             }
             last_scroll = current_scroll
          })
       }
    }
-   setTimeout(init_nav_scroll_listener,200)
 
-   // transparent over Cover Blocks with class .hero_block
-   const init_nav_behaviour = () => {
+   const init_transparent_nav = () => {
 
       const nav = document.querySelector('.nav')
-      const frontcover = document.querySelectorAll('.hero_block') // only interested in first one
+      const frontcover = document.querySelectorAll('.hero_block') // we are only interested in first one : to do : review : suspect not effective (will fail if multiples?)
       
       const newOptions = {
          threshold: 0,
@@ -105,7 +115,6 @@ export default function AppNav() {
          }  
       }
    }
-   setTimeout(init_nav_behaviour,200)
 
    return (
       <nav id="nav" className="nav">
@@ -123,15 +132,18 @@ export default function AppNav() {
          <ul className="nav_list gap_2">
             {nav_links.map(link => 
                <li key={link.label}>
-                  <Link to={`${link.route ? link.route : link.label}`} className="nav_list_label" onClick={load_view}>
+                  {is_sm_screen() ?
+                     <Link to={`${link.route ? link.route : link.label}`} className="nav_list_label" onClick={load_view}>
                      {link.label}
-                  </Link>
+                     </Link>
+                     : <a className="nav_list_label">{link.label}</a>
+                  }
                   {reset ? 
                      <ul className="nav_list_dropdown">
                         <li>
                            {link.children?.map(child => {
                               return (
-                                 <Link to={`albums${child.route}`} key={child.id} 
+                                 <Link to={`${child.route}`} key={child.id} 
                                     onClick={load_view}>{child.label}
                                  </Link>
                               )
