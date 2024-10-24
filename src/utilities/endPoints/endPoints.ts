@@ -8,7 +8,7 @@
    
 export function get_end_points(url_params: Array<string>,query_params: QueryParams) {
 
-   console.log('to do : use query_params: ',query_params)
+   // console.log('to do : use query_params: ',query_params)
 
    // if(app_store.app_api === '') // to do : context equivalent for app_api path
    {

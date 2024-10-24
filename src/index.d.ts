@@ -25,11 +25,17 @@ interface QueryParams {
 // Type Aliases
 type QueryOutcome = 'success' | 'fail'
 
+
 // Contents of DataPackage - 'success'/'fail' | data (optional)  | error (optional)
 interface DataPackage<T> {
-   outcome:QueryOutcome,
-   data?:T,
-   error?:string
+   loading:boolean,
+   // outcome:QueryOutcome,
+   data?:T | null,
+   error?:string | null,
+   load: () => Promise<void>,
+   updateUrl: Dispatch<SetStateAction<string>>;
+   updateOptions: Dispatch<SetStateAction<UseFetchOptions>>;
+   updateRequestOptions: Dispatch<SetStateAction<RequestInit | undefined>>;
 }
 
 
