@@ -1,51 +1,54 @@
-import { useState, useEffect } from 'react'
-import use_data from '../utilities/useData/useData'
+import useFetch from '../hooks/useFetch/useFetch'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
 import AlbumTeaser from '../components/Albums/AlbumTeaser/AlbumTeaser'
+
 
 
 // ALbumsListView
 
 export default function AlbumsListView() {
 
-   // to do : verify my types setup here permits/handles []
+   // to do : we need to make useFetch and useData into Custom Hooks
+   // 1 - get useFetch working from here
+   // 2 - get useData working as intermediate and then use from here w/ end-points
+   //     temp use url directly w/ useFetch() here - then replace w/ useData() and 'albums_list' once end_points are re-enabled:
+
+   const { 
+      loading, data, error 
+   } = useFetch<DataPackage<AlbumsList>>('/data/albums_list.json',{
+      headers: {accept: "application/json"},
+   },{
+      immediate: true, 
+   })
+
+   if(loading) {
+      return <div>loading</div>
+   }
+
+   if(error) {
+      return <div>{error}</div>
+   }
+
+   // to do : verify my types setup here permits/handles empty array - []
    // to do : review - just reduce to data/error (remove 'outcome' - superfluous?)
 
-   const [albums_list, setAlbumList] = useState<Album[] | null>()
-   
-   // load albums_list
-   // we moved from useLoaderData to access async and context
-   useEffect(() => {
+   // to do : data?.data?.xxx is awkward - tidy up interface
 
-      async function fetchData() {
-         try {
-            const { data, error, outcome } = await use_data<AlbumsList>('albums_list',[],{},null)
-            if(data) {
-               if(outcome === 'success') setAlbumList(data.albums_list) 
-            }
-            else {
-               throw error
-            }
-         }
-         catch(error) {
-            console.log('error',error)
-         }
-      }
-      fetchData()
-   },[])
+   if(data) {
+      console.log('GOT 2',data?.data?.albums_list)
 
    return (
       <>
          <HeroBanner 
             overlayHeading="albums" 
-            featureImg="/assets/imgs/all-sorts-of-questions.jpg" />
+            featureImg="/assets/imgs/all-sorts-of-questions.jpg"/>
 
          <h3 className="ml_2">Albums</h3>
 
          <section className="feature_tiles">
             <ul>
-               {albums_list?.length ? 
-                  albums_list.map((album: Album) => (                 
+               {data?.data?.albums_list?.length ? 
+                  data?.data?.albums_list?.map((album: Album) => (                 
                      <AlbumTeaser
                         key={album.id}  
                         album={album} />
@@ -55,4 +58,6 @@ export default function AlbumsListView() {
          </section>
       </>
    )
+}
+   
 }
