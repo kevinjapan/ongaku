@@ -10,6 +10,10 @@ import { get_nav_links } from '../../../utilities/appNav/appNav'
 // from orig edk site, first pass migrating this solution into react, future : review code : improve
 // orig kept dropdown open on hover, not effective in spa with no reload, so we 'reset' on opening views.
 
+
+// to do : nav doesn't slide up on clicking nav link - page refreshes and we lose animation
+// to do : slide overlay text
+ 
 export default function AppNav() {
 
    const { pathname } = useLocation()
@@ -24,8 +28,8 @@ export default function AppNav() {
    // effects
 
    useEffect(() => {
-      init_show_only_ascending()
-      init_transparent_nav()
+      setTimeout(() => init_show_only_ascending(),200)
+      setTimeout(() => init_transparent_nav(),200)
    })
 
    // root path will not re-render AppNav, so we force init nav there
