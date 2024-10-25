@@ -3,19 +3,15 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 
 
 
+// useFetch Custom Hook
+
 // adapted from orig @ https://github.com/w3cj/use-x
 // AbortSignal: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
 
-export type UseFetchOptions = {
-   immediate: boolean
-}
-
-// since we store all initial props as our own state variables, the
+// We store all initial props as our own state variables, the
 // only way to update the fetch state is to call the exported funcs
-
-
-// if our load func is called multiple times in quick succession,
-// cancel the prev requests , only hande last request
+// If our load func is called multiple times in quick succession,
+// we cancel the prev requests , only handle last request
 
 export default function useFetch<T>(
    initialUrl: string, 
@@ -23,32 +19,28 @@ export default function useFetch<T>(
    initialOptions?: UseFetchOptions
 ): DataPackage<T> {
 
-   const [loading, setLoading] = useState(false)
-
-   // if initialUrl changes, we don't want to re-call the fetch,
-   // so we use our own state
-   const [url, updateUrl] = useState(initialUrl)
-
-   const [data, setData] = useState<T | null>(null)
-
-   const [error, setError] = useState<string | null>(null)
-
-   // capture initial values in our own state will remove direct dependancy
+   // capturing initial values in our own state will remove direct dependancies
    // and stop re-rendering even if new initialOptions created
-   const [options, updateOptions] = useState(initialOptions || { immediate: true })
+   const [loading, setLoading] = useState(false)
+   const [url, updateUrl] = useState(initialUrl)
+   const [data, setData] = useState<T | null>(null)
+   const [error, setError] = useState<string | null>(null)
    const [requestOptions, updateRequestOptions] = useState(initialRequestOptions)
-   
+   const [options, updateOptions] = useState(initialOptions || { immediate: true })
+
+   // we useRef, rather than setState: we can re-assign w/out dependancy loop
    const abortController = useRef(new AbortController())
 
-   // useCallback to prevent useEffect changing on every render
-   // url dependancy will action on client url change
-   const load = useCallback(async() => {
-      abortController.current.abort()
 
-      // since we useRef, rather than setState, we can re-assign w/out dependancy loop
+   // load
+   // we useCallback to prevent useEffect changing on every render
+   // url dependancy will action on client url change
+
+   const load = useCallback(async() => {
+
+      abortController.current.abort()
       abortController.current = new AbortController()
       setData(null)
-
       if(!url) {
          setError('Empty URL')
          return
@@ -57,28 +49,26 @@ export default function useFetch<T>(
          setError(null)
       }
 
-      console.log(options)
-
       setLoading(true)
 
       try {
          const reqInit = (requestOptions || {})
          reqInit.signal = abortController.current.signal
          const currentAbortController = abortController.current
+
          const response = await fetch(url,reqInit)
-
-         if(!response.ok) throw Error(response.statusText)
-
+         if(!response.ok) {
+            throw Error(response.statusText)
+         }
          console.log('response.json',response.json)
+
          const json = await response.json()
 
          if(currentAbortController.signal.aborted) return
          setData(json) // to do : json.data?
-
-
       }
       catch(e) {
-         // in TS error type is unknown - we know it will be an Error object
+         // in TS error type is 'unknown' - we know it will be an Error object
          const error = e as Error
          if(error.name === "AbortError") {
             setError(null)            
@@ -87,27 +77,22 @@ export default function useFetch<T>(
          else {
             setError(error.message)
          }
-      }
-      
+      }      
       setLoading(false)
-
-   },[url, requestOptions, options])
+   },[url, requestOptions])
 
    useEffect(() => {
       if(options.immediate) {
          load()
-      } 
-
-      
-      // on useEffect disposal : component re-renders or unmounted
-      // abort request if component unmounted
+      }
+      // abort request on component unmounted
       return () => {
          abortController.current.abort()
       }
    },[load,options])
 
    return {
-      // url,
+      url,
       loading,
       error,
       data,
@@ -116,16 +101,5 @@ export default function useFetch<T>(
       updateOptions,
       updateRequestOptions
    }
-
-   // to do : incorporate prev code:
-
-   // remove any non-valid body (could break GET action)
-   // if(!options.body || options.body === 'null') delete options.body
-
-   // return { 
-   //    outcome:outcome as QueryOutcome,
-   //    data: data as T,
-   //    error: error
-   // }
 }
 
