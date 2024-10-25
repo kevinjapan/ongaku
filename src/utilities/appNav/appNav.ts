@@ -7,6 +7,11 @@ export function get_nav_links () {
          route:'albums',
          children:[
             {
+               id:0,
+               label:'all albums',
+               route:'albums'
+            },
+            {
                id:1,
                label:'beneath the waves',
                route:'albums/beneath-the-waves'
