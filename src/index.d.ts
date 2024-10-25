@@ -25,17 +25,21 @@ interface QueryParams {
 // Type Aliases
 type QueryOutcome = 'success' | 'fail'
 
+type UseFetchOptions = {
+   immediate: boolean
+}
 
 // Contents of DataPackage - 'success'/'fail' | data (optional)  | error (optional)
 interface DataPackage<T> {
+   url:string,
    loading:boolean,
-   // outcome:QueryOutcome,
    data?:T | null,
    error?:string | null,
+   // outcome:QueryOutcome,
    load: () => Promise<void>,
-   updateUrl: Dispatch<SetStateAction<string>>;
-   updateOptions: Dispatch<SetStateAction<UseFetchOptions>>;
-   updateRequestOptions: Dispatch<SetStateAction<RequestInit | undefined>>;
+   updateUrl: Dispatch<SetStateAction<string>>,
+   updateRequestOptions: Dispatch<SetStateAction<RequestInit | undefined>>,
+   updateOptions: Dispatch<SetStateAction<UseFetchOptions>>,
 }
 
 
@@ -61,13 +65,19 @@ interface RouteError {
 interface AlbumsList {
    albums_list?:Album[] | null
 }
+interface Track {
+   title:string,
+   slug:string
+}
+
 interface Album {
    id:number,
    title:string,
    slug:string,
    created_at:string,
    feature_img:string,
-   playlist?:string
+   playlist?:string,
+   tracks:Track[]
 }
 
 
