@@ -17,7 +17,7 @@ export default function useFetch<T>(
    initialUrl: string, 
    initialRequestOptions?: RequestInit,
    initialOptions?: UseFetchOptions
-): DataPackage<T> {
+): UseFetchReturn<T> {
 
    // capturing initial values in our own state will remove direct dependancies
    // and stop re-rendering even if new initialOptions created
