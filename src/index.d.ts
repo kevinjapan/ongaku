@@ -29,11 +29,14 @@ type UseFetchOptions = {
    immediate: boolean
 }
 
-// Contents of DataPackage - 'success'/'fail' | data (optional)  | error (optional)
-interface DataPackage<T> {
+// UseFetchReturn
+// useFetch is app-agnostic - so only knows the url and data type (generic)
+// in our app, we know 'data' will contain { outcome, data, error } from server - so we want to extract..
+// we want 'outcome' to clearly identify that eg an empty array is a valid response (eg no matching records)
+interface UseFetchReturn<T> {
    url:string,
    loading:boolean,
-   data?:T | null,
+   data:T | null,
    error?:string | null,
    // outcome:QueryOutcome,
    load: () => Promise<void>,
@@ -42,6 +45,13 @@ interface DataPackage<T> {
    updateOptions: Dispatch<SetStateAction<UseFetchOptions>>,
 }
 
+interface UseDataReturn<T> {
+   loading:boolean,
+   data:T | null,
+   error?:string | null,
+   load: () => Promise<void>,
+   updateUrl: Dispatch<SetStateAction<string>>
+}
 
 // Errors
 
@@ -60,16 +70,11 @@ interface RouteError {
 }
 
 
-// Albums
+// Albums / Tracks
 
 interface AlbumsList {
    albums_list?:Album[] | null
 }
-interface Track {
-   title:string,
-   slug:string
-}
-
 interface Album {
    id:number,
    title:string,
@@ -79,6 +84,20 @@ interface Album {
    playlist?:string,
    tracks:Track[]
 }
+interface Track {
+   title:string,
+   slug:string,
+   copy:string,
+   audio:string,
+   video:string,
+   img:string,
+   sections:TrackSection[]
+}
+interface TrackSection {
+   title:string,
+   lines:string[]
+}
+
 
 
 // Component Props
@@ -87,4 +106,16 @@ interface HeroBannerProps {
    overlayHeading:string,
    overlayTagline?:string,
    featureImg:string,
+}
+
+interface TrackCardsListProps {
+   tracks:Track[]
+}
+
+interface TrackCardProps {
+   track:Track
+}
+
+interface TrackCardSectionProps {
+   section:TrackSection
 }
