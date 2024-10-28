@@ -4,6 +4,8 @@ import { useRef, useEffect } from 'react'
 
 // HeroBanner
 
+// to do : we've lost retaining prev img w/ changes to AlbumView/useFetch - no longer fades out of prev into new
+
 export default function HeroBanner(props: HeroBannerProps) {
 
    // useRef to store local_prev_feature_img w/out requiring as dependancy on useEffect

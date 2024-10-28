@@ -40,6 +40,7 @@ export default function AppNav() {
    // methods
 
    const load_view = () => {
+      console.log('attempting')
       window.scroll(0,0)
       reset_nav()
    }

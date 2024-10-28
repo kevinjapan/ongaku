@@ -5,16 +5,15 @@ export default function HomeView() {
 
    const error = useRouteError() as RouteError
 
-
-   // to do : see starter example :
-   //  https://reactrouter.com/en/main/start/tutorial
+   // starter example :
+   // https://reactrouter.com/en/main/start/tutorial
 
    return (
-      <>
+      <section className="m_2">
          <h3>ErrorView</h3>
-         <p>{ error.statusText || error.error.message }</p>
+         <p>{ error.statusText || error.error?.message }</p>
          <p>{ errorMessage(error) }</p>
-      </>
+      </section>
    )
 
 }
