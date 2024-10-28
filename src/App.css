@@ -416,9 +416,9 @@ nav ul.nav_list li ul li a {margin:1rem; }
 
 /* 
    lg top main nav and full dropdown 
-   we support dropdown width @1045px determined by four cols of reasonable text length 
+   we support dropdown width @910px determined by four cols of reasonable text length 
 */
-@media screen and (min-width: 1045px) {
+@media screen and (min-width: 910px) {
    /* logo_block provides overlay in front of moving dropdown */
    nav div.logo_block {
       position:relative;
@@ -590,6 +590,23 @@ nav ul.nav_list li ul li a {margin:1rem; }
 }
 
 
+/* tracks */
+.tracks_list {
+   display:flex;
+   flex-direction:column;
+   gap:2rem;
+}
+.track_card {
+   width:fit-content;
+   margin:0 auto;
+   padding:0 1rem;
+
+   color:black;
+   background:white;
+   border:solid 1px lightgrey;
+   border-radius:.5rem;
+}
+
 
 
 /* 
@@ -597,7 +614,6 @@ nav ul.nav_list li ul li a {margin:1rem; }
 //    section is the base element
 */
 section {
-
    max-width:100%;
    overflow-x:hidden;
   
@@ -743,7 +759,6 @@ section.cover_block .bg_img {
    top:0;
    right:0;
    z-index:1;
-   /* to do : review - we want to init dimensions to fix spacing - values here ok? */
    min-width:100%;
    height:100%;
    min-height:75vh;
@@ -895,7 +910,7 @@ section.cover_block.content_at_end {
    }
 }
 
-@media screen and (min-width: 1045px) {
+@media screen and (min-width: 910px) {
 
    section.cover_block h1 {
       font-size:calc(var(--h1_size) * 1.5);
@@ -1048,6 +1063,7 @@ section.feature_tiles p {
 .m_2 {margin:2rem;}
 .ml_2 {margin-left:2rem;}
 .mt_0 {margin-top:0 !important;}
+.my_1 {margin-top:1rem;margin-bottom:1rem;}
 
 .p_1 {padding:1rem;}
 .p_2 {padding:2rem;}
