@@ -30,7 +30,7 @@ type UseFetchOptions = {
 }
 
 // Payload
-// server/file responses carry a payload along w/ meta info
+// server/file responses carry a payload along w/ our useFetch inteface
 interface Payload<T> {
    server_response:string,
    outcome:string,
