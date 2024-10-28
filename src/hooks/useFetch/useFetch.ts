@@ -23,7 +23,7 @@ export default function useFetch<T>(
    // and stop re-rendering even if new initialOptions created
    const [loading, setLoading] = useState(false)
    const [url, updateUrl] = useState(initialUrl)
-   const [data, setData] = useState<T | null>(null)
+   const [payload, setData] = useState<Payload<T | null> | null>(null)
    const [error, setError] = useState<string | null>(null)
    const [requestOptions, updateRequestOptions] = useState(initialRequestOptions)
    const [options, updateOptions] = useState(initialOptions || { immediate: true })
@@ -91,11 +91,13 @@ export default function useFetch<T>(
       }
    },[load,options])
 
+   console.log('payload 1',payload)
+
    return {
       url,
       loading,
       error,
-      data,
+      payload,
       load,
       updateUrl,
       updateOptions,

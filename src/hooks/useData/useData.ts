@@ -37,14 +37,16 @@ export default function useData<T>(
    
    // 1. to do : build as simple wrapper around useFetch
    
-   const { loading, data, error, load, updateUrl } = useFetch<T>(
+   const { loading, payload, error, load, updateUrl } = useFetch<T>(
       initialUrl,
       {headers: {accept: "application/json"},
    })
 
+
+   console.log('payload 2',payload)
   
    return {
-      loading, data, error, load, updateUrl
+      loading, payload, error, load, updateUrl
    }
    // 1.1 to do : unwrap data.data
 

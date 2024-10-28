@@ -29,6 +29,14 @@ type UseFetchOptions = {
    immediate: boolean
 }
 
+// Payload
+// server/file responses carry a payload along w/ meta info
+interface Payload<T> {
+   server_response:string,
+   outcome:string,
+   data: T | null
+}
+
 // UseFetchReturn
 // useFetch is app-agnostic - so only knows the url and data type (generic)
 // in our app, we know 'data' will contain { outcome, data, error } from server - so we want to extract..
@@ -36,9 +44,8 @@ type UseFetchOptions = {
 interface UseFetchReturn<T> {
    url:string,
    loading:boolean,
-   data:T | null,
+   payload:Payload<T | null> | null,
    error?:string | null,
-   // outcome:QueryOutcome,
    load: () => Promise<void>,
    updateUrl: Dispatch<SetStateAction<string>>,
    updateRequestOptions: Dispatch<SetStateAction<RequestInit | undefined>>,
@@ -47,7 +54,7 @@ interface UseFetchReturn<T> {
 
 interface UseDataReturn<T> {
    loading:boolean,
-   data:T | null,
+   payload:Payload<T | null> | null,
    error?:string | null,
    load: () => Promise<void>,
    updateUrl: Dispatch<SetStateAction<string>>

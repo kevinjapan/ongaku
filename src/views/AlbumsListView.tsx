@@ -8,37 +8,29 @@ import AlbumTeaser from '../components/Albums/AlbumTeaser/AlbumTeaser'
 
 export default function AlbumsListView() {
 
-   const { loading, data, error } = useData<UseDataReturn<AlbumsList>>('/data/albums_list.json')
+   const { loading, payload, error } = useData<AlbumsList>('/data/albums_list.json')
 
-   if(loading) {
-      return <div>loading</div>
-   }
+   if(loading) {return <div>loading</div>}
 
-   if(error) {
-      return <div>{error}</div>
-   }
+   if(error) {return <div>{error}</div>}
 
    // to do : verify my types setup here permits/handles empty array - []
    // to do : review - just reduce to data/error (remove 'outcome' - superfluous?)
-
    // to do : data?.data?.xxx is awkward and a little unclear - 
    //         works for now, but research further and re-visit types etc.
 
-   if(data) {
-
-      console.log('IS',data)
+   if(payload) {
+      console.log('IS',payload?.data)
       return (
          <>
             <HeroBanner 
                overlayHeading="albums" 
                featureImg="/assets/imgs/all-sorts-of-questions.jpg"/>
-
             <h3 className="ml_2">Albums</h3>
-
             <section className="feature_tiles">
                <ul>
-                  {data?.data?.albums_list?.length ? 
-                     data?.data?.albums_list?.map((album: Album) => (                 
+                  {payload?.data?.albums_list?.length ?
+                     payload?.data?.albums_list?.map((album: Album) => (                 
                         <AlbumTeaser
                            key={album.id}  
                            album={album} />
