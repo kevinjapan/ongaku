@@ -21,9 +21,11 @@ export default function Album({set_title, set_feature_img}:AlbumProps) {
    },[slug,updateUrl])
 
    // any slug change will reload data and hence re-render component, so the following work
-   set_title(payload?.data?.title)
-   set_feature_img(payload?.data?.feature_img)
-
+   useEffect(() => {
+      set_title(payload?.data?.title)
+      // short delay to prevent flicker as re-sets imgs
+      setTimeout(() => set_feature_img(payload?.data?.feature_img),200)
+   },[payload, set_title, set_feature_img])
 
    if(loading) {
       return <div>loading</div>
