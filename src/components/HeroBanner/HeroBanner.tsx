@@ -3,17 +3,16 @@ import { useRef, useEffect } from 'react'
 
 
 // HeroBanner
-
-// to do : we've lost retaining prev img w/ changes to AlbumView/useFetch - no longer fades out of prev into new
+// effects fade-out prev img and fade-in new img
 
 export default function HeroBanner(props: HeroBannerProps) {
 
    // useRef to store local_prev_feature_img w/out requiring as dependancy on useEffect
-   // future : review : we shouldn't useRef in rendering (as we do below) : but works for now
    const local_prev_feature_img = useRef<string>('')
 
    // reset img styles on props.featureImg change
    useEffect(() => {
+      
       if(local_prev_feature_img.current === props.featureImg) return
       const cover_img = document.querySelector('.feature_img')      
       if(cover_img) {
@@ -27,7 +26,7 @@ export default function HeroBanner(props: HeroBannerProps) {
          setTimeout(() => cover_img.classList.add('fade_in'),200)
 
          // store prev img
-         local_prev_feature_img.current = props.featureImg
+         if(props.featureImg && props.featureImg !== "") local_prev_feature_img.current = props.featureImg
       } 
    },[props.featureImg])
 
