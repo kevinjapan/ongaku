@@ -8,8 +8,9 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 // adapted from orig @ https://github.com/w3cj/use-x
 // AbortSignal: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
 
-// We store all initial props as our own state variables, the
-// only way to update the fetch state is to call the exported funcs
+// useFetch is app-agnostic, so returns a give data 'payload' of type T
+// We store all initial props as our own state variables, 
+// the only way to update the fetch state is to call the exported funcs
 // If our load func is called multiple times in quick succession,
 // we cancel the prev requests , only handle last request
 
@@ -60,12 +61,9 @@ export default function useFetch<T>(
          if(!response.ok) {
             throw Error(response.statusText)
          }
-         console.log('response.json',response.json)
-
          const json = await response.json()
-
          if(currentAbortController.signal.aborted) return
-         setData(json) // to do : json.data?
+         setData(json)
       }
       catch(e) {
          // in TS error type is 'unknown' - we know it will be an Error object
@@ -90,8 +88,6 @@ export default function useFetch<T>(
          abortController.current.abort()
       }
    },[load,options])
-
-   console.log('payload 1',payload)
 
    return {
       url,

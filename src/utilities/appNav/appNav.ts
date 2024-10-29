@@ -1,4 +1,3 @@
-// to do : locate this somewhere better (not in utilities)
 
 export function get_nav_links () {
    return [

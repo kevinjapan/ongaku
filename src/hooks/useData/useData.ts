@@ -1,58 +1,36 @@
-// import { useState } from 'react'
 import useFetch from '../useFetch/useFetch'
 
 
 
-// useData
+// useData Custom Hook
 
-
-
-// useFetch is app-agnostic, so only returns 'data' regardless of it's contents, we want:
+// to do :
 // - mapping to endpoints or queries
-// - some server reporting alongside any returned data - hence this custom hook.
+// - auto provide correct reqInit options (?)
 
-// to do : 
-// 1 - resolve mapping of endpoint/query to url
-// 2 - auto provide correct reqInit options
-
-// useData.useData
-
-// future : make this a Custom Hook?
-// we can't do so currently since we wrap in useEffect/async call in components (see AlbumsListView)
-// Custom Hooks must be called at top level : bit of reading etc to do first
-
-// we want ability to change between static (no-server, data in files) and server-api served site
-// our application will call useData and herein we will map to correct end-point.
-// - in dev: const { data, error } = await useFetch(`${app_store.app_api}/songs?order_by=${order_by.value}&asc=${asc.value}&page=${page.value}`,reqInit())
-// - in static: const { data, error } = await useFetch(`./songs_list.json`,reqInit())
-
-// useData
+// to do : args to useData
 // @url_params  : array of url params (ids/slugs) to include in url path
 // @query_params: object containing key/value pairs to build query string
 // @body        : pass js object or json string
 
+
 export default function useData<T>(
    initialUrl: string
 ): UseDataReturn<T> {
-   
-   // 1. to do : build as simple wrapper around useFetch
    
    const { loading, payload, error, load, updateUrl } = useFetch<T>(
       initialUrl,
       {headers: {accept: "application/json"},
    })
 
-
-   console.log('payload 2',payload)
-  
    return {
       loading, payload, error, load, updateUrl
    }
-   // 1.1 to do : unwrap data.data
 
-   // 2. to do : inject endpoints and clients calling w/ endpoint/query string
+   // to do :
 
-   // 3. 
+   // 2.  : inject endpoints and clients calling w/ endpoint/query string
+
 
    // console.log(url_params.length,query_params.length,typeof body)
    // const [loading, setLoading] = useState(false)
@@ -120,8 +98,8 @@ export default function useData<T>(
    // const body_stringified = body && typeof body === 'object' ? body = JSON.stringify(body) as T : null
    // const query_string = Object.keys(query_params).length > 0 ? new URLSearchParams(query_params) : ''
 
-   // to do : first ${''} is : app_store.app_api - need to enable this (if empty we are getting static resource)
-   // to do : 2nd arg to reqInit is : app_store.bearer_token
+   // first ${''} is : app_store.app_api - need to enable this (if empty we are getting static resource)
+   // s2nd arg to reqInit is : app_store.bearer_token
    // return await use_fetch<T>(
    //    `${''}${route}${route_url_params ? route_url_params : ''}${query_string ? '?' : ''}${query_string ? query_string : ''}`,
    //    reqInit(request_method,'',body_stringified)

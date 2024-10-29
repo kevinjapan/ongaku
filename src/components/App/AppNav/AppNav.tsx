@@ -12,6 +12,7 @@ import { get_nav_links } from '../../../utilities/appNav/appNav'
 
 
 // to do : nav doesn't slide up on clicking nav link - page refreshes and we lose animation
+// to do : we've lost fade transition btwn imgs (prev and new)
 // to do : slide overlay text
  
 export default function AppNav() {
@@ -40,7 +41,6 @@ export default function AppNav() {
    // methods
 
    const load_view = () => {
-      console.log('attempting')
       window.scroll(0,0)
       reset_nav()
    }
