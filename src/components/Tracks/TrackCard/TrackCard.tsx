@@ -5,7 +5,7 @@ import TrackCardSection from '../TrackCardSection/TrackCardSection'
 
 export default function TrackCard({track}: TrackCardProps) {
 
-   const { loading, data, error } = useFetch<UseFetchReturn<Track>>(`/data/tracks/${track.slug}.json`,{
+   const { loading, payload, error } = useFetch<Track>(`/data/tracks/${track.slug}.json`,{
       headers: {accept: "application/json"},
    })
    if(loading) {
@@ -16,14 +16,12 @@ export default function TrackCard({track}: TrackCardProps) {
       return <div>{error}</div>
    }
 
-   // to do : data?.data?.xxx is awkward - tidy up interface
-
-   if(data) {
+   if(payload) {
       let my_key = 0
       return (
          <section className="track_card">
-            <h3>{data?.data?.title}</h3>
-            {data?.data?.sections?.map((section) => {
+            <h3>{payload?.data?.title}</h3>
+            {payload?.data?.sections?.map((section) => {
                return <TrackCardSection key={my_key++} section={section}/>
             })}
          </section>
