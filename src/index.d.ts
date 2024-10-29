@@ -2,12 +2,20 @@
 declare module 'HomeView'
 
 
-// AppContext
+
+// ----------------------------------------------------
+// AppContext interfaces
+
 interface AppContext {
    app_api:string,
    prev_feature_img:string,
    set_prev_feature_img(img:string): void
 }
+
+
+
+// ----------------------------------------------------
+// Fetch and Data interfaces
 
 // EndPoint
 interface EndPoint {
@@ -22,7 +30,6 @@ interface QueryParams {
    [index: string]: string;
 }
 
-// Type Aliases
 type QueryOutcome = 'success' | 'fail'
 
 type UseFetchOptions = {
@@ -30,7 +37,7 @@ type UseFetchOptions = {
 }
 
 // Payload
-// server/file responses carry a payload along w/ our useFetch inteface
+// server/file responses carry a payload which is passed by our useFetch inteface
 interface Payload<T> {
    server_response:string,
    outcome:string,
@@ -38,9 +45,7 @@ interface Payload<T> {
 }
 
 // UseFetchReturn
-// useFetch is app-agnostic - so only knows the url and data type (generic)
-// in our app, we know 'data' will contain { outcome, data, error } from server - so we want to extract..
-// we want 'outcome' to clearly identify that eg an empty array is a valid response (eg no matching records)
+// useFetch is app-agnostic - returns meta info, api methods and json payload from server/file
 interface UseFetchReturn<T> {
    url:string,
    loading:boolean,
@@ -52,6 +57,8 @@ interface UseFetchReturn<T> {
    updateOptions: Dispatch<SetStateAction<UseFetchOptions>>,
 }
 
+// UseDataReturn
+// useData wraps useFetch for in-app endpoint mapping
 interface UseDataReturn<T> {
    loading:boolean,
    payload:Payload<T | null> | null,
@@ -60,7 +67,12 @@ interface UseDataReturn<T> {
    updateUrl: Dispatch<SetStateAction<string>>
 }
 
-// Errors
+
+
+
+
+// ----------------------------------------------------
+// Error interfaces
 
 interface RouteError {
    data:string,
@@ -77,7 +89,9 @@ interface RouteError {
 }
 
 
-// Albums / Tracks
+
+// ----------------------------------------------------
+// Albums/Tracks interfaces
 
 interface AlbumsList {
    albums_list?:Album[] | null
@@ -107,12 +121,18 @@ interface TrackSection {
 
 
 
-// Component Props
+// ----------------------------------------------------
+// Component Props interfaces
 
 interface HeroBannerProps {
    overlayHeading:string,
    overlayTagline?:string,
    featureImg:string,
+}
+
+interface AlbumProps {
+   set_title:Dispatch<SetStateAction<string>>,
+   set_feature_img:Dispatch<SetStateAction<string>>
 }
 
 interface TrackCardsListProps {
