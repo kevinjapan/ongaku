@@ -27,7 +27,6 @@ export default function useData<T>(
       loading, payload, error, load, updateUrl
    }
 
-   // to do :
 
    // 2.  : inject endpoints and clients calling w/ endpoint/query string
 

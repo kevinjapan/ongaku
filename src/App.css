@@ -8,7 +8,7 @@
  
    color-scheme: light dark;
    color: rgba(255, 255, 255, 0.87);
-   background-color: #242424;
+   background: white;
  
    font-synthesis: none;
    text-rendering: optimizeLegibility;
@@ -549,6 +549,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
       transition:transform .5s ease-in-out .2s,opacity .5s ease-in-out,border .5s ease-in-out;
    }
    
+   /* we temp retract dropdown on-the-fly prior to opening new view */
    nav ul.nav_list li a.nav_list_label:hover + .nav_list_dropdown.retract_dropdown,
    nav ul.nav_list li a.nav_list_label + .nav_list_dropdown.retract_dropdown:hover {
       -webkit-transform:translateY(-100%);
@@ -615,8 +616,9 @@ nav ul.nav_list li ul li a {margin:1rem; }
 
    color:black;
    background:white;
-   border:solid 1px lightgrey;
+   border:solid 1px hsl(0, 0%, 90%);
    border-radius:.5rem;
+   box-shadow:5px 5px 10px -2px rgba(0,0,0,.1); 
 }
 
 
@@ -740,12 +742,12 @@ section.cover_block {
    min-height:75vh;
    height:var(--cover_block_height);
    overflow:hidden;
-   background:hsl(190, 87%, 41%);
+   /* background:hsl(190, 87%, 41%); */
 }
-.fade_in {
+.cover_fade_in {
    animation: fade-in 1s;
 }
-.pre_fade_in {
+.pre_cover_fade_in {
    opacity:0;
 }
 @keyframes fade-in {
@@ -760,7 +762,7 @@ section.hero_block {
    min-height:var(--header_height);
    margin-top:-120px !important; /* displace nav_bar height */
    margin-bottom:2rem;
-   background:hsl(190, 87%, 41%);
+   /* background:hsl(190, 87%, 41%); */
  }
 section.cover_block p {
    margin-left:0;
@@ -1034,12 +1036,13 @@ section.feature_tiles p {
 /*
    Behaviours
 */
+
+/* hero banner type_in overlay text */
 .type_in_from_left_init,
 section.cover_block div.overlay.type_in_from_left_init {
    white-space:wrap;
    width:100vw;
 }
-
 @media screen and (min-width: 810px) {
    .type_in_from_left_init,
    section.cover_block div.overlay.type_in_from_left_init {
@@ -1056,7 +1059,15 @@ section.cover_block div.overlay.type_in_from_left_init {
    }
 }
 
-
+/* section/cards fade in */
+.fade_in {
+   opacity:0;
+   transition:opacity .45s ease-in-out;
+}
+.appear {
+   opacity:1;
+   transition:opacity 1.3s ease-in-out;
+}
 /* 
    utility classes
 */
