@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { is_sm_screen } from '../../../utilities/screen/screen'
 import { get_nav_links } from '../../../utilities/appNav/appNav'
 
@@ -8,20 +8,13 @@ import { get_nav_links } from '../../../utilities/appNav/appNav'
 // AppNav
 
 // from orig edk site, first pass migrating this solution into react, future : review code : improve
-// orig kept dropdown open on hover, not effective in spa with no reload, so we 'reset' on opening views.
+// we keep dropdown open on hover, not effective in spa with no reload, so we temporarily 'retract_dropdown'
 
-
-// to do : nav doesn't slide up on clicking nav link - page refreshes and we lose animation
-// to do : we've lost fade transition btwn imgs (prev and new)
-// to do : slide overlay text
- 
 export default function AppNav() {
 
    const { pathname } = useLocation()
    const nav_links = get_nav_links()
-
-   // reset nav on opening new view (we close extended dropdown)
-   const [reset, setReset] = useState(true)
+   const navigate = useNavigate()
 
    // track extended and toggle extended_nav_dropdown
    const [extended, setExtended] = useState(false)
@@ -40,15 +33,22 @@ export default function AppNav() {
 
    // methods
 
-   const load_view = () => {
+   // we use navigate to allow us to intercede and tidy nav behaviour (scrollup)
+   const load_view = (route: string) => {
       window.scroll(0,0)
-      reset_nav()
-   }
+      // reset_nav()
 
-   const reset_nav = () => {
-      setReset(false)
-      setTimeout(() => setReset(true),500)
-      if(is_sm_screen()) toggle_sm_dropdown()
+      if(is_sm_screen()) {
+         toggle_sm_dropdown()
+      }
+      else {
+         const dropdown = document.querySelector('.dropdown')
+         if(dropdown) {
+            dropdown.classList.add('retract_dropdown')
+            setTimeout(() => dropdown.classList.remove('retract_dropdown'),700)
+         }
+      }
+      setTimeout(() => navigate(route),200)
    }
 
    const toggle_sm_dropdown = () => {
@@ -92,7 +92,7 @@ export default function AppNav() {
    const init_transparent_nav = () => {
 
       const nav = document.querySelector('.nav')
-      const frontcover = document.querySelectorAll('.hero_block') // we are only interested in first one : to do : review : suspect not effective (will fail if multiples?)
+      const frontcover = document.querySelectorAll('.hero_block') // we are only interested in first one : future : review
       
       const newOptions = {
          threshold: 0,
@@ -138,25 +138,24 @@ export default function AppNav() {
             {nav_links.map(link => 
                <li key={link.label}>
                   {is_sm_screen() ?
-                     <Link to={`${link.route ? link.route : link.label}`} className="nav_list_label" onClick={load_view}>
+                     <a  
+                        onClick={() => load_view(link.route ? link.route : link.label)}>
                      {link.label}
-                     </Link>
+                     </a>
                      : <a className="nav_list_label">{link.label}</a>
                   }
-                  {reset ? 
-                     <ul className="nav_list_dropdown">
-                        <li>
-                           {link.children?.map(child => {
-                              return (
-                                 <Link to={`${child.route}`} key={child.id} 
-                                    onClick={load_view}>{child.label}
-                                 </Link>
-                              )
-                           })}
-                        </li>
-                     </ul>
-                     : null
-                  }
+                  <ul className="dropdown nav_list_dropdown">
+                     <li>
+                        {link.children?.map(child => {
+                           return (
+                              <a key={child.id} 
+                                 onClick={() => load_view(child.route)}>{child.label}
+                              </a>
+                           )
+                        })}
+                     </li>
+                  </ul>
+                   
                </li>
             )}
          </ul>
