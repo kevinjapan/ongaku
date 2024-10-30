@@ -10,14 +10,13 @@ export default function AlbumsListView() {
 
    const { loading, payload, error } = useData<AlbumsList>('/data/albums_list.json')
 
-   if(loading) {return <div>loading</div>}
+   if(loading) {
+      return <div>loading</div>
+   }
 
-   if(error) {return <div>{error}</div>}
-
-   // to do : verify my types setup here permits/handles empty array - []
-   // to do : review - just reduce to data/error (remove 'outcome' - superfluous?)
-   // to do : data?.data?.xxx is awkward and a little unclear - 
-   //         works for now, but research further and re-visit types etc.
+   if(error) {
+      return <div>{error}</div>
+   }
 
    if(payload) {
       console.log('IS',payload?.data)

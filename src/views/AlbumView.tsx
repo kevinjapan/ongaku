@@ -2,10 +2,6 @@ import { useState } from 'react'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
 import Album from '../components/Albums/Album/Album'
 
-// to do : we have duplicate same video link in json files:
-// i dont want to be here anymore / release your love / this picture
-// to do : backup track json files to github?
-
 
 // AlbumView
 // layout wrapper around Album to prevent HeroBanner re-rendering/mounting every time we load a new album
