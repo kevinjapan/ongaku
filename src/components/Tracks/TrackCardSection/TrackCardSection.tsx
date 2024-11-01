@@ -1,4 +1,10 @@
-// import TrackCard from '../TrackCard/TrackCard'
+
+
+// TrackCardSection
+
+interface TrackCardSectionProps {
+   section:TrackSection
+}
 
 export default function TrackCardSection({section}: TrackCardSectionProps) {
 

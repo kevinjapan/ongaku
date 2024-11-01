@@ -7,6 +7,12 @@ import { useRef, useState, useEffect } from 'react'
 // - fade-out prev img and fade-in new img
 // - slide in overlay texts
 
+interface HeroBannerProps {
+   overlayHeading:string,
+   overlayTagline?:string,
+   featureImg:string,
+}
+
 export default function HeroBanner(props: HeroBannerProps) {
 
    // useRef to store local_prev_feature_img w/out requiring as dependancy on useEffect

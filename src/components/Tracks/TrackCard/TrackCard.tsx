@@ -4,8 +4,11 @@ import TrackCardSection from '../TrackCardSection/TrackCardSection'
 import create_observers from '../../../utilities/createObservers/createObservers'
 
 
-
 // TrackCard
+
+interface TrackCardProps {
+   track:Track
+}
 
 export default function TrackCard({track}: TrackCardProps) {
 

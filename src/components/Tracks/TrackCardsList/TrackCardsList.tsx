@@ -1,5 +1,9 @@
 import TrackCard from '../TrackCard/TrackCard'
 
+interface TrackCardsListProps {
+   tracks:Track[]
+}
+
 export default function TrackCardsList({ tracks }: TrackCardsListProps) {
 
    return (

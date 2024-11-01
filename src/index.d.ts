@@ -123,27 +123,11 @@ interface TrackSection {
 
 // ----------------------------------------------------
 // Component Props interfaces
-// to do : move to each component file?
+// for props passing funcs, it resolves Dispatch and SetStateAction implicitly here but not in component file
+// eg added import { SetStateAction, Dispatch } from 'react' to Album.tsx to enable in-component file interface
 
-interface HeroBannerProps {
-   overlayHeading:string,
-   overlayTagline?:string,
-   featureImg:string,
-}
 
-interface AlbumProps {
-   set_title:Dispatch<SetStateAction<string>>,
-   set_feature_img:Dispatch<SetStateAction<string>>
-}
 
-interface TrackCardsListProps {
-   tracks:Track[]
-}
 
-interface TrackCardProps {
-   track:Track
-}
 
-interface TrackCardSectionProps {
-   section:TrackSection
-}
+
