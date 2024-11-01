@@ -4,7 +4,7 @@
 
 export default function reqInit<T>(method: string = "POST", bearer_token: string = "", body: T) : RequestInit {
 
-   console.log('bearer_token',bearer_token)  // to do : enable - rollout below - handle for static site (bearer_token not required)
+   // console.log('bearer_token',bearer_token)  // to do : enable - rollout below - handle for static site (bearer_token not required)
 
    // we convert 'body' into json (type is now string)
    if(typeof body === 'object') {
