@@ -20,7 +20,7 @@ interface AppContext {
 // EndPoint
 interface EndPoint {
    request_method:string,
-   route:string, 
+   route_url:string, 
    route_url_params?:string
 }
 
@@ -60,11 +60,11 @@ interface UseFetchReturn<T> {
 // UseDataReturn
 // useData wraps useFetch for in-app endpoint mapping
 interface UseDataReturn<T> {
-   loading:boolean,
-   payload:Payload<T | null> | null,
+   loading?:boolean,
+   payload?:Payload<T | null> | null,
    error?:string | null,
-   load: () => Promise<void>,
-   updateUrl: Dispatch<SetStateAction<string>>
+   load?: () => Promise<void>,
+   updateUrl?: Dispatch<SetStateAction<string>>
 }
 
 
@@ -123,6 +123,7 @@ interface TrackSection {
 
 // ----------------------------------------------------
 // Component Props interfaces
+// to do : move to each component file?
 
 interface HeroBannerProps {
    overlayHeading:string,

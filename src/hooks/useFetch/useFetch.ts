@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-// import status_code from '../../utilities/statusCode/statusCode'
-
 
 
 // useFetch Custom Hook
@@ -32,11 +30,9 @@ export default function useFetch<T>(
    // we useRef, rather than setState: we can re-assign w/out dependancy loop
    const abortController = useRef(new AbortController())
 
-
    // load
    // we useCallback to prevent useEffect changing on every render
    // url dependancy will action on client url change
-
    const load = useCallback(async() => {
 
       abortController.current.abort()
@@ -49,7 +45,6 @@ export default function useFetch<T>(
       else {
          setError(null)
       }
-
       setLoading(true)
 
       try {
