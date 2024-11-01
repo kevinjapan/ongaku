@@ -23,7 +23,8 @@ export default function AlbumsListView() {
          <>
             <HeroBanner 
                overlayHeading="albums" 
-               featureImg="/assets/imgs/all-sorts-of-questions.jpg"/>
+               featureImg="/assets/imgs/all-sorts-of-questions.jpg"
+            />
             <h3 className="ml_2">Albums</h3>
             <section className="feature_tiles">
                <ul>
