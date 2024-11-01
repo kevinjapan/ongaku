@@ -12,12 +12,12 @@ export default function Album({set_title, set_feature_img}:AlbumProps) {
    const { slug } = useParams()
    const slug_ref = useRef(slug)
    
-   const { loading, payload, error, updateUrl } = useData<Album>(`/data/albums/${slug_ref.current}.json`)
+   const { loading, payload, error, updateUrl } = useData<Album>(`single_album`,[slug_ref.current ? slug_ref.current : ''],{})
 
    // if 'slug' changes, we have to invoke useFetch to reload new url
    useEffect(() => {
       slug_ref.current = slug
-      updateUrl(`/data/albums/${slug_ref.current}.json`)
+      updateUrl(`/data/albums/${slug_ref.current}.json`) // to do : need intermediate w/ endPoint for useData
    },[slug,updateUrl])
 
    // any slug change will reload data and hence re-render component, so the following work

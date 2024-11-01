@@ -8,7 +8,7 @@ import AlbumTeaser from '../components/Albums/AlbumTeaser/AlbumTeaser'
 
 export default function AlbumsListView() {
 
-   const { loading, payload, error } = useData<AlbumsList>('/data/albums_list.json')
+   const { loading, payload, error } = useData<AlbumsList>('albums_list',[],{})
 
    if(loading) {
       return <div>loading</div>
@@ -19,7 +19,6 @@ export default function AlbumsListView() {
    }
 
    if(payload) {
-      console.log('IS',payload?.data)
       return (
          <>
             <HeroBanner 
