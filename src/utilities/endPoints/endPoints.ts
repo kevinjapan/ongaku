@@ -27,10 +27,10 @@ export function get_end_point(endPoint: string,url_params: Array<string>,query_p
             route_url:`/data/albums/`,
             route_url_params:`${url_params?.join('/')}.json`
          },
-         // failsafe default if no match found
+         // failsafe default if no match found - useFetch will report error on empty URL
          default:{
             request_method:'GET',
-            route_url:`/data/no_end_point.json`, // to do : review and improve mechanism
+            route_url:``,
          }
       }
 
@@ -44,7 +44,7 @@ export function get_end_point(endPoint: string,url_params: Array<string>,query_p
             request_method:'GET',
             route_url:`/search?search_term=${query_params.search_term}`
          },
-         // failsafe default if no match found
+         // failsafe default if no match found - useFetch will report error on empty URL
          default:{
             request_method:'GET',
             route_url:`/data/no-end-point`,

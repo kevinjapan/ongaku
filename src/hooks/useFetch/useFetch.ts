@@ -38,7 +38,7 @@ export default function useFetch<T>(
       abortController.current.abort()
       abortController.current = new AbortController()
       setData(null)
-      if(!url) {
+      if(!url || url === '') {
          setError('Empty URL')
          return
       }
@@ -82,7 +82,7 @@ export default function useFetch<T>(
       return () => {
          abortController.current.abort()
       }
-   },[load,options])
+   },[load, options])
 
    return {
       url,

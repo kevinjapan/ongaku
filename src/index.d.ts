@@ -64,7 +64,7 @@ interface UseDataReturn<T> {
    payload?:Payload<T | null> | null,
    error?:string | null,
    load?: () => Promise<void>,
-   updateUrl?: Dispatch<SetStateAction<string>>
+   updateDataUrl?: Dispatch<SetStateAction<string>>
 }
 
 
