@@ -4,6 +4,7 @@ import { AppContextProvider } from './AppContext'
 import './App.css'
 import AppNav from './components/App/AppNav/AppNav'
 import AudioPlayer from './components/AudioPlayer/AudioPlayer'
+// import AudioPlayerTracksList from './components/AudioPlayer/AudioPlayerTracksList/AudioPlayerTracksList'
 import BubbleAnimator from './components/BubbleAnimator/BubbleAnimator'
 import AppFooter from './components/App/AppFooter/AppFooter'
 
@@ -14,6 +15,7 @@ import AppFooter from './components/App/AppFooter/AppFooter'
 
 export default function App() {
 
+   // future : move into Context
    
    return (
       <AppContextProvider>
@@ -23,10 +25,11 @@ export default function App() {
          <main>               
             <Suspense>
                <Outlet/>
+               <AudioPlayer/>
             </Suspense>
          </main>
 
-         <AudioPlayer/>
+         
 
          <BubbleAnimator/>
 
