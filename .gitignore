@@ -44,6 +44,9 @@ jspm_packages/
 
 # Prevent json and imgs proliferating on github
 public
+public/imgs
+public/audio
+public/data
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
