@@ -1,12 +1,13 @@
 
 interface AudioPlayerTracksListItemProps {
-    track_slug:string,
-    play_track(track_slug: string): void
+   track:TracksListItem,
+   play_track(track: TracksListItem): void
 }
 
-export default function AudioPlayerTracksListItem({track_slug, play_track}: AudioPlayerTracksListItemProps) {
-
-    return (
-        <li onClick={() => play_track(track_slug)}>{track_slug}</li>
-    )
+export default function AudioPlayerTracksListItem({track, play_track}: AudioPlayerTracksListItemProps) {
+   return (
+      <li onClick={() => play_track(track)} className="pointer_cursor highlight_hover w_100 p_.35 px_.5">
+         {track.title}
+      </li>
+   )
 }

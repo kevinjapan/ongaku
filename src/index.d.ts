@@ -120,6 +120,11 @@ interface TrackSection {
 }
 
 
+interface TracksListItem {
+   title:string,
+   slug:string
+}
+
 
 // ----------------------------------------------------
 // Component Props interfaces
