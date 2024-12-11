@@ -13,7 +13,7 @@ export default function HomeView() {
       <>
          <HeroBanner 
             overlayHeading="evolution desu ka" 
-            featureImg="/assets/imgs/soundscapes.jpg"
+            featureImg="/imgs/soundscapes.jpg"
          />
 
          <section>

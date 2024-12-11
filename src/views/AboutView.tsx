@@ -8,7 +8,7 @@ export default function AboutView() {
 
          <HeroBanner 
             overlayHeading="about" 
-            featureImg="/assets/imgs/edk-workstation.jpg"
+            featureImg="/imgs/edk-workstation.jpg"
          />
 
 
