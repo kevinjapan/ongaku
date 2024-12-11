@@ -24,7 +24,7 @@ export default function AudioPlayerPlayer({current_song} : AudioPlayerPlayerProp
 
 
    return (
-      <div className="border">
+      <div>
          <audio
             ref={audio_ref}
             controls

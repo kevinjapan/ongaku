@@ -38,13 +38,14 @@ export default function AudioPlayer() {
       <section className="audio_player">
          <div className="flex flex_col">
 
-            <AudioPlayerCtrls 
-               track={current_track}
-               mouse_over={mouse_over}
-               mouse_out={mouse_out} />
+               <AudioPlayerCtrls 
+                  track={current_track}
+                  mouse_over={mouse_over}
+                  mouse_out={mouse_out} />
 
-            <AudioPlayerPlayer 
-               current_song={current_track.slug} />
+               <AudioPlayerPlayer 
+                  current_song={current_track.slug} />
+            
 
             <AudioPlayerTracksList 
                open_trackslist={show_tracks_list}

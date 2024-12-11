@@ -13,10 +13,11 @@ export default function AudioPlayerCtrls({track, mouse_over, mouse_out }: AudioP
 
    // to do : rename - not Ctrls anymore
    return (
-      <section className="audio_player_ctrls flex gap_1 justify_center align_items_center">
-         <div className="current_track pointer_cursor" 
+      <section className="audio_player_ctrls flex gap_1 justify_center align_items_center pointer_cursor"
                onMouseOver={mouse_over} 
                onMouseOut={mouse_out}>
+         <img src="/src/assets/icons/music-note.svg"/>
+         <div className="current_track" >
             {track?.title}
          </div>
       </section>

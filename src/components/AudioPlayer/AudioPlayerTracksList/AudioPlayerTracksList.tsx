@@ -82,7 +82,6 @@ export default function AudioPlayerTracksList({open_trackslist, play_track}: Aud
    },[])
 
    return (
-      <div>{open_trackslist ? 'yes' : 'no'}
       <ul className={open_trackslist ? 'player_tracks_list open_tracklist border'  : 'player_tracks_list border'}>
          {
             tracks_list?.map((track) => {
@@ -96,6 +95,5 @@ export default function AudioPlayerTracksList({open_trackslist, play_track}: Aud
             })
          }
       </ul>
-      </div>
    )
 }
