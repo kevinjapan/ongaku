@@ -4,13 +4,14 @@ import AudioPlayerTracksListItem from './AudioPlayerTracksListItem.tsx/AudioPlay
 
 
 interface AudioPlayerTracksListProps {
+   current_track: TracksListItem,
    open_trackslist: boolean,
    play_track(track_slug: TracksListItem): void
 }
 
 
 
-export default function AudioPlayerTracksList({open_trackslist, play_track}: AudioPlayerTracksListProps) {
+export default function AudioPlayerTracksList({current_track, open_trackslist, play_track}: AudioPlayerTracksListProps) {
 
    const [tracks_list, setTracksList] = useState<TracksListItem[] | null>(null)
 
@@ -89,6 +90,7 @@ export default function AudioPlayerTracksList({open_trackslist, play_track}: Aud
                   <AudioPlayerTracksListItem 
                      key={track.slug} 
                      track={track} 
+                     current_track={current_track}
                      play_track={play_track}
                   />
                )
