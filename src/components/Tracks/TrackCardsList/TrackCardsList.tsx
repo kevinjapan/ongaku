@@ -6,19 +6,20 @@ interface TrackCardsListProps {
 
 export default function TrackCardsList({ tracks }: TrackCardsListProps) {
 
+   let count = 0
+   
    return (
-      <section className="tracks_list">
-         <h2>TrackCardsList</h2>
+      <section className="track_cards_list">
          {tracks  ?
             tracks.map((track) => {
                return (
                   <TrackCard 
                      key={track.slug} 
+                     count={count++}
                      track={track} 
                   />
                )
             })
-      
          : null}
       </section>
    )
