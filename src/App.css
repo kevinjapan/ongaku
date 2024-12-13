@@ -1345,7 +1345,14 @@ section.cover_block div.overlay.type_in_from_left_init {
    white-space:wrap;
    width:100vw;
 }
-@media screen and (min-width: 810px) {
+section.cover_block div.overlay h1,
+section.cover_block div.overlay h2,
+section.cover_block div.overlay h3,
+section.cover_block div.overlay h4 {
+   white-space:wrap;
+   max-width:80%;
+}
+@media screen and (min-width: 768px) {
    .type_in_from_left_init,
    section.cover_block div.overlay.type_in_from_left_init {
       max-width:0px;
@@ -1358,6 +1365,13 @@ section.cover_block div.overlay.type_in_from_left_init {
    section.cover_block div.overlay.type_in_from_left {
       max-width:100vw;
       transition:max-width .35s ease-in-out .35s;
+   }
+   section.cover_block div.overlay h1,
+   section.cover_block div.overlay h2,
+   section.cover_block div.overlay h3,
+   section.cover_block div.overlay h4 {
+      white-space:unset;
+      max-width:100%;
    }
 }
 
@@ -1450,7 +1464,7 @@ section.cover_block div.overlay.type_in_from_left_init {
 
 .relative {position:relative;}
 
-.pointer_cursor {
+.cursor_pointer {
    cursor:pointer;
 }
 .highlight {
