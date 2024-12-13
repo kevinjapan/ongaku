@@ -41,7 +41,7 @@ export default function TrackCard({track, count}: TrackCardProps) {
       const m_top: Array<string> = ['margin_top_10','margin_top_12','margin_top_20']
       const m_left: Array<string> = ['margin_left_neg_10','margin_left_neg_12','margin_left_neg_14','margin_left_neg_15']
       const m_right: Array<string> = ['margin_right_neg_10','margin_right_neg_11','margin_right_neg_12','margin_right_neg_14','margin_right_neg_15']
-      const opacity: Array<string> = ['opacity_1','opacity_2','opacity_2_%','opacity_3','opacity_4']
+      const opacity: Array<string> = ['opacity_1','opacity_2','opacity_2_5','opacity_3','opacity_4']
 
       if(is_odd_index()) {
          return `${random_elem(portholes)} ${random_elem(m_top)} ${random_elem(m_left)} ${random_elem(opacity)}`
