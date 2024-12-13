@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import AudioPlayerCtrls from './AudioPlayerCtrls/AudioPlayerCtrls'
+import ActiveTrackSelector from './ActiveTrackSelector/ActiveTrackSelector'
 import AudioPlayerTracksList from './AudioPlayerTracksList/AudioPlayerTracksList'
 import AudioPlayerPlayer from './AudioPlayerPlayer/AudioPlayerPlayer'
 
@@ -11,7 +11,6 @@ import AudioPlayerPlayer from './AudioPlayerPlayer/AudioPlayerPlayer'
 // to do : 
 // - play through all listed tracks once started playing any given track
 // - mp3 names are case-sensitive
-// - audio tracks - we currently display slugs eg tell-me-how-you...   remove '-' and file extensions
 
 
 export default function AudioPlayer() {
@@ -38,7 +37,7 @@ export default function AudioPlayer() {
       <section className="audio_player">
          <div className="flex flex_col">
 
-               <AudioPlayerCtrls 
+               <ActiveTrackSelector 
                   track={current_track}
                   mouse_over={mouse_over}
                   mouse_out={mouse_out} />
@@ -48,6 +47,7 @@ export default function AudioPlayer() {
             
 
             <AudioPlayerTracksList 
+               current_track={current_track}
                open_trackslist={show_tracks_list}
                play_track={play_track} />
 
