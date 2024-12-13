@@ -2,9 +2,11 @@
 
 :root {
 
-   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+   
    line-height: 1.5;
    font-weight: 400;
+   font-size:17px;
  
    color-scheme: light dark;
    color: rgba(255, 255, 255, 0.87);
@@ -265,9 +267,11 @@ nav.invisible_nav {
 nav div.logo_block    {
    position:relative;
    z-index:var(--over_over_nav_layer);
+
    -webkit-box-flex:2;
    -ms-flex-positive:2;
    flex-grow:2;
+
    text-align:left;
    height:var(--nav_bar_height);
    color:white;
@@ -474,11 +478,13 @@ nav ul.nav_list li ul li a {margin:1rem; }
       -webkit-box-direction:normal;
       -ms-flex-direction:row;
       flex-direction:row;
+
       width:unset;
       height:100%;
       margin:0;
       padding:0 1rem 0 0;
       border-bottom:none;
+      
       transform:unset;
       opacity:1;
       transition:none;
@@ -598,52 +604,74 @@ nav ul.nav_list li ul li a {margin:1rem; }
    left:0;
    bottom:0;
    z-index:var(--over_over_over_nav_layer);
-   /* display:grid;
-   grid-template-columns: 1fr 1fr 1fr; */
+
+   display:-webkit-box;
+   display:-ms-flexbox;
    display:flex;
+   -webkit-box-pack:center;
+   -ms-flex-pack:center;
    justify-content:center;
+
    width:100%;
-   max-height:60px;  
-   /* to do : remove this line */ height:120px;max-height:120px;
+   height:76px;
+   max-height:76px;
    margin:0 auto;
    padding:.25rem;
    background:white;
    overflow:visible;
+   border-top:1px solid grey;
+   background:lightgrey;
 }
 .audio_player_ctrls {
    margin:0;
    padding:1rem .65rem;
    overflow:hidden;
+   background:white;
 }
 div.current_track {
+
    z-index:999;
-   background:white;
-   height:fit-content;
+
+   display:-webkit-box;
+   display:-ms-flexbox;
    display:flex;
-   align-items:center;
+   -webkit-box-pack:center;
+   -ms-flex-pack:center;
    justify-content:center;
+   -webkit-box-align:center;
+   -ms-flex-align:center;
+   align-items:center;
+
+   height:fit-content;
    padding:.35rem;
-   font-style:italic;
-   color:blue;
+   background:white;
 }
 div.current_track:hover {   
+   color:blue;
    background:hsl(60, 100%, 80%);
 }
 img.audoplayer_icon {
    width:24px;
 }
 ul.player_tracks_list {
-   /* position:absolute;
-   left:auto;
-   right:auto; */
-   z-index:-1;/*var(--over_over_over_nav_layer);*/
-   /* bottom:100px; */
+
+   z-index:-1;
+
+   display:-webkit-box;
+   display:-ms-flexbox;
    display:flex;
+   -webkit-box-orient:vertical;
+   -webkit-box-direction:normal;
+   -ms-flex-direction:column;
    flex-direction:column;
+   -webkit-box-pack:start;
+   -ms-flex-pack:start;
    justify-content:flex-start;
-   /* align-self:centerflex-end; */
+   -webkit-box-align:start;
+   -ms-flex-align:start;
    align-items:flex-start;
    gap:0;
+
    width:fit-content;
    background:white;
    height:fit-content;
@@ -651,18 +679,15 @@ ul.player_tracks_list {
    padding:1rem;
    padding-bottom:4rem;
    border-radius:.5rem;
-   /* overflow-y:auto;    */
    -webkit-transform:translateY(0);
    -ms-transform:translateY(0);
    transform:translateY(0);
    opacity:0;
    transition:transform .5s ease-in-out .25s,opacity 1s ease-in-out .2s,border .25s ease-in-out;
 }
-
 ul.player_tracks_list.open_tracklist,
 ul.player_tracks_list:hover  {
-   z-index:-1;/*var(--over_over_over_nav_layer);*/
-   /* to do : this resolves relative to root - so always goes to top of page - no good */
+   z-index:-1;
    -webkit-transform:translateY(-110%);
    -ms-transform:translateY(-110%);
    transform:translateY(-110%);
@@ -671,16 +696,27 @@ ul.player_tracks_list:hover  {
 }
 
 
+/* we limit feature_block width in lg (TrackCard container) to keep porthole img aligned w/ TrackCard */
+section.track_cards_list {
+   width:100%;
+}
+@media screen and (min-width: 1110px) {
+   section.track_cards_list {
+      width:75%;
+   }
+}
+
 /* style audio element */
 /* https://blog.shahednasser.com/how-to-style-an-audio-element */
 audio {
    width:100%;
+   height:40px;
 }
 audio::-webkit-media-controls-enclosure {
    border-radius:0;
 }
 audio::-webkit-media-controls-panel {
-   background-color: hsl(160, 100%, 85%);background:transparent;
+   background:white;
 }
 audio::-webkit-media-controls-play-button {
    border-radius:50%;
@@ -689,23 +725,40 @@ audio::-webkit-media-controls-play-button {
 
 /* tracks */
 .tracks_list {
-   /* to do : better name to differentiate from player_tracks_list above */
+   display:-webkit-box;
+   display:-ms-flexbox;
    display:flex;
+   -webkit-box-orient:vertical;
+   -webkit-box-direction:normal;
+   -ms-flex-direction:column;
    flex-direction:column;
    gap:2rem;
 }
 .track_card {
    width:fit-content;
-   margin:0 auto;
-   padding:0 1rem;
-
+   margin:1rem auto;
+   padding:1rem 4rem;
    color:black;
    background:white;
    border:solid 1px hsl(0, 0%, 90%);
    border-radius:.5rem;
-   box-shadow:5px 5px 10px -2px rgba(0,0,0,.1); 
+   box-shadow:5px 5px 10px rgba(0,0,0,.35);
+   text-align:center;
 }
-
+section.track_card > * {
+   margin:0;
+   padding:0;
+}
+section.track_card > h6 {
+   font-size:.9rem;
+   color:grey;
+}
+section.track_card > p {
+   margin-top:2.5rem;
+   margin-bottom:2.5rem;
+   line-height:.8rem;
+   color:hsl(0, 0%, 20%);
+}
 
 
 /* 
@@ -714,19 +767,17 @@ audio::-webkit-media-controls-play-button {
 */
 section {
    max-width:100%;
-   overflow-x:hidden;
-  
    margin:0;
    margin-top:var(--block_y_margins);
    margin-bottom:var(--block_y_margins);
    padding-left:0;
    padding-right:0;
+   overflow-x:hidden;  
 
    /* background-image is specific to each section & defined as inline style */
    /* background-attachment:fixed;
    background-repeat:no-repeat;
    background-size: cover;
-
    background-color:white; */
 }   
 
@@ -736,14 +787,12 @@ section > ul {
    display:-webkit-box;
    display:-ms-flexbox;
    display:flex;
-
    -webkit-box-orient:vertical;
    -webkit-box-direction:normal;
    -ms-flex-direction:column;
-   flex-direction:column;  /* mobile */
+   flex-direction:column;
 
    max-width:100%;
-
    margin-left:auto;
    margin-right:auto;
    padding-left:var(--section_inline_padding);
@@ -1012,12 +1061,10 @@ section.cover_block.content_at_end {
 }
 
 @media screen and (min-width: 910px) {
-
    section.cover_block h1 {
       font-size:calc(var(--h1_size) * 1.5);
    }
 }
-
 
 
 /* 
@@ -1031,37 +1078,31 @@ section.feature_tiles {
    padding-top:.5rem;
 }
 section.feature_tiles > ul {
-
    display:-ms-grid;
    display:grid;
    -ms-grid-columns:1fr;
    grid-template-columns:1fr;
-
    -ms-flex-wrap:wrap;
-   flex-wrap:wrap;
-   
+   flex-wrap:wrap;   
    gap:1rem;
+
    padding:1rem;
 }
 section.feature_tiles > ul > li {
    /* display:-webkit-box;
    display:-ms-flexbox;
-   display:flex;
-   
+   display:flex;   
    -webkit-box-orient:vertical;
    -webkit-box-direction:normal;
    -ms-flex-direction:column;
    flex-direction:column;
-
    -webkit-box-pack:start;
    -ms-flex-pack:start;
    justify-content:flex-start; 
-
    gap:0;*/
    margin:.25rem;
    margin-bottom:3rem;
    text-align:center;
-
 }
 /* section.feature_tiles > ul > li > * {
    -webkit-box-flex:0;
@@ -1114,6 +1155,182 @@ section.feature_tiles p {
    section.feature_tiles > ul { 
       -ms-grid-columns:1fr 1fr 1fr;     
       grid-template-columns:1fr 1fr 1fr;
+   }
+}
+
+
+/*
+//    section.feature_block
+*/
+section.feature_block {
+   display:-webkit-box;
+   display:-ms-flexbox;
+   display:flex;
+   -webkit-box-orient:vertical;
+   -webkit-box-direction:normal;
+   -ms-flex-direction:column;
+   flex-direction:column;
+
+   max-width:100%;
+   margin-top:2rem;
+   margin-bottom:2rem;
+   padding:0;
+   padding-bottom:1rem;
+
+   overflow:hidden; /* to permit float_in behaviours w/out scrollbar */
+}
+section.feature_block > img {
+   width:100%;
+   margin:0 auto 0 auto;
+}
+section.feature_block > figure {
+   height:fit-content;
+   padding:0;
+}
+section.feature_block > figure > img {
+   width:100%;
+   margin:0;
+}
+section.feature_block > div {
+   display:-webkit-box;
+   display:-ms-flexbox;
+   display:flex;
+   -webkit-box-orient:vertical;
+   -webkit-box-direction:normal;
+   -ms-flex-direction:column;
+   flex-direction:column;
+   -ms-flex-pack:distribute;
+   justify-content:space-around;
+   -webkit-box-align:start;
+   -ms-flex-align:start;
+   align-items:flex-start;  
+   gap:1rem;
+   
+   padding:2rem;
+   text-align:center;
+}
+section.feature_block h1,
+section.feature_block h2,
+section.feature_block h3,
+section.feature_block h4,
+section.feature_block h5, 
+section.feature_block h6 {
+   width:100%;
+   text-align:center;
+}
+section.feature_block button {
+   margin-left:auto;
+   margin-right:auto;
+}
+section.feature_block p {
+   margin-left:0;
+   margin-right:0;
+   font-size:1.1rem;
+   text-align:center;
+}
+section.feature_block > div > *:not(button) {
+   margin:0;
+   padding:0;
+}
+@media screen and (min-width: 810px) {
+   section.feature_block {
+      -webkit-box-orient:horizontal;
+      -webkit-box-direction:normal;
+      -ms-flex-direction:row;
+      flex-direction:row;
+
+      width:80%;
+      margin-top:2rem;
+      margin-bottom:2rem;
+   }
+   section.feature_block.reverse_order {
+      -webkit-box-orient:horizontal;
+      -webkit-box-direction:reverse;
+      -ms-flex-direction:row-reverse;
+      flex-direction:row-reverse;
+   }
+   /* section.feature_block.col_reverse {flex-direction:row-reverse;}  */
+   section.feature_block img {
+      width:30%;
+      max-height:300px;
+      margin-top:2.5rem;  
+      margin:0;
+   }
+}
+
+
+/* 
+//    PORTHOLE IMG
+*/
+section.feature_block {
+   position:relative;
+}
+section.feature_block img.porthole {
+   border-radius:50%;
+   width:220px;
+   height:220px;
+   opacity:1;
+}
+@media screen and (min-width: 810px) {
+
+   section.feature_block img.margin_top_6 {margin-top:6rem;}
+   section.feature_block img.margin_top_8 {margin-top:8rem;}
+   section.feature_block img.margin_top_10 {margin-top:10rem;}
+   section.feature_block img.margin_top_12 {margin-top:12rem;}
+   section.feature_block img.margin_top_14 {margin-top:14rem;}
+   section.feature_block img.margin_top_15 {margin-top:15rem;}
+   section.feature_block img.margin_top_16 {margin-top:16rem;}
+   section.feature_block img.margin_top_20 {margin-top:20rem;}
+   section.feature_block img.margin_top_26 {margin-top:26rem;}
+   
+   section.feature_block img.margin_left_neg_8 {margin-left:-8rem;}
+   section.feature_block img.margin_left_neg_10 {margin-left:-10rem;}
+   section.feature_block img.margin_left_neg_12 {margin-left:-12rem;}
+   section.feature_block img.margin_left_neg_14 {margin-left:-14rem;}
+   section.feature_block img.margin_left_neg_15 {margin-left:-15rem;}
+   
+   section.feature_block img.margin_right_neg_10 {margin-right:-10rem;}
+   section.feature_block img.margin_right_neg_11 {margin-right:-11rem;}
+   section.feature_block img.margin_right_neg_12 {margin-right:-12rem;}
+   section.feature_block img.margin_right_neg_14 {margin-right:-14rem;}
+   section.feature_block img.margin_right_neg_15 {margin-right:-15rem;}
+
+   section.feature_block img.opacity_1 {opacity:.1;}
+   section.feature_block img.opacity_2 {opacity:.2;}
+   section.feature_block img.opacity_2_5 {opacity:.25;}
+   section.feature_block img.opacity_3 {opacity:.3;}
+   section.feature_block img.opacity_4 {opacity:.4;}
+
+   section.feature_block img.porthole_xs {width:200px;height:200px;}
+   section.feature_block img.porthole_sm {width:230px;height:230px;}
+   section.feature_block img.porthole_md {width:250px;height:250px;}
+   section.feature_block img.porthole_lg {width:275px;height:275px;}
+   section.feature_block img.porthole_xl {width:300px;height:300px;}
+}
+
+
+/* 
+//       SONG CARD
+*/
+section.feature_block > div.song_card {
+   position:relative;
+   z-index:var(--song_card_z);
+   min-width:400px;
+   margin:1rem .5rem 2rem 0.5rem;
+   padding-top:3rem;
+   border:solid 1px hsl(0, 0%, 90%);
+   border-radius:.5rem;
+   box-shadow:5px 5px 10px -2px rgba(0,0,0,.1); 
+   gap:0;
+}
+section.feature_block > div.song_card > h6,
+section.feature_block > div.song_card > p {
+   margin-bottom:2rem;
+}
+@media screen and (max-width: 768px) {
+   section.feature_block > div.song_card {
+      min-width:unset;
+      max-width:96%;
    }
 }
 
@@ -1221,8 +1438,12 @@ section.cover_block div.overlay.type_in_from_left_init {
 
 .border {border:solid 1px lightgrey;}
 
-.bg_yellow {background:yellow;}
+.bg_yellow {background: yellow;}
 
+
+.display_block {
+   display:block;
+}
 .link {
    color: #646cff;
 }
@@ -1232,14 +1453,34 @@ section.cover_block div.overlay.type_in_from_left_init {
 .pointer_cursor {
    cursor:pointer;
 }
+.highlight {
+   background:hsl(60, 100%, 76%);
+}
 .highlight_hover:hover {
    background:hsl(60, 100%, 80%);
 }
 
+.text_lg {
+   font-size:1.1rem;
+}
 .text_center {
    text-align:center;
 }
 
 .w_100 {
    width:100%;
+}
+
+.no_user_select {
+   user-select:none;
+}
+
+/* handle TrackCard line wraps in sm */
+.line_1 {
+   line-height:1.5rem;
+}
+@media screen and (min-width: 768px) {
+   .line_1 {
+      line-height:1rem;
+   }
 }
