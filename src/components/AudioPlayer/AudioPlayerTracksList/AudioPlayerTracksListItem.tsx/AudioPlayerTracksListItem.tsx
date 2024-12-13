@@ -13,7 +13,7 @@ export default function AudioPlayerTracksListItem({current_track, track, play_tr
 
    return (
       <li onClick={() => play_track(track)} 
-         className={"pointer_cursor highlight_hover no_user_select w_100 p_.35 px_.5 " + (is_selected() ? 'highlight' : '')}>
+         className={"cursor_pointer highlight_hover no_user_select w_100 p_.35 px_.5 " + (is_selected() ? 'highlight' : '')}>
          {track.title}
       </li>
    )
