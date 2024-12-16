@@ -88,6 +88,8 @@
    --cover_block_before_z:100;
 
    --bg_primary:transparent;
+
+   --player_tracks_list_height:80vh;
 }
 
 html {
@@ -628,7 +630,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
    overflow:hidden;
    background:white;
 }
-div.current_track {
+div.active_track {
 
    z-index:999;
 
@@ -646,7 +648,7 @@ div.current_track {
    padding:.35rem;
    background:white;
 }
-div.current_track:hover {   
+div.active_track:hover {   
    color:blue;
    background:hsl(60, 100%, 80%);
 }
@@ -679,6 +681,15 @@ ul.player_tracks_list {
    padding:1rem;
    padding-bottom:4rem;
    border-radius:.5rem;
+
+   /* control height in mobiles/sm */
+   height:fit-content;
+   min-height:var(--player_tracks_list_height);
+   overflow-y:scroll;
+   scrollbar-color: hsl(0, 0%, 75%) hsl(0, 0%, 94%); 
+   scrollbar-width:thin;
+
+
    -webkit-transform:translateY(0);
    -ms-transform:translateY(0);
    transform:translateY(0);
@@ -735,10 +746,11 @@ audio::-webkit-media-controls-play-button {
    gap:2rem;
 }
 .track_card {
+   position:relative;
    width:fit-content;
    margin:1rem auto;
    padding:1rem 4rem;
-   color:black;
+   color:black;   
    background:white;
    border:solid 1px hsl(0, 0%, 90%);
    border-radius:.5rem;
@@ -758,6 +770,15 @@ section.track_card > p {
    margin-bottom:2.5rem;
    line-height:.8rem;
    color:hsl(0, 0%, 20%);
+}
+.track_card > img.play_track_icon {
+   position:absolute;
+   top:.75rem;
+   right:1rem;
+   width:16px;
+   height:16px;
+   cursor:pointer;
+   user-select:none;
 }
 
 
@@ -1270,6 +1291,7 @@ section.feature_block img.porthole {
    width:220px;
    height:220px;
    opacity:1;
+   z-index:var(--over_over_over_nav_layer);
 }
 @media screen and (min-width: 810px) {
 
@@ -1432,6 +1454,7 @@ section.cover_block div.overlay h4 {
 .gap_2 {gap:2rem;}
 
 .text_left {text-align:left;}
+.italic {font-style:italic;}
 .w_100 {width:100%;}
 
 .h_100 {height:100%;}
