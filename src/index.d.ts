@@ -6,10 +6,15 @@ declare module 'HomeView'
 // ----------------------------------------------------
 // AppContext interfaces
 
-interface AppContext {
-   app_api:string,
-   prev_feature_img:string,
+interface AppContextType {
+   app_api:string
+   prev_feature_img:string
+   tracks_list:TracksListItem[]
+   active_track:TracksListItem
+   audio_path:string
    set_prev_feature_img(img:string): void
+   set_active_track(track:TracksListItem): void
+   track_ended(): void
 }
 
 
@@ -122,7 +127,8 @@ interface TrackSection {
 
 interface TracksListItem {
    title:string,
-   slug:string
+   slug:string,
+   audio:string
 }
 
 
