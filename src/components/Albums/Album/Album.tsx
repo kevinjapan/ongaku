@@ -5,6 +5,7 @@ import TrackCardsList from '../../Tracks/TrackCardsList/TrackCardsList'
 import { SetStateAction, Dispatch } from 'react'
 
 
+
 // Album
 
 interface AlbumProps {
@@ -19,6 +20,10 @@ export default function Album({set_title, set_feature_img}:AlbumProps) {
    
    const { loading, payload, error, updateDataUrl } = useData<Album>(`single_album`,[slug_ref.current ? slug_ref.current : ''],{})
 
+   useEffect(() => {
+      window.scroll(0,0)
+   },[])
+   
    useEffect(() => {
       slug_ref.current = slug
       updateDataUrl(`single_album`,[slug_ref.current ? slug_ref.current : ''],{})
