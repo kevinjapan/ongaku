@@ -11,15 +11,16 @@ export const AppContext = createContext<AppContextType>({} as AppContextType)
 
 export const AppContextProvider = ({children}: { children: React.ReactNode }) => {
 
-   //
+   // url for api (if exists)
    const [app_api] = useState('')
 
    // featured tracks_list
    const [tracks_list, setTracksList] = useState<TracksListItem[]>([])
 
+   // the active_track playing
    const [active_track, setActiveTrack] = useState({title:'select track to play',slug:'',audio:''} as TracksListItem)
 
-   //
+   // path for audio files
    const [audio_path] = useState('/audio/')
 
    // state handlers - TS doesn't like directly passing useState.setXXX funcs
@@ -30,7 +31,7 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
    const track_ended = () => {
       // we play thru list to end
       let next_track_index = tracks_list.findIndex((track) => track.title === active_track.title) + 1
-      next_track_index = next_track_index >= tracks_list.length - 1 ? next_track_index = 0 : next_track_index + 1
+      next_track_index = next_track_index >= tracks_list.length - 1 ? next_track_index = 0 : next_track_index
       // we will never step to track '0'
       next_track_index === 0 ? setActiveTrack({title:'select track to play',slug:'',audio:''}) : setActiveTrack(tracks_list[next_track_index])
    
