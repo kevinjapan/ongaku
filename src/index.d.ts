@@ -8,11 +8,9 @@ declare module 'HomeView'
 
 interface AppContextType {
    app_api:string
-   prev_feature_img:string
    tracks_list:TracksListItem[]
    active_track:TracksListItem
    audio_path:string
-   set_prev_feature_img(img:string): void
    set_active_track(track:TracksListItem): void
    track_ended(): void
 }

@@ -6,7 +6,6 @@ import { useEffect, createContext, useState } from 'react'
 // AppContext
 // future : farm out AudioPlayer specific props to separate AudioContext component
 
-
 export const AppContext = createContext<AppContextType>({} as AppContextType)
 
 
@@ -15,10 +14,7 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
    //
    const [app_api] = useState('')
 
-   //
-   const [prev_feature_img, setPrevFeatureImg] = useState('')
-
-   //
+   // featured tracks_list
    const [tracks_list, setTracksList] = useState<TracksListItem[]>([])
 
    const [active_track, setActiveTrack] = useState({title:'select track to play',slug:'',audio:''} as TracksListItem)
@@ -27,7 +23,6 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
    const [audio_path] = useState('/audio/')
 
    // state handlers - TS doesn't like directly passing useState.setXXX funcs
-   const set_prev_feature_img = (img: string) => {setPrevFeatureImg(img)}
    const set_active_track = (track: TracksListItem) => {
       setActiveTrack(track)
    }
@@ -126,12 +121,10 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
       <AppContext.Provider 
          value={{
             app_api,
-            prev_feature_img,
             tracks_list,
             active_track,
             audio_path,
 
-            set_prev_feature_img,
             set_active_track,
             track_ended
          }}>
