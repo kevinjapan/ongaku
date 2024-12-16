@@ -1,22 +1,17 @@
-import { useState } from 'react'
-import ActiveTrackSelector from './ActiveTrackSelector/ActiveTrackSelector'
+import { useState, useContext } from 'react'
+import { AppContext } from '../../AppContext'
+import ActiveTrackTitleCtrl from './ActiveTrackTitleCtrl/ActiveTrackTitleCtrl'
 import AudioPlayerTracksList from './AudioPlayerTracksList/AudioPlayerTracksList'
 import AudioPlayerPlayer from './AudioPlayerPlayer/AudioPlayerPlayer'
 
 
 
 // AudioPlayer
-
-
-// to do : 
-// - play through all listed tracks once started playing any given track
-// - mp3 names are case-sensitive
-
+// mp3 names are case-sensitive, 'audio' property must match mp3 filename
 
 export default function AudioPlayer() {
 
-   //
-   const [current_track, setCurrentTrack] = useState<TracksListItem>({title:'select track to play',slug:''})
+   const { active_track, set_active_track } = useContext(AppContext)
 
    //
    const [show_tracks_list, setShowTracksList] = useState(false)
@@ -30,24 +25,23 @@ export default function AudioPlayer() {
    }
 
    const play_track = (track: TracksListItem) => {
-      setCurrentTrack(track)
+      set_active_track(track)
    }
 
    return (
       <section className="audio_player">
          <div className="flex flex_col">
 
-               <ActiveTrackSelector 
-                  track={current_track}
-                  mouse_over={mouse_over}
-                  mouse_out={mouse_out} />
+            <ActiveTrackTitleCtrl 
+               track={active_track}
+               mouse_over={mouse_over}
+               mouse_out={mouse_out} />
 
-               <AudioPlayerPlayer 
-                  current_song={current_track.slug} />
-            
+            <AudioPlayerPlayer 
+               audio_file={active_track.audio} />
 
             <AudioPlayerTracksList 
-               current_track={current_track}
+               active_track={active_track}
                open_trackslist={show_tracks_list}
                play_track={play_track} />
 

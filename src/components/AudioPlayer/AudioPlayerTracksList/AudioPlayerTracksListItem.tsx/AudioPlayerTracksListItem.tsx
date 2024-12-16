@@ -1,14 +1,14 @@
 
 interface AudioPlayerTracksListItemProps {
-   current_track:TracksListItem,
+   active_track:TracksListItem,
    track:TracksListItem,
    play_track(track: TracksListItem): void
 }
 
-export default function AudioPlayerTracksListItem({current_track, track, play_track}: AudioPlayerTracksListItemProps) {
+export default function AudioPlayerTracksListItem({active_track, track, play_track}: AudioPlayerTracksListItemProps) {
 
    const is_selected = () => {
-      return current_track.title === track.title
+      return active_track.title === track.title
    }
 
    return (

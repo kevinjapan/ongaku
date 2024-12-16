@@ -8,14 +8,12 @@ import AudioPlayer from './components/AudioPlayer/AudioPlayer'
 import BubbleAnimator from './components/BubbleAnimator/BubbleAnimator'
 import AppFooter from './components/App/AppFooter/AppFooter'
 
-// interface AppContext {
+// interface AppContextType {
 //    app_api:string,
 //    prev_feature_img:string
 // }
 
 export default function App() {
-
-   // future : move into Context
    
    return (
       <AppContextProvider>
