@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { AppContext } from '../../AppContext'
+import { AppContext } from '@/context/AppContext'
 import ActiveTrackTitleCtrl from './ActiveTrackTitleCtrl/ActiveTrackTitleCtrl'
 import AudioPlayerTracksList from './AudioPlayerTracksList/AudioPlayerTracksList'
 import AudioPlayerPlayer from './AudioPlayerPlayer/AudioPlayerPlayer'

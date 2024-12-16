@@ -1,12 +1,10 @@
 import { useContext } from 'react'
-import { AppContext } from '../../../AppContext'
+import { AppContext } from '@/context/AppContext'
 import AudioPlayerTracksListItem from './AudioPlayerTracksListItem.tsx/AudioPlayerTracksListItem'
 
 
 
 // AudioPlayerTracksList
-
-// to do : on sm screen heights - limit height
 
 interface AudioPlayerTracksListProps {
    active_track: TracksListItem,

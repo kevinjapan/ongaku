@@ -1,5 +1,5 @@
 import { useEffect, useContext, useMemo } from 'react'
-import { AppContext } from '../../../AppContext'
+import { AppContext } from '@/context/AppContext'
 import useFetch from '../../../hooks/useFetch/useFetch'
 import TrackCardSection from '../TrackCardSection/TrackCardSection'
 import create_observers from '../../../utilities/createObservers/createObservers'
