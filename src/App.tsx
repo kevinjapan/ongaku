@@ -21,12 +21,12 @@ export default function App() {
             <Suspense>
                <Outlet/>
                <AudioPlayer/>
+               <BubbleAnimator/>
             </Suspense>
          </main>
 
          
 
-         <BubbleAnimator/>
 
          <AppFooter/>
 
