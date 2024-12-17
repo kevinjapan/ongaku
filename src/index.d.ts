@@ -11,6 +11,7 @@ interface AppContextType {
    tracks_list:TracksListItem[]
    active_track:TracksListItem
    audio_path:string
+   prompt:string
    set_active_track(track:TracksListItem): void
    track_ended(): void
 }
@@ -131,12 +132,15 @@ interface TracksListItem {
 
 
 // ----------------------------------------------------
-// Component Props interfaces
-// for props passing funcs, it resolves Dispatch and SetStateAction implicitly here but not in component file
-// eg added import { SetStateAction, Dispatch } from 'react' to Album.tsx to enable in-component file interface
+// AppNav 
+interface AppNavSubDomainType {
+   id:number
+   label:string
+   route:string
+   children?:AppNavSubDomainType[]
+}
 
 
-
-
-
+// ----------------------------------------------------
+// AudioPlayer
 

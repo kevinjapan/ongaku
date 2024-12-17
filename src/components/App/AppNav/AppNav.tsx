@@ -3,23 +3,24 @@ import { Link } from 'react-router-dom'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { is_sm_screen } from '../../../utilities/screen/screen'
 import { get_nav_links } from '../../../utilities/appNav/appNav'
+import AppNavSubDomain from './AppNavSubDomain/AppNavSubDomain'
 
 
 // AppNav
-
-// from orig edk site, first pass migrating this solution into react, future : review code : improve
+// from orig edk site, first pass migrating this solution into react
 // we keep dropdown open on hover, not effective in spa with no reload, so we temporarily 'retract_dropdown'
 
 export default function AppNav() {
 
    const { pathname } = useLocation()
-   const nav_links = get_nav_links()
    const navigate = useNavigate()
+
+   // future : improve / data src
+   const nav_links = get_nav_links() as AppNavSubDomainType[]
 
    // track extended and toggle extended_nav_dropdown
    const [extended, setExtended] = useState(false)
 
-   // effects
 
    useEffect(() => {
       setTimeout(() => init_show_only_ascending(),200)
@@ -31,13 +32,10 @@ export default function AppNav() {
       if(pathname === "/") init_transparent_nav()
    },[pathname])
 
-   // methods
-
    // we use navigate to allow us to intercede and tidy nav behaviour (scrollup)
    const load_view = (route: string) => {
       window.scroll(0,0)
       // reset_nav()
-
       if(is_sm_screen()) {
          toggle_sm_dropdown()
       }
@@ -52,10 +50,8 @@ export default function AppNav() {
    }
 
    const toggle_sm_dropdown = () => {
-
       const dropdown = document.querySelector('nav ul.nav_list')
       const nav_toggle = document.querySelector('.nav_toggle')
-
       if(dropdown && nav_toggle) {
          // classList.toggle not working, so we use our own 'extended' state to track
          if(extended) {
@@ -71,10 +67,8 @@ export default function AppNav() {
    }
 
    const init_show_only_ascending = () => {
-
       let last_scroll = 0
       const nav_bar = document.querySelector('nav')
-
       if(nav_bar) {
          window.addEventListener('scroll', () => {
             const current_scroll = window.scrollY         
@@ -90,10 +84,8 @@ export default function AppNav() {
    }
 
    const init_transparent_nav = () => {
-
       const nav = document.querySelector('.nav')
-      const frontcover = document.querySelectorAll('.hero_block') // we are only interested in first one : future : review
-      
+      const frontcover = document.querySelectorAll('.hero_block') // we are only interested in first      
       const newOptions = {
          threshold: 0,
          rootMargin: "-400px 0px 0px 0px"
@@ -135,25 +127,26 @@ export default function AppNav() {
          </div>
 
          <ul className="nav_list gap_2">
+
+            {/* map our domains (top nav items) */}
             {nav_links.map(link => 
-               <li key={link.label}>
-                  {is_sm_screen() ?
-                     <a  
-                        onClick={() => load_view(link.route ? link.route : link.label)}>
-                     {link.label}
-                     </a>
-                     : <a className="nav_list_label">{link.label}</a>
-                  }
+               <li key={link.id}>
+
+                  {/* domain labels */}
+                  {is_sm_screen() 
+                     ?  <a className="nav_list_label" onClick={() => load_view(link.route ? link.route : link.label)}>{link.label}</a>
+                     :  <a className="nav_list_label">{link.label}</a>}
+
+                  {/* dropdown for each domain */}
                   <ul className="dropdown nav_list_dropdown">
-                     <li>
-                        {link.children?.map(child => {
-                           return (
-                              <a key={child.id} 
-                                 onClick={() => load_view(child.route)}>{child.label}
-                              </a>
-                           )
-                        })}
-                     </li>
+                     {/* map our sub-domains */}
+                     {link.children?.map(child =>
+                        <AppNavSubDomain 
+                           key={child.id}
+                           subdomain={child}
+                           load_view={load_view}
+                        />
+                     )}
                   </ul>
                    
                </li>
