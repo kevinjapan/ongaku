@@ -17,8 +17,8 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
    // featured tracks_list
    const [tracks_list, setTracksList] = useState<TracksListItem[]>([])
 
-   // prompt   to do : this doesn't need to be state - just a const
-   const [prompt] = useState('select track to play')
+   // prompt
+   const prompt = 'select track to play'
 
    // the active_track playing
    const [active_track, setActiveTrack] = useState({title:prompt,slug:'',audio:''} as TracksListItem)
@@ -30,6 +30,9 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
    const set_active_track = (track: TracksListItem) => {
       setActiveTrack(track)
    }
+
+   // toggle bubbles for dev
+   const show_bubbles = true
 
    const track_ended = () => {
       // we play thru list to end
@@ -128,6 +131,7 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
             active_track,
             audio_path,
             prompt,
+            show_bubbles,
 
             set_active_track,
             track_ended
