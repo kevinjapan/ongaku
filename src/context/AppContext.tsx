@@ -17,8 +17,11 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
    // featured tracks_list
    const [tracks_list, setTracksList] = useState<TracksListItem[]>([])
 
+   // prompt   to do : this doesn't need to be state - just a const
+   const [prompt] = useState('select track to play')
+
    // the active_track playing
-   const [active_track, setActiveTrack] = useState({title:'select track to play',slug:'',audio:''} as TracksListItem)
+   const [active_track, setActiveTrack] = useState({title:prompt,slug:'',audio:''} as TracksListItem)
 
    // path for audio files
    const [audio_path] = useState('/audio/')
@@ -32,8 +35,7 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
       // we play thru list to end
       let next_track_index = tracks_list.findIndex((track) => track.title === active_track.title) + 1
       next_track_index = next_track_index >= tracks_list.length - 1 ? next_track_index = 0 : next_track_index
-      // we will never step to track '0'
-      next_track_index === 0 ? setActiveTrack({title:'select track to play',slug:'',audio:''}) : setActiveTrack(tracks_list[next_track_index])
+      next_track_index === 0 ? setActiveTrack({title:prompt,slug:'',audio:''}) : setActiveTrack(tracks_list[next_track_index])
    
    }
 
@@ -125,6 +127,7 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
             tracks_list,
             active_track,
             audio_path,
+            prompt,
 
             set_active_track,
             track_ended
