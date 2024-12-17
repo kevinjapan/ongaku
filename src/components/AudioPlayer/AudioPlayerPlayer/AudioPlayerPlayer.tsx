@@ -11,7 +11,7 @@ interface AudioPlayerPlayerProps {
 
 export default function AudioPlayerPlayer({audio_file} : AudioPlayerPlayerProps) {
 
-   const { audio_path, track_ended } = useContext(AppContext)
+   const { audio_path, prompt, track_ended } = useContext(AppContext)
 
    // the active track
    const [active_track, setActiveTrack] = useState(`tell-me-how-you-see-me-clip.mp3`)
@@ -29,7 +29,7 @@ export default function AudioPlayerPlayer({audio_file} : AudioPlayerPlayerProps)
             audio_ref.current?.pause()
             audio_ref.current?.load()
             if(audio_ref.current && audio_ref.current.volume) audio_ref.current.volume = active_volume
-            if(audio_file && audio_file !== "select track to play") audio_ref.current?.play()
+            if(audio_file && audio_file !== prompt) audio_ref.current?.play()
          }
       },700)
    },[audio_file])
