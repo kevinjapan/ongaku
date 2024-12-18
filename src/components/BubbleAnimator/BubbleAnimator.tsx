@@ -10,7 +10,7 @@ export default function BubbleAnimator() {
    const { show_bubbles } = useContext(AppContext)
    
    return (     
-      <> 
+      <section className="bubble_container"> 
          {show_bubbles ?
             <>
                <div id="bubble_primary" className="bubble bg_primary float_up fade_out_slow"></div>
@@ -25,6 +25,6 @@ export default function BubbleAnimator() {
                <div id="bubble_accent_lighter" className="bubble bg_accent_lighter float_up fade_out_slow"></div>
             </>
          :  null}
-      </>
+      </section>
    )
 }
