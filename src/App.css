@@ -18,6 +18,107 @@
    -moz-osx-font-smoothing: grayscale;
    --cover_block_height:105vh;
 
+
+   /* 
+    COLORS
+    =============================================
+   Kingfisher color scheme
+   #0EA5C3    light
+   #13417C    primary
+   #FB9543    secondary
+   #D9AE17    accent
+   #2D5958    dark
+*/
+
+   /*
+   //    PRIMARY COLORS - 1 - 3 brand colors 
+   */
+   --bg_primary:               hsl(190, 87%, 41%); /* #0EA5C3 */
+   --bg_primary_text:          white;
+   --bg_primary_lighter:       hsl(190, 87%, 51%);
+   --bg_primary_lighter_text:  black;
+   --bg_primary_darker:        hsl(190, 87%, 31%);
+   --bg_primary_darker_text:   white;
+
+
+   --bg_secondary:             hsl(27, 96%, 62%); /* #FB9543 */
+   --bg_secondary_text:        white;
+   --bg_secondary_lighter:     hsl(27, 96%, 72%);
+   --bg_secondary_lighter_text:white;
+   --bg_secondary_darker:      hsl(27, 96%, 52%);
+   --bg_secondary_darker_text: white;
+
+   --bg_light:                 hsl(190, 87%, 41%); /* #0EA5C3 */
+   --bg_light_text:            black;
+   --bg_light_lighter:         hsl(190, 87%, 51%);
+   --bg_light_lighter_text:    black;
+   --bg_light_darker:          hsl(190, 87%, 31%);
+   --bg_light_darker_text:     white;
+
+   --bg_dark:                  hsl(179, 33%, 26%); /* #2D5958 */
+   --bg_dark_text:             white;
+   --bg_dark_lighter:          hsl(179, 33%, 36%);
+   --bg_dark_lighter_text:     white;
+   --bg_dark_darker:           hsl(179, 33%, 16%);
+   --bg_dark_darker_text:      white;
+
+
+   /*    
+   //    ACCENT COLORS - highlight components / cta's / links  - complement primary color
+   */
+   --bg_accent:            hsl(47, 81%, 47%);     /* #D9AE17 */
+   --bg_accent_lighter:    hsl(47, 81%, 57%);
+   --bg_accent_darker:  hsl(47, 81%, 37%);
+   --bg_accent:         hsl(47, 81%, 47%);
+   --bg_accent_text:      white;
+
+
+   /* 
+   //    SECONDARY COLORS - 3 - 5 - complement brand colors
+   */
+   --secondary_1:         hsl(218, 35%, 57%);     /* text color */
+   --secondary_2:         hsl(224, 14%, 53%);     /* secondary (sm) section supporting headers */
+   --secondary_1_bg:      hsl(0, 0%, 12%);        /* dark bg - footer */
+   --secondary_1_color:   white;
+
+   --secondary_2_bg:      hsl(0, 0%, 20%);        /* dark bg 2 - footnote / button.bg on secondary_1_bg*/
+   --secondary_2_color:   white;
+
+   --secondary_3_bg_dark: hsl(205, 33%, 24%);
+   --secondary_3_bg:      hsl(205, 33%, 34%);     /* dark bg 3 - underlying cover images on sections / cover_sections */
+   --secondary_3_bg_light:hsl(205, 33%, 44%); 
+   --secondary_3_color:   white;
+
+
+   /* 
+   //    NEUTRAL COLORS  - 2 -3 - light to dark - w/ some tint - perhaps tint of brand color
+   */
+   --neutral_1:           hsl(220, 23%, 97%);     /* section background */
+   --neutral_1_bg_darken: hsl(220, 23%, 92%);
+   --neutral_1_bg:        hsl(220, 23%, 97%);
+   --neutral_1_bg_lighten:hsl(220, 23%, 100%);
+   --neutral_2_bg_darken: hsl(240, 100%, 85%);
+   --neutral_2_bg:        hsl(240, 100%, 90%);    /* neutral - 2 - blue */
+   --neutral_2_bg_lighten:hsl(240, 100%, 95%); 
+
+
+   /* 
+   //    SEMANTIC COLORS - informative colors 
+   */
+   --semantic_negative_bg:hsl(0, 100%, 75%);      /* red    - negative / error */
+   --semantic_positive_bg:hsl(120, 93%, 79%);     /* green  - positive */
+   --semantic_warning_bg: hsl(39, 100%, 75%);     /* orange - warning  */
+   --semantic_neutral_bg: hsl(240, 100%, 75%);    /* blue   - neutral  */
+
+
+   /* 
+   //    TEXT COLORS 
+   */
+   --body_text_color:         hsl(0, 0%, 40%);
+   --header_text_color_dark:  hsl(0, 0%, 10%);  /* h1, h2, h3 */
+   --header_text_color:       hsl(0, 0%, 20%);
+   --grey_text:               lightgrey;
+
    /* 
    //   LAYOUTS
    */
@@ -92,6 +193,17 @@
    --player_tracks_list_height:80vh;
 }
 
+
+
+.bg_primary    {color:var(--bg_primary_text);   background-color:var(--bg_primary);}
+.bg_accent     {color:var(--accent_color);      background-color:var(--bg_accent);}
+.bg_secondary  {color:var(--bg_secondary_text); background-color:var(--bg_secondary);}
+.bg_light      {color:var(--bg_light_text);     background-color:var(--bg_light);}
+.bg_dark       {color:var(--bg_dark_text);      background-color:var(--bg_dark);}
+.bg_neutral    {color:var(--neutral_color);     background-color:var(--bg_neutral);}
+
+
+
 html {
    scroll-behavior:smooth;
    box-sizing: border-box;
@@ -108,7 +220,43 @@ html {
   padding: 0;
   text-align: center;
   position:relative;
+/* overflow-x:hidden; */
+}
 
+p {
+   max-width:36rem;
+   margin:1rem auto;
+}
+@media screen and (max-width: 768px) {
+
+   p {
+      max-width:90%;
+   }
+}
+
+button {
+   width:fit-content;
+   margin-top:1rem;
+   margin-bottom:1rem;
+   padding:.8rem 1rem;
+   background:transparent;
+   color:hsl(0, 0%, 60%);
+   border:solid 1px hsl(0, 0%, 60%);
+   border-radius:5rem;
+   cursor:pointer;
+   font-size:1.1rem;
+}
+
+button:hover {
+   color:hsl(0, 0%, 25%);
+   border:solid 1px hsl(0, 0%, 25%);
+}
+button a {
+   color:hsl(0, 0%, 60%);
+   text-decoration:none;
+}
+button:hover a {
+   color:hsl(0, 0%, 25%);
 }
 
 .logo {
@@ -152,6 +300,7 @@ ul {
    list-style:none;
 }
 main {
+   position:relative;
    min-height:var(--header_height);
 }
 
@@ -244,6 +393,8 @@ nav {
 
    width:100%;
    height:var(--nav_bar_height);
+   
+   user-select:none;
    transition:transform .25s ease-in;
 }
 /* background or transparent nav over hero_block */
@@ -464,6 +615,11 @@ nav ul.nav_list li ul li a {margin:1rem; }
       transform:0;
       opacity:1;
       transition:transform .5s ease-in-out,opacity .5s ease-in-out;
+   }
+   .nav_subdomain_label {
+      font-weight:300;
+      font-style:italic;
+      cursor:unset;
    }
 
    nav ul.nav_list li a.nav_list_label:hover,
@@ -747,6 +903,7 @@ audio::-webkit-media-controls-play-button {
 }
 .track_card {
    position:relative;
+   z-index:var(--track_listing_z);
    width:fit-content;
    margin:1rem auto;
    padding:1rem 4rem;
@@ -780,6 +937,11 @@ section.track_card > p {
    cursor:pointer;
    user-select:none;
 }
+@media screen and (max-width: 768px) {
+   .track_card {
+      width:94%;
+   }
+}
 
 
 /* 
@@ -787,6 +949,7 @@ section.track_card > p {
 //    section is the base element
 */
 section {
+   position:relative;
    max-width:100%;
    margin:0;
    margin-top:var(--block_y_margins);
@@ -935,7 +1098,6 @@ section.cover_block .bg_img {
    object-fit: cover;
 }
 .z_n1 {z-index:-1;}
-.z_2  {z-index:99999999999999999;}
 
 /* we can start w/ dim if img is too bright */
 section.cover_block::before {
@@ -1281,6 +1443,66 @@ section.feature_block > div > *:not(button) {
 
 
 /* 
+//    BUBBLES ANIMATION
+*/
+/*
+bubbles drift off-screen adding x-scrollbar - we contain to apply 'overflow:hidden'
+added bonus - bubbles now drift under TrackCards - better UX and effect
+*/
+section.bubble_container {
+   position:absolute;
+   top:0;
+   left:0;
+   width:100%;
+   height:100%;
+   overflow:hidden;
+}
+div.bubble {
+   position:absolute;
+   bottom:0;
+   left:10%;
+   z-index:var(--bubble_z);
+   border-radius:50%;
+   width:80px;
+   height:80px;
+   opacity:.2;
+}
+
+#bubble_primary.float_up            {position:absolute;bottom:00%;left:10%;width:0%;height:0%;transition:bottom .002s ;opacity:.21;}
+#bubble_primary_lighter.float_up    {position:absolute;bottom:23%;left:33%;width:0%;height:0%;transition:bottom .002s ;opacity:.41;}
+#bubble_secondary.float_up          {position:absolute;bottom:35%;left:00%;width:0%;height:0%;transition:bottom .002s ;opacity:.1;}
+#bubble_secondary_lighter.float_up  {position:absolute;bottom:15%;left:67%;width:0%;height:0%;transition:bottom .002s ;opacity:.21;}
+#bubble_light.float_up              {position:absolute;bottom:00%;left:40%;width:0%;height:0%;transition:bottom .002s ;opacity:.1;}
+#bubble_light_lighter.float_up      {position:absolute;bottom:18%;left:21%;width:0%;height:0%;transition:bottom .002s ;opacity:.31;}
+#bubble_dark.float_up               {position:absolute;bottom:20%;left:25%;width:0%;height:0%;transition:bottom .002s ;opacity:.21;}
+#bubble_dark_lighter.float_up       {position:absolute;bottom:22%;left:53%;width:0%;height:0%;transition:bottom .002s ;opacity:.1;}
+#bubble_accent.float_up             {position:absolute;bottom:05%;left:00%;width:0%;height:0%;transition:bottom .002s ;opacity:.1;}
+#bubble_accent_lighter.float_up     {position:absolute;bottom:15%;left:18%;width:0%;height:0%;transition:bottom .002s ;opacity:.41;}
+
+/* impression is movement to right since width is increasing that direction... */
+#bubble_primary.floated_up {
+   bottom:100%;left:10%;width:20%;height:10%;transition:bottom 07s,opacity 3s;}
+#bubble_primary_lighter.floated_up {
+   bottom:100%;left:10%;width:05%;height:02%;transition:bottom 08s,opacity 2s;}
+#bubble_secondary.floated_up {
+   bottom:100%;left:10%;width:27%;height:13%;transition:bottom 16s,opacity 7s;}
+#bubble_secondary_lighter.floated_up {
+   bottom:100%;left:10%;width:34%;height:16%;transition:bottom 16s,opacity 7s;}
+#bubble_light.floated_up {
+   bottom:100%;left:10%;width:20%;height:10%;transition:bottom 11s,opacity 5s;}
+#bubble_light_lighter.floated_up {
+   bottom:100%;left:10%;width:10%;height:05%;transition:bottom 11s,opacity 5s;}
+#bubble_dark.floated_up {
+   bottom:100%;left:10%;width:40%;height:20%;transition:bottom 17s,opacity 7s;}
+#bubble_dark_lighter.floated_up {
+   bottom:100%;left:10%;width:440%;height:21%;transition:bottom 17s,opacity 6s;}
+#bubble_accent.floated_up {
+   bottom:100%;left:10%;width:08%;height:04%;transition:bottom 12s,opacity 5s;}
+#bubble_accent_lighter.floated_up {
+   bottom:100%;left:10%;width:24%;height:12%;transition:bottom 12s,opacity 6s;}
+
+
+/* 
 //    PORTHOLE IMG
 */
 section.feature_block {
@@ -1291,7 +1513,7 @@ section.feature_block img.porthole {
    width:220px;
    height:220px;
    opacity:1;
-   z-index:var(--over_over_over_nav_layer);
+   z-index:var(--cover_block_h1_z);
 }
 @media screen and (min-width: 810px) {
 
@@ -1464,6 +1686,7 @@ section.cover_block div.overlay h4 {
 .m_2 {margin:2rem;}
 .ml_2 {margin-left:2rem;}
 .mt_0 {margin-top:0 !important;}
+.mb_2 {margin-bottom:2rem;}
 .my_1 {margin-top:1rem;margin-bottom:1rem;}
 
 .p_0 {padding:0;}
@@ -1476,7 +1699,7 @@ section.cover_block div.overlay h4 {
 .border {border:solid 1px lightgrey;}
 
 .bg_yellow {background: yellow;}
-
+.bg_white {background:white;}
 
 .display_block {
    display:block;
