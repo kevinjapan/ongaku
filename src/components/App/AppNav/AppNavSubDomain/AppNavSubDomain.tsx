@@ -7,7 +7,7 @@ import { is_sm_screen } from '../../../../utilities/screen/screen'
 // label (no link) list title on dropdown
 
 interface AppNavSubDomainProps {
-   subdomain: AppNavSubDomainType
+   subdomain: AppNavItemType
    load_view: (route: string) => void
 }
 

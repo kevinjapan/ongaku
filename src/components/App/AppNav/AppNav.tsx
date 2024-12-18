@@ -16,7 +16,7 @@ export default function AppNav() {
    const navigate = useNavigate()
 
    // future : improve / data src
-   const nav_links = get_nav_links() as AppNavSubDomainType[]
+   const nav_links = get_nav_links() as AppNavItemType[]
 
    // track extended and toggle extended_nav_dropdown
    const [extended, setExtended] = useState(false)

@@ -12,6 +12,7 @@ interface AppContextType {
    active_track:TracksListItem
    audio_path:string
    prompt:string
+   show_bubbles:boolean
    set_active_track(track:TracksListItem): void
    track_ended(): void
 }
@@ -133,11 +134,11 @@ interface TracksListItem {
 
 // ----------------------------------------------------
 // AppNav 
-interface AppNavSubDomainType {
+interface AppNavItemType {
    id:number
    label:string
    route:string
-   children?:AppNavSubDomainType[]
+   children?:AppNavItemType[]
 }
 
 
