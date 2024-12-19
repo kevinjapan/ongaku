@@ -4,7 +4,6 @@ import { useEffect, createContext, useState } from 'react'
 
 
 // AppContext
-// future : farm out AudioPlayer specific props to separate AudioContext component
 
 export const AppContext = createContext<AppContextType>({} as AppContextType)
 
@@ -37,7 +36,7 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
    const track_ended = () => {
       // we play thru list to end
       let next_track_index = tracks_list.findIndex((track) => track.title === active_track.title) + 1
-      next_track_index = next_track_index >= tracks_list.length - 1 ? next_track_index = 0 : next_track_index
+      next_track_index = next_track_index >= tracks_list.length ? next_track_index = 0 : next_track_index
       next_track_index === 0 ? setActiveTrack({title:prompt,slug:'',audio:''}) : setActiveTrack(tracks_list[next_track_index])
    
    }
