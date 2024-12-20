@@ -240,8 +240,8 @@ button {
    margin-bottom:1rem;
    padding:.8rem 1rem;
    background:transparent;
-   color:hsl(0, 0%, 60%);
-   border:solid 1px hsl(0, 0%, 60%);
+   color:hsl(0, 0%, 70%);
+   border:solid 1px hsl(0, 0%, 70%);
    border-radius:5rem;
    cursor:pointer;
    font-size:1.1rem;
@@ -252,13 +252,19 @@ button:hover {
    border:solid 1px hsl(0, 0%, 25%);
 }
 button a {
-   color:hsl(0, 0%, 60%);
+   color:hsl(0, 0%, 70%);
    text-decoration:none;
 }
 button:hover a {
    color:hsl(0, 0%, 25%);
 }
-
+button.light_btn_hover:hover {
+   color:white;
+   border:solid 1px white;
+}
+button.light_btn_hover:hover > a {
+   color:white;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -1106,7 +1112,7 @@ section.cover_block::before {
    left:0;
    z-index:var(--cover_block_before_z);
    width:100%;
-   height:140%;height:100%; /* to do : 140 ? */
+   height:100%;
    background:black;
    opacity:0;
 }
@@ -1155,7 +1161,8 @@ section.cover_block.timeline {
 }
 section.cover_block.timeline h2 {
    color:white;
-   margin:0;margin-top:4rem;
+   margin:0;
+   margin-top:2rem;
 }
 section.cover_block.timeline img {
    position:fixed;
@@ -1181,12 +1188,24 @@ section.cover_block.timeline > div.overlay > ul {
    padding:0;
 }
 section.cover_block.timeline > div.overlay > ul > li {
+   position:relative;
    border:solid 1px white;
    border-radius:.5rem;
    padding:.5rem;
    min-width:140px;
    text-align:center;
-   height:fit-content;border:solid 1px white;
+   height:fit-content;
+   border:solid 1px white;
+}
+section.cover_block.timeline > div.overlay > ul > li::before {
+   content:'';
+   position:absolute;
+   top:0;
+   left:0;
+   width:100%;
+   height:100%;
+   background:white;
+   opacity:.15;
 }
 @media screen and (min-width: 910px) { 
    section.cover_block.timeline > div.overlay {
@@ -1195,12 +1214,23 @@ section.cover_block.timeline > div.overlay > ul > li {
       gap:1rem;
    }
    section.cover_block.timeline > div.overlay > ul {
-      flex-wrap:nowrap;
+      flex-wrap:wrap;
+      width:90%;
+      justify-content:flex-start;
    }
    section.cover_block.timeline > div.overlay > ul > li {
       border:none;
       min-width:unset;
-      text-align:left;border:solid 1px white;
+      border:solid 1px white;
+      white-space:nowrap;
+   }
+   section.cover_block.timeline h2 {
+      /* to do : webkit - rollout */
+      align-self:flex-start;
+      padding-left:2rem;
+      font-size:2.5rem;
+      font-weight:300;
+      letter-spacing:1rem;
    }
 }
 section.cover_block h1 {
@@ -1319,13 +1349,10 @@ section.feature_tiles > ul > li {
 section.feature_tiles  > ul > li > img {
    max-width:100%;
    max-height:50%;
-   border:solid 1px lightgrey;
-   border-radius:.5rem;
-   box-shadow:5px 5px 10px -2px rgba(0,0,0,.35);
+   border-radius:.5rem .5rem 0 0;
 }
 section.feature_tiles  > ul > li > button {
-   margin-top:1rem;
-   margin-bottom:1rem;
+   margin:.5rem;
    /* we need to stay afloat above the bubbles! */
    position:relative;
    z-index:var(--button_z);
@@ -1602,6 +1629,19 @@ section.feature_block > div.song_card > p {
    }
 }
 
+/* we need sections to appear over BubbleAnimator layer */
+section.feature_tiles {
+   position:relative;
+   z-index:var(--song_card_z);
+}
+li.album_teaser {
+   background:white;
+   border:solid 1px hsl(0, 0%, 90%);
+   border-radius:.5rem;
+   box-shadow:5px 5px 10px -2px rgba(0,0,0,.1); 
+}
+
+
 
 /*
    Behaviours
@@ -1714,11 +1754,14 @@ section.cover_block div.overlay h4 {
 .my_1 {margin-top:1rem;margin-bottom:1rem;}
 
 .p_0 {padding:0;}
+.p_\.25 {padding:.25rem;}
 .p_\.35 {padding:.35rem;}
+.p_\.5 {padding:.5rem;}
 .p_1 {padding:1rem;}
 .p_2 {padding:2rem;}
 .px_2 {padding-left:2rem;padding-right:2rem;}
 .px_\.5 {padding-left:.5rem;padding-right:.5rem;}
+.pl_\.5 {padding-left:.5rem;}
 
 .border {border:solid 1px lightgrey;}
 
@@ -1763,8 +1806,25 @@ section.cover_block div.overlay h4 {
 .line_1 {
    line-height:1.5rem;
 }
+.line_height_2 {line-height:2rem;}
 @media screen and (min-width: 768px) {
    .line_1 {
       line-height:1rem;
    }
 }
+
+.font_100 {font-weight:100;}
+.font_300 {font-weight:300;}
+.font_400 {font-weight:400;}
+.font_700 {font-weight:700;}
+.font_900 {font-weight:900;}
+
+.font_\.9 {font-size:.9rem;}
+.font_1 {font-size:1rem;}
+.font_1\.2 {font-size:1.2rem;}
+.font_1\.25 {font-size:1.25rem;}
+.font_1\.5 {font-size:1.5rem;}
+.font_1\.75 {font-size:1.75rem;}
+.font_2 {font-size:2rem;}
+
+.letter_1 {letter-spacing:1rem;}
