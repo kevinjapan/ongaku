@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
 
 
@@ -5,6 +6,10 @@ import HeroBanner from '../components/HeroBanner/HeroBanner'
 // AboutView
 
 export default function AboutView() {
+
+   useEffect(() => {
+      window.scroll(0,0)
+   },[])
 
    return (
       <>
