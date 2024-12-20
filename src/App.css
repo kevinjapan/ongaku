@@ -744,7 +744,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
 .app_footer {
    margin:0;
    padding:1rem;
-   padding-bottom:5rem;
+   padding-bottom:6rem;
    background:grey;
    color:white;
    text-align:left;
@@ -752,11 +752,25 @@ nav ul.nav_list li ul li a {margin:1rem; }
 .app_footer > ul {
    display:grid;
    grid-template-columns: 1fr 1fr 1fr;
-   visibility:visible;
+   margin-bottom:3rem;
+}
+.app_footer > ul > li > ul > li {
+   margin-bottom:.5rem;
 }
 .foot_note {
    width:100%;
    text-align:center;
+}
+.app_footer .link,
+.app_footer a {
+   padding:.25rem;
+   border-radius:.5rem;
+   color:white;
+}
+.app_footer .link:hover,
+.app_footer a:hover {
+   color:black;
+   background:lightblue;
 }
 
 
