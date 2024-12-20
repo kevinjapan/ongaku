@@ -7,6 +7,7 @@ import create_observers from '../../../utilities/createObservers/createObservers
 
 
 // TrackCard
+// future : review : card white background 'pops' from bubbles - good enough
 
 interface TrackCardProps {
    track:Track

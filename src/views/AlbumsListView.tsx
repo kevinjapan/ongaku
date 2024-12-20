@@ -26,7 +26,7 @@ export default function AlbumsListView() {
                featureImg="/imgs/all-sorts-of-questions.jpg"
             />
             <h3 className="ml_2">Albums</h3>
-            <section className="feature_tiles">
+            <section className="feature_tiles fade_in">
                <ul>
                   {payload?.data?.albums_list?.length ?
                      payload?.data?.albums_list?.map((album: Album) => (                 

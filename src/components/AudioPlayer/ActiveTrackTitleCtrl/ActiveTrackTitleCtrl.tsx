@@ -3,7 +3,8 @@ import { MouseEvent } from 'react'
 
 
 // ActiveTrackTitleCtrl
-// to do : mouseover opens menu - we need click alternative behaviour for ipad/mobile touch screens
+// to do : review : mouseover opens menu - we need click alternative behaviour for ipad/mobile touch screens
+//         first check current site works ok on ipad before worrying about this!
 
 interface ActiveTrackTitleCtrlProps {
    track: TracksListItem | null,
