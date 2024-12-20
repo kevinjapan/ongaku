@@ -1,8 +1,11 @@
 import { useRef, useState, useEffect } from 'react'
+import TypeInTitle from '../TypeInTitle/TypeInTitle'
 
 
 
 // HeroBanner
+
+// to do : bug - title type_in_from_left doesn't work well with long titles (they stack vertically first...)
 
 // - fade-out prev img and fade-in new img
 // - slide in overlay texts
@@ -57,10 +60,12 @@ export default function HeroBanner(props: HeroBannerProps) {
       <section className="cover_block hero_block bg_navy dim_30">
          <img className="bg_img prev_feature_img z_n1" src={local_prev_feature_img.current} />
          <img className="bg_img feature_img pre_cover_fade_in" src={props.featureImg} />
-         <div className="overlay type_in_from_left_init">
+
+         <TypeInTitle title={heading} tagline={props.overlayTagline} />
+         {/* <div className="overlay type_in_from_left_init">
             <h1 className="no_user_select letter_1">{heading}</h1>
             {props.overlayTagline ? <h4>{props.overlayTagline}</h4> : null}
-         </div>
+         </div> */}
       </section>
    )
 }
