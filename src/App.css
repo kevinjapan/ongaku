@@ -1636,9 +1636,12 @@ section.feature_tiles {
 }
 li.album_teaser {
    background:white;
-   border:solid 1px hsl(0, 0%, 90%);
+   border:solid 1px hsl(0, 0%, 70%);
    border-radius:.5rem;
    box-shadow:5px 5px 10px -2px rgba(0,0,0,.1); 
+}
+li.album_teaser > img {
+   height:200px;
 }
 
 
@@ -1680,6 +1683,7 @@ section.cover_block div.overlay h4 {
    section.cover_block div.overlay h4 {
       white-space:unset;
       max-width:100%;
+      padding-left:2rem;
    }
 }
 
