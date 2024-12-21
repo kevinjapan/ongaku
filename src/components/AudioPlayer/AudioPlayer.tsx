@@ -9,6 +9,8 @@ import AudioPlayerPlayer from './AudioPlayerPlayer/AudioPlayerPlayer'
 // AudioPlayer
 // mp3 names are case-sensitive, 'audio' property must match mp3 filename
 
+// to do : polish AudioPlayer UI (fixed footer)
+
 export default function AudioPlayer() {
 
    const { active_track, set_active_track } = useContext(AppContext)

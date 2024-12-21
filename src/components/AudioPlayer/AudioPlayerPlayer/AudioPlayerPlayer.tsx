@@ -43,7 +43,7 @@ export default function AudioPlayerPlayer({audio_file} : AudioPlayerPlayerProps)
    }
 
    return (
-      <div className="flex">
+      <div className="audio_player_player flex">
          <audio
             ref={audio_ref}
             controls
