@@ -138,7 +138,7 @@
 
    /* headings */
    
-   --h1_size:4rem;
+   --h1_size:3rem;
    --h1_line_height:8rem;
    --h2_size:3rem;
    --h2_line_height:4rem;
@@ -266,16 +266,16 @@ button.light_btn_hover:hover > a {
    color:white;
 }
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+   height: 6em;
+   padding: 1.5em;
+   will-change: filter;
+   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+   filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
@@ -288,9 +288,10 @@ button.light_btn_hover:hover > a {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+   a:nth-of-type(2) .logo {
+      -webkit-animation: logo-spin infinite 20s linear;
+      animation: logo-spin infinite 20s linear;
+   }
 }
 
 
@@ -798,14 +799,15 @@ nav ul.nav_list li ul li a {margin:1rem; }
    background:white;
    overflow:visible;
    border-top:1px solid grey;
-   background:lightgrey;
 }
-.audio_player_ctrls {
+.audio_track_title_ctrl {
    margin:0;
    padding:1rem .65rem;
    overflow:hidden;
    background:white;
 }
+/* .audio_player_player {} */
+
 div.active_track {
 
    z-index:999;
@@ -831,10 +833,9 @@ div.active_track:hover {
 img.audoplayer_icon {
    width:24px;
 }
+
 ul.player_tracks_list {
-
    z-index:-1;
-
    display:-webkit-box;
    display:-ms-flexbox;
    display:flex;
@@ -931,6 +932,7 @@ audio::-webkit-media-controls-play-button {
    background:white;
    border:solid 1px hsl(0, 0%, 90%);
    border-radius:.5rem;
+   -webkit-box-shadow:5px 5px 10px rgba(0,0,0,.35);
    box-shadow:5px 5px 10px rgba(0,0,0,.35);
    text-align:center;
 }
@@ -1083,6 +1085,7 @@ section.cover_block {
    /* background:hsl(190, 87%, 41%); */
 }
 .cover_fade_in {
+   -webkit-animation: fade-in 1s;
    animation: fade-in 1s;
 }
 .pre_cover_fade_in {
@@ -1160,7 +1163,7 @@ section.cover_block div.overlay {
    -ms-flex-pack:center;
    justify-content:center;
 
-   width:fit-content;
+   width:100%;
    margin-left:.5rem;
    margin-right:.5rem;
    padding:.5rem;
@@ -1184,9 +1187,15 @@ section.cover_block.timeline img {
    z-index:-900;
 }
 section.cover_block.timeline > div.overlay {
+   display:-webkit-box;
+   display:-ms-flexbox;
    display:flex;
    flex-direction:column;
+   -webkit-box-pack:center;
+   -ms-flex-pack:center;
    justify-content:center;
+   -webkit-box-align:center;
+   -ms-flex-align:center;
    align-items:center;
    /* gap:1rem; */
    padding:0;
@@ -1195,7 +1204,10 @@ section.cover_block.timeline > div.overlay > ul {
    display:-webkit-box;
    display:-ms-flexbox;
    display:flex;
+   -ms-flex-wrap:wrap;
    flex-wrap:wrap;
+   -webkit-box-pack:center;
+   -ms-flex-pack:center;
    justify-content:center;
    gap:1rem;
    height:100%;
@@ -1223,13 +1235,20 @@ section.cover_block.timeline > div.overlay > ul > li::before {
 }
 @media screen and (min-width: 910px) { 
    section.cover_block.timeline > div.overlay {
+      display:-webkit-box;
+      display:-ms-flexbox;
       display:flex;
+      -webkit-box-orient:vertical;
+      -webkit-box-direction:normal;
       flex-direction:column;
       gap:1rem;
    }
    section.cover_block.timeline > div.overlay > ul {
+      -ms-flex-wrap:wrap;
       flex-wrap:wrap;
       width:90%;
+      -webkit-box-pack:start;
+      -ms-flex-pack:start;
       justify-content:flex-start;
    }
    section.cover_block.timeline > div.overlay > ul > li {
@@ -1239,7 +1258,7 @@ section.cover_block.timeline > div.overlay > ul > li::before {
       white-space:nowrap;
    }
    section.cover_block.timeline h2 {
-      /* to do : webkit - rollout */
+      -ms-flex-item-align:start;
       align-self:flex-start;
       padding-left:2rem;
       font-size:2.5rem;
@@ -1251,8 +1270,13 @@ section.cover_block h1 {
    font-size:calc(var(--h1_size) * 1);
    line-height:calc(var(--h1_size) * 1.1);
    margin:0;
-   white-space:nowrap;
+   white-space:wrap;
    color:white;
+}
+@media screen and (max-width: 910px) { 
+   section.cover_block h1 {
+      font-size:2.5rem;
+   }
 }
 section.cover_block h4 {
    font-weight:300;
@@ -1294,7 +1318,6 @@ section.cover_block.content_at_end {
       margin:0;
       max-width:50%;
    }
-
    section.cover_block h1,
    section.cover_block h2, 
    section.cover_block h3, 
@@ -1513,6 +1536,7 @@ section.feature_block > div > *:not(button) {
 /*
 bubbles drift off-screen adding x-scrollbar - we contain to apply 'overflow:hidden'
 added bonus - bubbles now drift under TrackCards - better UX and effect
+future : we brought in legacy from js site - make these variations programmatically!
 */
 section.bubble_container {
    position:absolute;
@@ -1524,47 +1548,177 @@ section.bubble_container {
 }
 div.bubble {
    position:absolute;
-   bottom:0;
-   left:10%;
    z-index:var(--bubble_z);
    border-radius:50%;
-   width:80px;
-   height:80px;
-   opacity:.2;
+   -webkit-transition:bottom .002s;
+   -o-transition:bottom .002s;
+   transition:bottom .002s;
+}
+#bubble_primary.float_up {
+   bottom:00%;
+   left:10%;
+   width:0%;
+   height:0%;
+   opacity:.21;
+}
+#bubble_primary_lighter.float_up {
+   bottom:23%;
+   left:33%;
+   width:0%;
+   height:0%;
+   opacity:.41;
+}
+#bubble_secondary.float_up {
+   bottom:35%;
+   left:00%;
+   width:0%;
+   height:0%;
+   opacity:.1;
+}
+#bubble_secondary_lighter.float_up {
+   bottom:15%;
+   left:67%;
+   width:0%;
+   height:0%;
+   transition:bottom .002s ;
+   opacity:.21;
+}
+#bubble_light.float_up {
+   bottom:00%;
+   left:40%;
+   width:0%;
+   height:0%;
+   opacity:.1;
+}
+#bubble_light_lighter.float_up {
+   bottom:18%;
+   left:21%;
+   width:0%;
+   height:0%;
+   opacity:.31;
+}
+#bubble_dark.float_up {
+   bottom:20%;
+   left:25%;
+   width:0%;
+   height:0%;
+   transition:bottom .002s;
+   opacity:.21;
+}
+#bubble_dark_lighter.float_up {
+   bottom:22%;
+   left:53%;
+   width:0%;
+   height:0%;
+   opacity:.1;
+}
+#bubble_accent.float_up {
+   bottom:05%;
+   left:00%;
+   width:0%;
+   height:0%;
+   opacity:.1;
+}
+#bubble_accent_lighter.float_up {
+   bottom:15%;
+   left:18%;
+   width:0%;
+   height:0%;
+   opacity:.41;
 }
 
-#bubble_primary.float_up            {position:absolute;bottom:00%;left:10%;width:0%;height:0%;transition:bottom .002s ;opacity:.21;}
-#bubble_primary_lighter.float_up    {position:absolute;bottom:23%;left:33%;width:0%;height:0%;transition:bottom .002s ;opacity:.41;}
-#bubble_secondary.float_up          {position:absolute;bottom:35%;left:00%;width:0%;height:0%;transition:bottom .002s ;opacity:.1;}
-#bubble_secondary_lighter.float_up  {position:absolute;bottom:15%;left:67%;width:0%;height:0%;transition:bottom .002s ;opacity:.21;}
-#bubble_light.float_up              {position:absolute;bottom:00%;left:40%;width:0%;height:0%;transition:bottom .002s ;opacity:.1;}
-#bubble_light_lighter.float_up      {position:absolute;bottom:18%;left:21%;width:0%;height:0%;transition:bottom .002s ;opacity:.31;}
-#bubble_dark.float_up               {position:absolute;bottom:20%;left:25%;width:0%;height:0%;transition:bottom .002s ;opacity:.21;}
-#bubble_dark_lighter.float_up       {position:absolute;bottom:22%;left:53%;width:0%;height:0%;transition:bottom .002s ;opacity:.1;}
-#bubble_accent.float_up             {position:absolute;bottom:05%;left:00%;width:0%;height:0%;transition:bottom .002s ;opacity:.1;}
-#bubble_accent_lighter.float_up     {position:absolute;bottom:15%;left:18%;width:0%;height:0%;transition:bottom .002s ;opacity:.41;}
 
 /* impression is movement to right since width is increasing that direction... */
 #bubble_primary.floated_up {
-   bottom:100%;left:10%;width:20%;height:10%;transition:bottom 07s,opacity 3s;}
+   bottom:100%;
+   left:10%;
+   width:20%;
+   height:10%;
+   -webkit-transition:bottom 07s, opacity 3s;
+   -o-transition:bottom 07s, opacity 3s;
+   transition:bottom 07s, opacity 3s;
+}
 #bubble_primary_lighter.floated_up {
-   bottom:100%;left:10%;width:05%;height:02%;transition:bottom 08s,opacity 2s;}
+   bottom:100%;
+   left:10%;
+   width:05%;
+   height:02%;
+   -webkit-transition:bottom 07s, opacity 3s;
+   -o-transition:bottom 07s, opacity 3s;
+   transition:bottom 08s, opacity 2s;
+}
 #bubble_secondary.floated_up {
-   bottom:100%;left:10%;width:27%;height:13%;transition:bottom 16s,opacity 7s;}
+   bottom:100%;
+   left:10%;
+   width:27%;
+   height:13%;
+   -webkit-transition:bottom 16s, opacity 7s;
+   -o-transition:bottom 16s, opacity 7s;
+   transition:bottom 16s, opacity 7s;
+}
 #bubble_secondary_lighter.floated_up {
-   bottom:100%;left:10%;width:34%;height:16%;transition:bottom 16s,opacity 7s;}
+   bottom:100%;
+   left:10%;
+   width:34%;
+   height:16%;
+   -webkit-transition:bottom 16s, opacity 7s;
+   -o-transition:bottom 16s, opacity 7s;
+   transition:bottom 16s, opacity 7s;
+}
 #bubble_light.floated_up {
-   bottom:100%;left:10%;width:20%;height:10%;transition:bottom 11s,opacity 5s;}
+   bottom:100%;
+   left:10%;
+   width:20%;
+   height:10%;
+   -webkit-transition:bottom 11s, opacity 5s;
+   -o-transition:bottom 11s, opacity 5s;
+   transition:bottom 11s, opacity 5s;
+}
 #bubble_light_lighter.floated_up {
-   bottom:100%;left:10%;width:10%;height:05%;transition:bottom 11s,opacity 5s;}
+   bottom:100%;
+   left:10%;
+   width:10%;
+   height:05%;
+   -webkit-transition:bottom 11s, opacity 5s;
+   -o-transition:bottom 11s, opacity 5s;
+   transition:bottom 11s, opacity 5s;
+}
 #bubble_dark.floated_up {
-   bottom:100%;left:10%;width:40%;height:20%;transition:bottom 17s,opacity 7s;}
+   bottom:100%;
+   left:10%;
+   width:40%;
+   height:20%;
+   -webkit-transition:bottom 17s, opacity 7s;
+   -o-transition:bottom 17s, opacity 7s;
+   transition:bottom 17s, opacity 7s;
+}
 #bubble_dark_lighter.floated_up {
-   bottom:100%;left:10%;width:440%;height:21%;transition:bottom 17s,opacity 6s;}
+   bottom:100%;
+   left:10%;
+   width:440%;
+   height:21%;
+   -webkit-transition:bottom 17s, opacity 6s;
+   -o-transition:bottom 17s, opacity 6s;
+   transition:bottom 17s, opacity 6s;
+}
 #bubble_accent.floated_up {
-   bottom:100%;left:10%;width:08%;height:04%;transition:bottom 12s,opacity 5s;}
+   bottom:100%;
+   left:10%;
+   width:08%;
+   height:04%;
+   -webkit-transition:bottom 12s, opacity 5s;
+   -o-transition:bottom 12s, opacity 5s;
+   transition:bottom 12s, opacity 5s;
+}
 #bubble_accent_lighter.floated_up {
-   bottom:100%;left:10%;width:24%;height:12%;transition:bottom 12s,opacity 6s;}
+   bottom:100%;
+   left:10%;
+   width:24%;
+   height:12%;
+   -webkit-transition:bottom 12s, opacity 6s;
+   -o-transition:bottom 12s, opacity 6s;
+   transition:bottom 12s, opacity 6s;
+}
 
 
 /* 
@@ -1629,6 +1783,7 @@ section.feature_block > div.song_card {
    padding-top:3rem;
    border:solid 1px hsl(0, 0%, 90%);
    border-radius:.5rem;
+   -webkit-box-shadow:5px 5px 10px -2px rgba(0,0,0,.1);
    box-shadow:5px 5px 10px -2px rgba(0,0,0,.1); 
    gap:0;
 }
@@ -1652,6 +1807,7 @@ li.album_teaser {
    background:white;
    border:solid 1px hsl(0, 0%, 70%);
    border-radius:.5rem;
+   -webkit-box-shadow:5px 5px 10px -2px rgba(0,0,0,.1);
    box-shadow:5px 5px 10px -2px rgba(0,0,0,.1); 
 }
 li.album_teaser > img {
@@ -1668,7 +1824,7 @@ li.album_teaser > img {
 .type_in_from_left_init,
 section.cover_block div.overlay.type_in_from_left_init {
    white-space:wrap;
-   width:100vw;
+   width:100%;
 }
 section.cover_block div.overlay h1,
 section.cover_block div.overlay h2,
@@ -1683,31 +1839,57 @@ section.cover_block div.overlay h4 {
       max-width:0px;
       padding:0;
       white-space:nowrap;
+      -webkit-transition:max-width .2s ease-in-out .2s;
+      -o-transition:max-width .2s ease-in-out .2s;
       transition:max-width .2s ease-in-out .2s;
       overflow:hidden;
    }
    .type_in_from_left,
    section.cover_block div.overlay.type_in_from_left {
-      max-width:100vw;
+      width:100%;
+      max-width:100%;
+      -webkit-transition:max-width .35s ease-in-out .35s;
+      -o-transition:max-width .35s ease-in-out .35s;
       transition:max-width .35s ease-in-out .35s;
    }
    section.cover_block div.overlay h1,
    section.cover_block div.overlay h2,
    section.cover_block div.overlay h3,
    section.cover_block div.overlay h4 {
-      white-space:unset;
+      white-space:nowrap;
+      width:100%;
       max-width:100%;
       padding-left:2rem;
    }
+}
+/* 
+to retain type_in_from_left using width transition, we don't want to text vertically stacking as the width changes - 
+so we always fit text size to screen (approx. using title.length in TypeInTitle component to modify h1 font-size
+*/
+@media screen and (min-width: 768px) {
+   div.overlay h1.long_title{font-size:2rem;}
+   div.overlay h1.x_long_title {font-size:1.8rem;}
+}
+@media screen and (min-width: 910px) {
+   div.overlay h1.long_title{font-size:3rem;}
+   div.overlay h1.x_long_title {font-size:2.5rem;}
+}
+@media screen and (min-width: 1110px) {
+   div.overlay h1.long_title{font-size:3.5rem;}
+   div.overlay h1.x_long_title {font-size:3rem;}
 }
 
 /* section/cards fade in */
 .fade_in {
    opacity:0;
+   -webkit-transition:opacity .45s ease-in-out;
+   -o-transition:opacity .45s ease-in-out;
    transition:opacity .45s ease-in-out;
 }
 .appear {
    opacity:1;
+   -webkit-transition:opacity 1.3s ease-in-out;
+   -o-transition:opacity 1.3s ease-in-out;
    transition:opacity 1.3s ease-in-out;
 }
 /* 
