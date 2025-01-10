@@ -9,6 +9,8 @@ import AppNavSubDomain from './AppNavSubDomain/AppNavSubDomain'
 // AppNav
 // from orig edk site, first pass migrating this solution into react
 // we keep dropdown open on hover, not effective in spa with no reload, so we temporarily 'retract_dropdown'
+// future : dropdown is appearing above navbar on extracting vertically - should be behind navbar
+//          non-trivial since we have several behaviours to balance - ok for now. best move to Outline CSS nav.
 
 export default function AppNav() {
 
@@ -126,7 +128,7 @@ export default function AppNav() {
             <div className="toggle_bar"></div>
          </div>
 
-         <ul className="nav_list gap_2">
+         <ul className="nav_list">
 
             {/* map our domains (top nav items) */}
             {nav_links.map(link => 

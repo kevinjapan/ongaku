@@ -4,8 +4,11 @@ import HeroBanner from '../components/HeroBanner/HeroBanner'
 
 
 // AboutView
+// future : overlayHeading is not displaying (works fine other views) - issue w/ HeroBanner (timing? not updated? non-trivial fix)
 
 export default function AboutView() {
+
+
 
    useEffect(() => {
       window.scroll(0,0)
@@ -14,8 +17,9 @@ export default function AboutView() {
    return (
       <>
          <HeroBanner 
-            overlayHeading="about" 
-            featureImg="/imgs/edk-workstation.jpg"/>
+            overlayHeading="this is it"
+            featureImg="/imgs/edk-workstation.jpg"
+         />
 
          <section className="mb_2 line_height_2 text_center">
             <p className="p_1">

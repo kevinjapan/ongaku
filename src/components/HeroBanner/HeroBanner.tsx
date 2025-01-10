@@ -4,11 +4,10 @@ import TypeInTitle from '../TypeInTitle/TypeInTitle'
 
 
 // HeroBanner
-
-// to do : bug - title type_in_from_left doesn't work well with long titles (they stack vertically first...)
-
 // - fade-out prev img and fade-in new img
 // - slide in overlay texts
+// future : we built for fading imgs btwn albums, so currently works on Album component updating
+//          props to HeroBanner in AlbumView; but doesn't work easily in AboutView - ok for now.
 
 interface HeroBannerProps {
    overlayHeading:string,
@@ -25,7 +24,8 @@ export default function HeroBanner(props: HeroBannerProps) {
 
    // reset img styles on props.featureImg change
    useEffect(() => {
-      
+
+      // don't swap w/ fade_in if same img
       if(local_prev_feature_img.current === props.featureImg) return
 
       const overlay_text = document.querySelector('.overlay')
@@ -51,21 +51,17 @@ export default function HeroBanner(props: HeroBannerProps) {
 
          // store prev img
          if(props.featureImg && props.featureImg !== "") local_prev_feature_img.current = props.featureImg
-
-
       } 
-   },[props])
+   },[props,props.overlayHeading])
 
    return (
       <section className="cover_block hero_block bg_navy dim_30">
+
          <img className="bg_img prev_feature_img z_n1" src={local_prev_feature_img.current} />
          <img className="bg_img feature_img pre_cover_fade_in" src={props.featureImg} />
 
          <TypeInTitle title={heading} tagline={props.overlayTagline} />
-         {/* <div className="overlay type_in_from_left_init">
-            <h1 className="no_user_select letter_1">{heading}</h1>
-            {props.overlayTagline ? <h4>{props.overlayTagline}</h4> : null}
-         </div> */}
+
       </section>
    )
 }

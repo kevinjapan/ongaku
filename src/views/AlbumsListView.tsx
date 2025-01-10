@@ -25,7 +25,7 @@ export default function AlbumsListView() {
                overlayHeading="albums" 
                featureImg="/imgs/all-sorts-of-questions.jpg"
             />
-            <h3 className="ml_2">Albums</h3>
+
             <section className="feature_tiles fade_in">
                <ul>
                   {payload?.data?.albums_list?.length ?

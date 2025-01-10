@@ -428,6 +428,8 @@ nav div.logo_block    {
    position:relative;
    z-index:var(--over_over_nav_layer);
 
+   /* background is set by 'transparent' class on scrolling */
+
    -webkit-box-flex:2;
    -ms-flex-positive:2;
    flex-grow:2;
@@ -671,6 +673,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
       top:0;
       left:0;
       z-index:var(--nav_layer);
+      z-index:var(--under_nav_layer);
 
       display:-webkit-box;
       display:-ms-flexbox;
@@ -682,7 +685,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
       -webkit-box-pack:end;
       -ms-flex-pack:end;
       justify-content:flex-end;
-
+      
       width:100%;
       margin:0;
       padding:5rem 0 0 0; /* extra padding provides bg underneath transparent nav */
@@ -696,7 +699,6 @@ nav ul.nav_list li ul li a {margin:1rem; }
       transform:translateY(-100%);
       opacity:0;
       transition:transform .5s ease-in-out .25s,opacity 3s ease-in-out .2s,border .25s ease-in-out;
-   
    }
    nav ul.nav_list > li > a {font-size:1.75rem;font-weight:400;}
    nav ul.nav_list:hover li > a  {
@@ -1163,7 +1165,7 @@ section.cover_block div.overlay {
    -ms-flex-pack:center;
    justify-content:center;
 
-   width:100%;
+   max-width:90%;
    margin-left:.5rem;
    margin-right:.5rem;
    padding:.5rem;

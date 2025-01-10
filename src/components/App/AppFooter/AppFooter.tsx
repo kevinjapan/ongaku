@@ -3,8 +3,6 @@ import AppCopyright from '../AppCopyright/AppCopyright'
 
 
 // AppFooter
-// to do : actual links pls
-
 
 export default function AppFooter() {
 

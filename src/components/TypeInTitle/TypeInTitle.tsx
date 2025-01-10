@@ -7,9 +7,6 @@
 // we can't 'type in' using width transition *and* 'wrap' - it temporarily stacks vertically
 // so, we don't wrap text, but dynamically set font size dependant upon text length
 
-
-// future : test w/ wider range of titles lengths | combos of long words etc
-
 interface TypeInTitleProps {
    title: string
    tagline?: string

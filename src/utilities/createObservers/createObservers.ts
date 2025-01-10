@@ -8,6 +8,7 @@ interface IntersectionObserverOptions {
    threshold?:number
 }
 
+
 export default function create_observers (elements: NodeListOf<Element>,active_class: string,options: IntersectionObserverOptions) {
 
    let observers_created = false
@@ -17,6 +18,8 @@ export default function create_observers (elements: NodeListOf<Element>,active_c
          entries.forEach(entry => {
             if(!entry.isIntersecting) return
             entry.target.classList.add(active_class)
+
+            // we remove the observer immediately to avoid proliferation (our use case is eg fade_in, an action w/ a definate end)
             appearOnScroll.unobserve(entry.target)
          })
    },options)

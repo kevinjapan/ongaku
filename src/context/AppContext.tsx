@@ -41,7 +41,6 @@ export const AppContextProvider = ({children}: { children: React.ReactNode }) =>
    
    }
 
-   // future : populate dynamically
    useEffect(() => {
       setTracksList([
          {

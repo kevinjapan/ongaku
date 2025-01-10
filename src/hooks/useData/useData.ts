@@ -15,7 +15,7 @@ export default function useData<T>(endPoint: string , url_params: string[], quer
    const { request_method, route_url, route_url_params } = get_end_point(endPoint, url_params, query_params) as EndPoint
  
    useEffect(() => {
-      // to do : we are getting updated multiple times (even allowing for twice during dev, we are updating x4 (dev = x8 times))
+      // future : we are getting updated multiple times (even allowing for twice during dev, we are updating x4 (dev = x8 times))
       // the call Album.useEffect[slug,updateDataUrl] called once until we call updateDataUrl() herein, then we get multiple re-renders 
       // console.log('updated hook useData')
    })

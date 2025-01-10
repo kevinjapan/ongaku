@@ -34,7 +34,7 @@ export default function get_router() {
             {
                path:'albums/:slug',
                element:<AlbumView/>
-            },
+            }
          ]
       },
    ])
