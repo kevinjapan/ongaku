@@ -4,7 +4,7 @@ import HeroBanner from '../components/HeroBanner/HeroBanner'
 
 
 // AboutView
-// future : overlayHeading is not displaying (works fine other views) - issue w/ HeroBanner (timing? not updated? non-trivial fix)
+// to do : overlayHeading 'About' is not displaying (works fine other views) - issue w/ HeroBanner (timing? not updated? non-trivial fix)
 
 export default function AboutView() {
 

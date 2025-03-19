@@ -20,11 +20,13 @@ export default function AlbumView() {
          <HeroBanner 
             overlayHeading={title}
             featureImg={feature_img}
-         />         
+         />
+
          <Album 
             set_title={setTitle}
             set_feature_img={setFeatureImg}
          />
+               
       </>
    )
    
