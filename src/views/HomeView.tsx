@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
 import AlbumTeaser from '../components/Albums/AlbumTeaser/AlbumTeaser'
 import { init_fade_ins } from '../assets/js/behaviour'
@@ -62,42 +63,50 @@ export default function HomeView() {
 
                <h2 className="italic font_100">iterations</h2>
 
-               <ul className="font_1.2 text_center">
+               <ul className="font_1.2 font_100 text_center">
                   <li className="text_center">
                      Lost For Words<br/>
-                     <span className="font_.9 font_300">2017</span>
+                     <span className="font_.95 font_400 w_100">2017</span>
                   </li>
                   <li>
-                     Rough Not Ready<br/>
-                     <span className="font_.9 font_300">2018</span>
+                     <Link className="link iteration_link w_100 display_block" to="/albums/rough-not-ready">
+                        Rough Not Ready<br/>
+                        <span className="font_.95 font_400">2018</span>
+                     </Link>
                   </li>
                   <li>
                      Silver Bullet<br/>
-                     <span className="font_.9 font_300">2018</span>
+                     <span className="font_.95 font_400">2018</span>
                   </li>
                   <li>
-                     Life's A Rhetorical Question<br/>
-                     <span className="font_.9 font_300">2018</span>
+                     <Link className="link iteration_link w_100 display_block" to="/albums/lifes-a-rhetorical-question">
+                        Life's A Rhetorical Question<br/>
+                        <span className="font_.95 font_400">2018</span>
+                     </Link>
                   </li>
                   <li>
-                     River<br/>
-                     <span className="font_.9 font_300">2019</span>
+                     <Link className="link iteration_link w_100 display_block" to="/albums/river">
+                        River<br/>
+                        <span className="font_.95 font_400">2019</span>
+                     </Link>
                   </li>
                   <li>
                      The Mountain That Is<br/>
-                     <span className="font_.9 font_300">2019</span>
+                     <span className="font_.95 font_400">2019</span>
                   </li>
                   <li>
-                     Beneath The Waves<br/>
-                     <span className="font_.9 font_300">2020</span>
+                     <Link className="link iteration_link w_100 display_block" to="/albums/beneath-the-waves">
+                        Beneath The Waves<br/>
+                        <span className="font_.95 font_400">2020</span>
+                     </Link>
                   </li>
                   <li>
                      Psycosomatica<br/>
-                     <span className="font_.9 font_300">2021</span>
+                     <span className="font_.95 font_400">2021</span>
                   </li>
                   <li>
                      Clouds In The Sky<br/>
-                     <span className="font_.9 font_300">2023</span>
+                     <span className="font_.95 font_300">2023</span>
                   </li>
                </ul>
                <button className="light_btn_hover">
