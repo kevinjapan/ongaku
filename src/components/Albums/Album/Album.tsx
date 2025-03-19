@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import useData from '../../../hooks/useData/useData'
 import TrackCardsList from '../../Tracks/TrackCardsList/TrackCardsList'
 import { SetStateAction, Dispatch } from 'react'
+import SnapShots from '../../Snapshots/SnapShots'
 
 
 
@@ -49,6 +50,7 @@ export default function Album({set_title, set_feature_img}:AlbumProps) {
             {payload?.data ?
                <>                  
                   <TrackCardsList tracks={payload?.data?.tracks} />
+                                 <SnapShots/>
                </>
                : null}
          </>
