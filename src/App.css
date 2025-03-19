@@ -748,9 +748,10 @@ nav ul.nav_list li ul li a {margin:1rem; }
    margin:0;
    padding:1rem;
    padding-bottom:6rem;
-   background:grey;
+   background:black;
    color:white;
    text-align:left;
+   z-index:var(--song_card_z);
 }
 .app_footer > ul {
    display:grid;
@@ -928,8 +929,8 @@ audio::-webkit-media-controls-play-button {
    position:relative;
    z-index:var(--track_listing_z);
    width:fit-content;
-   margin:1rem auto;
-   padding:1rem 4rem;
+   margin:.5rem 1rem;
+   padding:2rem 3rem;
    color:black;   
    background:white;
    border:solid 1px hsl(0, 0%, 90%);
@@ -937,6 +938,8 @@ audio::-webkit-media-controls-play-button {
    -webkit-box-shadow:5px 5px 10px rgba(0,0,0,.35);
    box-shadow:5px 5px 10px rgba(0,0,0,.35);
    text-align:center;
+   font-stretch: expanded;
+   user-select:none;
 }
 section.track_card > * {
    margin:0;
@@ -952,21 +955,34 @@ section.track_card > p {
    line-height:.8rem;
    color:hsl(0, 0%, 20%);
 }
+section.track_card > p > span.display_block {
+   min-width:90%;
+}
 .track_card > img.play_track_icon {
    position:absolute;
    top:.75rem;
    right:1rem;
-   width:16px;
-   height:16px;
+   width:24px;
+   height:24px;
    cursor:pointer;
+   padding:.25rem;
    user-select:none;
+}
+.track_card > img.play_track_icon:hover {
+   border:solid 2px grey;
+   border-radius:50%;
 }
 @media screen and (max-width: 768px) {
    .track_card {
       width:94%;
+      margin:auto;
+      margin-top:1rem;
+      padding:1rem 1rem 1rem 3rem;
    }
 }
-
+/* section.track_card_bg {
+   
+} */
 
 /* 
 //    section
@@ -1177,6 +1193,7 @@ timeline UI
 section.cover_block.timeline {
    position:relative;
    color:white;
+   z-index:var(--song_card_z);
 }
 section.cover_block.timeline h2 {
    color:white;
@@ -1225,15 +1242,27 @@ section.cover_block.timeline > div.overlay > ul > li {
    height:fit-content;
    border:solid 1px white;
 }
+/* dimmer to give semi-opaque bg on each album tag */
 section.cover_block.timeline > div.overlay > ul > li::before {
    content:'';
    position:absolute;
    top:0;
    left:0;
+
+   /* note : this dimmer blocks any click events on covered li element so we set z as '-1' */
+   z-index:-1;
+
    width:100%;
    height:100%;
    background:white;
    opacity:.15;
+}
+section.cover_block.timeline > div.overlay > ul > li:has(a)::before {
+   opacity:.25;
+}
+/* highlight timeline elem on hover - 'brighten' */
+section.cover_block.timeline > div.overlay > ul > li:hover:has(a)::before {
+   opacity:.35;
 }
 @media screen and (min-width: 910px) { 
    section.cover_block.timeline > div.overlay {
@@ -1735,6 +1764,7 @@ section.feature_block img.porthole {
    height:220px;
    opacity:1;
    z-index:var(--cover_block_h1_z);
+   border:solid 6px white;
 }
 @media screen and (min-width: 810px) {
 
@@ -1748,23 +1778,36 @@ section.feature_block img.porthole {
    section.feature_block img.margin_top_20 {margin-top:20rem;}
    section.feature_block img.margin_top_26 {margin-top:26rem;}
    
+   /* move portholes to on right-side of card */
+   section.feature_block img.margin_left_neg_2 {margin-left:-2rem;}
    section.feature_block img.margin_left_neg_8 {margin-left:-8rem;}
    section.feature_block img.margin_left_neg_10 {margin-left:-10rem;}
    section.feature_block img.margin_left_neg_12 {margin-left:-12rem;}
    section.feature_block img.margin_left_neg_14 {margin-left:-14rem;}
    section.feature_block img.margin_left_neg_15 {margin-left:-15rem;}
+   section.feature_block img.margin_left_neg_16 {margin-left:-16rem;}
+   section.feature_block img.margin_left_neg_18 {margin-left:-18rem;}
+   section.feature_block img.margin_left_neg_25 {margin-left:-25rem;}
+   section.feature_block img.margin_left_neg_26 {margin-left:-18rem;}
    
+   /* move portholes to on left-side of card */
+   section.feature_block img.margin_right_neg_4 {margin-right:-4rem;}
+   section.feature_block img.margin_right_neg_6 {margin-right:-6rem;}
    section.feature_block img.margin_right_neg_10 {margin-right:-10rem;}
    section.feature_block img.margin_right_neg_11 {margin-right:-11rem;}
    section.feature_block img.margin_right_neg_12 {margin-right:-12rem;}
    section.feature_block img.margin_right_neg_14 {margin-right:-14rem;}
    section.feature_block img.margin_right_neg_15 {margin-right:-15rem;}
+   section.feature_block img.margin_right_neg_25 {margin-right:-25rem;}
+   section.feature_block img.margin_right_neg_26 {margin-right:-18rem;}
 
-   section.feature_block img.opacity_1 {opacity:.1;}
-   section.feature_block img.opacity_2 {opacity:.2;}
-   section.feature_block img.opacity_2_5 {opacity:.25;}
+   section.feature_block img.opacity_1 {opacity:.2;}
+   section.feature_block img.opacity_2 {opacity:.35;}
+   section.feature_block img.opacity_2_5 {opacity:.2;}
    section.feature_block img.opacity_3 {opacity:.3;}
    section.feature_block img.opacity_4 {opacity:.4;}
+   section.feature_block img.opacity_5 {opacity:.5;}
+   section.feature_block img.opacity_6 {opacity:.6;}
 
    section.feature_block img.porthole_xs {width:200px;height:200px;}
    section.feature_block img.porthole_sm {width:230px;height:230px;}
@@ -2011,17 +2054,20 @@ so we always fit text size to screen (approx. using title.length in TypeInTitle 
 .line_height_2 {line-height:2rem;}
 @media screen and (min-width: 768px) {
    .line_1 {
-      line-height:1rem;
+      line-height:1.5rem;
    }
 }
 
 .font_100 {font-weight:100;}
 .font_300 {font-weight:300;}
 .font_400 {font-weight:400;}
+.font_500 {font-weight:500;}
+.font_600 {font-weight:600;}
 .font_700 {font-weight:700;}
 .font_900 {font-weight:900;}
 
 .font_\.9 {font-size:.9rem;}
+.font_\.95 {font-size:.95rem;}
 .font_1 {font-size:1rem;}
 .font_1\.2 {font-size:1.2rem;}
 .font_1\.25 {font-size:1.25rem;}
@@ -2030,3 +2076,40 @@ so we always fit text size to screen (approx. using title.length in TypeInTitle 
 .font_2 {font-size:2rem;}
 
 .letter_1 {letter-spacing:1rem;}
+
+section.snapshots_layer {
+   position:absolute;
+   z-index:0;
+   top:5%;
+   left:0px;
+   width:100%;
+   min-height:100%;
+   max-height:80%;
+   background:transparent;
+}
+img.snapshot {
+   position:absolute;
+   left:0;
+   z-index:1;
+   top:200px;
+   width:120%;
+   transform:rotate(2deg);
+   overflow:hidden;
+   opacity:.2;
+   background-repeat:no-repeat;
+}
+
+a.iteration_link {
+   z-index:var(--track_listing_z);
+   color:white;
+   cursor:pointer;
+   padding:.15rem .25rem;
+   border-radius:.5rem;
+   width:100%;
+   height:100%;
+}
+
+
+.no_user_select {
+   user-select:none;
+}
