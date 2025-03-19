@@ -7,7 +7,7 @@ import AppCopyright from '../AppCopyright/AppCopyright'
 export default function AppFooter() {
 
    return (
-      <section className="app_footer">
+      <section className="app_footer no_user_select">
          <ul>
             <li>
                <ul>
