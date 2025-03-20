@@ -180,7 +180,8 @@
    --button_z:900;
    --cover_block_overlay_z:800;
    --cover_block_h1_z:800;
-   --song_card_z:700;
+   --cover_block_z:760;
+   --song_card_z:750;
    --music_note_z:600;
    --track_listing_z:500;
    --bubble_z:400;
@@ -1120,7 +1121,8 @@ section.cover_block {
 section.hero_block {
    min-height:var(--header_height);
    margin-top:-120px !important; /* displace nav_bar height */
-   /* background:hsl(190, 87%, 41%); */
+   z-index:var(--cover_block_z);
+   border-bottom:solid 2px white;
  }
 section.cover_block p {
    margin-left:0;
