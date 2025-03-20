@@ -827,12 +827,13 @@ div.active_track {
    align-items:center;
 
    height:fit-content;
-   padding:.35rem;
+   padding:.35rem 1rem;
    background:white;
+   color:blue;
 }
 div.active_track:hover {   
    color:blue;
-   background:hsl(60, 100%, 80%);
+   background:hsl(60, 100%, 60%);
 }
 img.audoplayer_icon {
    width:24px;
