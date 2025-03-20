@@ -1,23 +1,34 @@
 import { useEffect } from 'react'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
+import create_observers from '../utilities/createObservers/createObservers'
 
 
 
 // AboutView
-// to do : overlayHeading 'About' is not displaying (works fine other views) - issue w/ HeroBanner (timing? not updated? non-trivial fix)
 
 export default function AboutView() {
-
-
 
    useEffect(() => {
       window.scroll(0,0)
    },[])
 
+   useEffect(() => {
+      const init_fade_ins = () => {
+         const faders = document.querySelectorAll('.fade_in')
+         const appearOptions = {
+            threshold: 0,
+            rootMargin: "0px 0px -200px 0px"
+         }
+         return create_observers(faders,'appear',appearOptions)
+      }
+      init_fade_ins()
+   })
+
+
    return (
       <>
          <HeroBanner 
-            overlayHeading="this is it"
+            overlayHeading="about"
             featureImg="/imgs/edk-workstation.jpg"
          />
 
