@@ -9,6 +9,8 @@ import { init_fade_ins } from '../assets/js/behaviour'
 // HomeView
 // overlayTagline="where's your music taking you?"
 
+// to do : all of page following HeroCover img is below fold - do we need some lead into that hidden content?
+
 export default function HomeView() {
 
    useEffect(() => {
@@ -61,7 +63,7 @@ export default function HomeView() {
 
             <div className="overlay">
 
-               <h2 className="italic font_100">iterations</h2>
+               <h2 className="italic font_100" style={{marginTop:'4rem'}}>iterations</h2>
 
                <ul className="font_1.2 font_100 text_center">
                   <li className="text_center">
