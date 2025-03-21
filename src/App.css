@@ -16,6 +16,8 @@
    text-rendering: optimizeLegibility;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
+
+
    --cover_block_height:105vh;
 
 
@@ -173,6 +175,7 @@
    --over_over_nav_layer:999;
    --over_nav_layer:998;
    --nav_layer:900;
+   --just_under_nav_layer:880;
    --under_nav_layer:-10;
 
    /* layers within body element */
@@ -1923,7 +1926,7 @@ so we always fit text size to screen (approx. using title.length in TypeInTitle 
    div.overlay h1.x_long_title {font-size:2.5rem;}
 }
 @media screen and (min-width: 1110px) {
-   div.overlay h1.long_title{font-size:3.5rem;}
+   div.overlay h1.long_title{font-size:4rem;}
    div.overlay h1.x_long_title {font-size:3rem;}
 }
 
@@ -1933,6 +1936,11 @@ so we always fit text size to screen (approx. using title.length in TypeInTitle 
    -webkit-transition:opacity .45s ease-in-out;
    -o-transition:opacity .45s ease-in-out;
    transition:opacity .45s ease-in-out;
+}
+.fade_in_slow {
+   -webkit-transition:opacity 1.45s ease-in-out;
+   -o-transition:opacity 1.45s ease-in-out;
+   transition:opacity 1.45s ease-in-out;
 }
 .appear {
    opacity:1;
@@ -2115,4 +2123,46 @@ a.iteration_link {
 
 .no_user_select {
    user-select:none;
+}
+
+/* encourage user to get below the fold */
+.lyrics_and_links {
+
+   position:absolute;
+   top:calc(var(--cover_block_height) - 20vh);
+   left: 0;
+   right: 0;
+   margin: auto;
+   z-index:var(--just_under_nav_layer);
+
+   display:-webkit-box;
+   display:-ms-flexbox;
+   display:flex;
+   -webkit-box-align:center;
+   -ms-flex-align:center;
+   align-items:center;
+   gap:.5rem;
+
+   color:blue;
+   font-size:.9rem;
+   font-weight:100 !important;
+   border:solid 1px lightgrey;
+   border-radius:0;
+   padding:.5rem;
+}
+button.lyrics_and_links:hover {
+   border:none;
+   color:grey;
+   font-weight:100;
+   border:solid 1px white;
+}
+button.lyrics_and_links:hover >  a{
+   color:white;
+}
+.lyrics_and_links > a {
+   color:lightgrey;
+   font-weight:100 !important;
+}
+.lyrics_and_links > a:hover {
+   color:grey;
 }
