@@ -1,5 +1,8 @@
 import { useRouteError } from 'react-router-dom'
 import { errorMessage } from '../utilities/errors/errors'
+import AppNav from '../components/App/AppNav/AppNav'
+import HeroBanner from '../components/HeroBanner/HeroBanner'
+
 
 export default function HomeView() {
 
@@ -9,11 +12,22 @@ export default function HomeView() {
    // https://reactrouter.com/en/main/start/tutorial
 
    return (
-      <section className="m_2">
-         <h3>ErrorView</h3>
-         <p>{ error.statusText || error.error?.message }</p>
-         <p>{ errorMessage(error) }</p>
-      </section>
+      <>
+      
+         <AppNav/>
+
+         <HeroBanner 
+            overlayHeading={'testing'}
+            featureImg={"/assets/imgs/all-sorts-of-questions.jpg"}
+         />
+
+         <section className="m_2" style={{position:'absolute',top:'5rem',zIndex:'99999999999999',color:'white',height:'120vh'}}>
+            <h1 style={{color:'white'}}>Error</h1>
+            <p>Sorry, an unexpected error has occurred.</p>
+            <p>{ error.statusText || error.error?.message } | { errorMessage(error) }</p>
+         </section>
+
+      </>
    )
 
 }
