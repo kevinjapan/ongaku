@@ -74,10 +74,12 @@ export default function TrackCard({track, count}: TrackCardProps) {
       let my_key = 0
       return (
             <section className={"feature_block fade_in " + (is_odd_index() ? ' reverse_order ' : ' ')}>
+
                <img 
                   src={payload?.data?.img}
                   className={"fade_in_slow fade_in porthole " + random_styles} 
                />
+
                <section className="track_card" style={{backgroundColor:'white'}}>
                   <h3>{payload?.data?.title}</h3>
                   <h6>music & lyrics copyright &#169; {payload?.data?.copy}</h6>
@@ -85,6 +87,11 @@ export default function TrackCard({track, count}: TrackCardProps) {
                   {payload?.data?.sections?.map((section) => {
                      return <TrackCardSection key={my_key++} section={section}/>
                   })}
+
+                  <button style={{padding:'.5rem 1rem'}}>
+                     <a href={payload?.data?.video} target="_blank">Listen on YouTube</a>
+                  </button>
+                  
                </section>
             </section>
       )

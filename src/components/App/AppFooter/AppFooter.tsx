@@ -27,6 +27,12 @@ export default function AppFooter() {
                   <li>
                      <a href="https://www.youtube.com/@EvolutionDesuKa" target="_blank">YouTube</a>
                   </li>
+                  <li>
+                     <a href="https://www.facebook.com/kevhastiemusic" target="_blank">Facebook</a>
+                  </li>
+                  <li>
+                     <a href="https://soundcloud.com/kevin-hastie-514919662" target="_blank">SoundCloud</a>
+                  </li>
                </ul>               
             </li>
             <li>
