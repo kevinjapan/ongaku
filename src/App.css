@@ -184,10 +184,11 @@
    --cover_block_overlay_z:800;
    --cover_block_h1_z:800;
    --cover_block_z:760;
-   --song_card_z:750;
+   --song_card_z:1750;
    --music_note_z:600;
-   --track_listing_z:500;
-   --bubble_z:400;
+   --porthole_z:850;
+   --track_listing_z:820;
+   --bubble_z:800;
 
    /* local layers within components */
    --cover_block_before_z:100;
@@ -1547,9 +1548,9 @@ section.feature_block > div > *:not(button) {
       -ms-flex-direction:row;
       flex-direction:row;
 
-      width:80%;
-      margin-top:2rem;
-      margin-bottom:2rem;
+      width:75%;
+      margin-top:3rem;
+      margin-bottom:3rem;
    }
    section.feature_block.reverse_order {
       -webkit-box-orient:horizontal;
@@ -1769,7 +1770,7 @@ section.feature_block img.porthole {
    width:220px;
    height:220px;
    opacity:1;
-   z-index:var(--cover_block_h1_z);
+   z-index:var(--porthole_z);
    border:solid 6px white;
 }
 @media screen and (min-width: 810px) {
@@ -1884,7 +1885,23 @@ section.cover_block div.overlay h4 {
    white-space:wrap;
    max-width:80%;
 }
+/* mobile - fade in album title */
+.type_in_from_left_init,
+section.cover_block div.overlay.type_in_from_left_init {
+   opacity:0;
+   -webkit-transition:opacity .2s ease-in-out .2s;
+   -o-transition:opacity .2s ease-in-out .2s;
+   transition:opacity .2s ease-in-out .2s;
+}
+.type_in_from_left,
+section.cover_block div.overlay.type_in_from_left {
+   opacity:1;
+   -webkit-transition:opacity .75s ease-in-out .5s;
+   -o-transition:opacity .75s ease-in-out .5s;
+   transition:opacity .75s ease-in-out .5s;
+}
 @media screen and (min-width: 768px) {
+   /* lg - type_in effect */
    .type_in_from_left_init,
    section.cover_block div.overlay.type_in_from_left_init {
       max-width:0px;
@@ -1899,9 +1916,9 @@ section.cover_block div.overlay h4 {
    section.cover_block div.overlay.type_in_from_left {
       width:100%;
       max-width:100%;
-      -webkit-transition:max-width .35s ease-in-out .35s;
-      -o-transition:max-width .35s ease-in-out .35s;
-      transition:max-width .35s ease-in-out .35s;
+      -webkit-transition:max-width .75s ease-in-out .5s;
+      -o-transition:max-width .75s ease-in-out .5s;
+      transition:max-width .75s ease-in-out .5s;
    }
    section.cover_block div.overlay h1,
    section.cover_block div.overlay h2,
@@ -2129,7 +2146,7 @@ a.iteration_link {
 .lyrics_and_links {
 
    position:absolute;
-   top:calc(var(--cover_block_height) - 20vh);
+   top:calc(var(--cover_block_height) - 17.5vh);
    left: 0;
    right: 0;
    margin: auto;
