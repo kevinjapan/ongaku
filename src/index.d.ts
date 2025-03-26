@@ -117,6 +117,8 @@ interface Track {
    audio:string,
    video:string,
    img:string,
+   released:string,
+   album:string
    sections:TrackSection[]
 }
 interface TrackSection {
@@ -128,7 +130,9 @@ interface TrackSection {
 interface TracksListItem {
    title:string,
    slug:string,
-   audio:string
+   audio:string,
+   released:string,
+   album:string
 }
 
 
