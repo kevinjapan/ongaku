@@ -21,6 +21,7 @@ export default function HeroBanner(props: HeroBannerProps) {
    const local_prev_feature_img = useRef<string>('')
 
    const [heading, setHeading] = useState<string>('')
+   const [tagline, setTagline] = useState<string>('')
 
    // reset img styles on props.featureImg change
    useEffect(() => {
@@ -31,6 +32,7 @@ export default function HeroBanner(props: HeroBannerProps) {
       const overlay_text = document.querySelector('.overlay')
       overlay_text?.classList.remove('type_in_from_left')
       setTimeout(() => setHeading(props.overlayHeading),1000)
+      setTimeout(() => setTagline(props.overlayTagline as string),1000)
       
       const cover_img = document.querySelector('.feature_img')   
       if(cover_img && overlay_text) {
@@ -47,6 +49,7 @@ export default function HeroBanner(props: HeroBannerProps) {
          setTimeout(() => {
             overlay_text?.classList.add('type_in_from_left')
             setHeading(props.overlayHeading)
+            setTagline(props.overlayTagline as string)
          },600)
 
          // store prev img
@@ -60,7 +63,7 @@ export default function HeroBanner(props: HeroBannerProps) {
          <img className="bg_img prev_feature_img z_n1" src={local_prev_feature_img.current} />
          <img className="bg_img feature_img pre_cover_fade_in" src={props.featureImg} />
 
-         <TypeInTitle title={heading} tagline={props.overlayTagline} />
+         <TypeInTitle title={heading} tagline={tagline} />
 
       </section>
    )

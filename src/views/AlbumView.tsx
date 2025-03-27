@@ -6,21 +6,30 @@ import Album from '../components/Albums/Album/Album'
 // AlbumView
 // layout wrapper around Album to prevent HeroBanner re-rendering/mounting every time we load a new album
 
+// -------------------------------------------------------------------------------------------------------------------------------
 // to do : bug : eg enter url : http://localhost:3000/albums/anything -  should report 'not found' but throws error in TypeInTitle
+//               since in this case 'anything' is a dynamic slug and we try to resolve it to an actual album.
+//               we do handle the error and go to ErrorView - but we should rather handle cleanly and not create an error.
+//               perhaps whitelist album titles?
+// -------------------------------------------------------------------------------------------------------------------------------
 
 export default function AlbumView() {
 
    const [title, setTitle] = useState('')
+   const [tagline, setTagline] = useState('')
    const [feature_img, setFeatureImg] = useState('')
 
    useEffect(() => {
       window.scroll(0,0)
    },[])
 
+   console.log('tagline',tagline)
+
    return (
       <>
          <HeroBanner 
             overlayHeading={title}
+            overlayTagline={tagline}
             featureImg={feature_img}
          />
 
@@ -35,6 +44,7 @@ export default function AlbumView() {
 
          <Album 
             set_title={setTitle}
+            set_tagline={setTagline}
             set_feature_img={setFeatureImg}
          />
                

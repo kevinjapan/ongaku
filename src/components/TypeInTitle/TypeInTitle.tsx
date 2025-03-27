@@ -12,6 +12,7 @@ interface TypeInTitleProps {
    tagline?: string
 }
 
+
 export default function TypeInTitle({ title, tagline }: TypeInTitleProps) {
 
    const get_modifier = () => {
@@ -21,10 +22,10 @@ export default function TypeInTitle({ title, tagline }: TypeInTitleProps) {
 
    return (      
       <div className="overlay fade_in type_in_from_left_init">
+         {tagline ? <h4>{tagline}</h4> : null}
          <h1 className={"no_user_select letter_1 " + get_modifier()}>
             {title}
          </h1>
-         {tagline ? <h4>{tagline}</h4> : null}
       </div>
    )
 

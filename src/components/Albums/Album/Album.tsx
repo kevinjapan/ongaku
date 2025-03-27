@@ -11,10 +11,11 @@ import SnapShots from '../../Snapshots/SnapShots'
 
 interface AlbumProps {
    set_title:Dispatch<SetStateAction<string>>,
+   set_tagline:Dispatch<SetStateAction<string>>,
    set_feature_img:Dispatch<SetStateAction<string>>
 }
 
-export default function Album({set_title, set_feature_img}:AlbumProps) {
+export default function Album({set_title, set_tagline, set_feature_img}:AlbumProps) {
 
    const { slug } = useParams()
    const slug_ref = useRef(slug)
@@ -33,6 +34,8 @@ export default function Album({set_title, set_feature_img}:AlbumProps) {
    // any slug change will reload data and hence re-render component, so the following work
    useEffect(() => {
       set_title(payload?.data?.title as string)
+      set_tagline(payload?.data?.tagline as string)
+      console.log('got tagliner',payload?.data?.tagline as string)
       setTimeout(() => set_feature_img(payload?.data?.feature_img as string),200)  // no flicker on img reset
    },[payload, set_title, set_feature_img])
 

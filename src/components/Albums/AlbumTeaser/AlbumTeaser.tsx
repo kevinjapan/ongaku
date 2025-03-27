@@ -23,7 +23,7 @@ export default function AlbumTeaser(props: { album: Album }) {
    return (
       <li className="album_teaser flex flex_col gap_1 no_user_select">
          <img src={props.album.feature_img} onClick={open_album} className="cursor_pointer album_teaser_img" />
-         <h4 onClick={open_album} className="cursor_pointer m_0 p_0">{props.album.title}</h4>
+         <h4 onClick={open_album} className="cursor_pointer m_0 p_0 ml_2">{props.album.title}</h4>
          <div className="flex px_2 space_around">
             <button><Link className="link" to={props.album.slug} >Tracks & Lyrics</Link></button>
             <button>{props.album.playlist && <a href={props.album.playlist} target="_blank">YouTube Playlist</a>}</button>
