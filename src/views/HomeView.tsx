@@ -23,6 +23,7 @@ export default function HomeView() {
       {
          "id":1,
          "title":"beneath the waves",
+         "tagline":"to do : put a tagline here",
          "slug":"albums/beneath-the-waves",
          "created_at":"6 Oct 2024",
          "feature_img":"/imgs/beneath-the-waves-cover.jpg",
@@ -32,6 +33,7 @@ export default function HomeView() {
       {
          "id":2,
          "title":"river",
+         "tagline":"to do : put a tagline here",
          "slug":"albums/river",
          "created_at":"7 Oct 2024",
          "feature_img":"/imgs/river-cover.jpg",
@@ -40,7 +42,8 @@ export default function HomeView() {
       },
       {
          "id":3,
-         "title":"lifes a rhetorical question",
+         "title":"life's a rhetorical question",
+         "tagline":"to do : put a tagline here",
          "slug":"albums/lifes-a-rhetorical-question",
          "created_at":"8 Oct 2024",
          "feature_img":"/imgs/rhetorical-question-cover.jpg",
@@ -49,10 +52,13 @@ export default function HomeView() {
       }
    ]
 
+   // to do : bug - iterations img is overlaying hero img on homepage on scroll up..
+
    return (
       <>
          <HeroBanner 
             overlayHeading="evolution desu ka" 
+            overlayTagline="where is your music taking you"
             featureImg="/imgs/soundscapes.jpg"/>
 
          <section className="cover_block timeline dim_40 fade_in mt_0 no_user_select">
