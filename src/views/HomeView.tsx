@@ -23,7 +23,7 @@ export default function HomeView() {
       {
          "id":1,
          "title":"beneath the waves",
-         "tagline":"to do : put a tagline here",
+         "tagline":"if only time stood still",
          "slug":"albums/beneath-the-waves",
          "created_at":"6 Oct 2024",
          "feature_img":"/imgs/beneath-the-waves-cover.jpg",
@@ -33,7 +33,7 @@ export default function HomeView() {
       {
          "id":2,
          "title":"river",
-         "tagline":"to do : put a tagline here",
+         "tagline":"it pulls you round and round in it's orbit",
          "slug":"albums/river",
          "created_at":"7 Oct 2024",
          "feature_img":"/imgs/river-cover.jpg",
@@ -43,7 +43,7 @@ export default function HomeView() {
       {
          "id":3,
          "title":"life's a rhetorical question",
-         "tagline":"to do : put a tagline here",
+         "tagline":"when nothing's secret",
          "slug":"albums/lifes-a-rhetorical-question",
          "created_at":"8 Oct 2024",
          "feature_img":"/imgs/rhetorical-question-cover.jpg",
@@ -51,8 +51,6 @@ export default function HomeView() {
          "tracks":[]
       }
    ]
-
-   // to do : bug - iterations img is overlaying hero img on homepage on scroll up..
 
    return (
       <>
