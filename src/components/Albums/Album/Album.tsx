@@ -35,7 +35,6 @@ export default function Album({set_title, set_tagline, set_feature_img}:AlbumPro
    useEffect(() => {
       set_title(payload?.data?.title as string)
       set_tagline(payload?.data?.tagline as string)
-      console.log('got tagliner',payload?.data?.tagline as string)
       setTimeout(() => set_feature_img(payload?.data?.feature_img as string),200)  // no flicker on img reset
    },[payload, set_title, set_feature_img])
 

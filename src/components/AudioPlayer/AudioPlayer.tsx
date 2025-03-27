@@ -5,7 +5,6 @@ import AudioPlayerTracksList from './AudioPlayerTracksList/AudioPlayerTracksList
 import AudioPlayerPlayer from './AudioPlayerPlayer/AudioPlayerPlayer'
 
 
-
 // AudioPlayer
 // mp3 names are case-sensitive, 'audio' property must match mp3 filename
 

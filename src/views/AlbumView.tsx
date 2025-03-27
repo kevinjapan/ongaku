@@ -23,8 +23,6 @@ export default function AlbumView() {
       window.scroll(0,0)
    },[])
 
-   console.log('tagline',tagline)
-
    return (
       <>
          <HeroBanner 

@@ -17,7 +17,7 @@ export default function HomeView() {
          <AppNav/>
 
          <HeroBanner 
-            overlayHeading={'testing'}
+            overlayHeading={''}
             featureImg={"/assets/imgs/all-sorts-of-questions.jpg"}
          />
 
