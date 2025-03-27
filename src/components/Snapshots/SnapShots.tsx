@@ -33,7 +33,7 @@ export default function SnapShots() {
          <img
             src={random_elem(snapshot_imgs)}
             className="snapshot"
-            style={{top:'47%',left:'-8%',transform:'rotate(7deg)',height:'50%'}}
+            style={{top:'47%',left:'-12%',transform:'rotate(7deg)',height:'50%'}}
          />
       </section>
    )  
