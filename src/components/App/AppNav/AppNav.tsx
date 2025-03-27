@@ -6,6 +6,7 @@ import { get_nav_links } from '../../../utilities/appNav/appNav'
 import AppNavSubDomain from './AppNavSubDomain/AppNavSubDomain'
 
 
+
 // AppNav
 // from orig edk site, first pass migrating this solution into react
 // we keep dropdown open on hover, not effective in spa with no reload, so we temporarily 'retract_dropdown'
@@ -23,6 +24,8 @@ export default function AppNav() {
    // track extended and toggle extended_nav_dropdown
    const [extended, setExtended] = useState(false)
 
+   const [current_pathname, setCurrentPathname] = useState('')
+
 
    useEffect(() => {
       setTimeout(() => init_show_only_ascending(),200)
@@ -32,6 +35,7 @@ export default function AppNav() {
    // root path will not re-render AppNav, so we force init nav there
    useEffect(() => {
       if(pathname === "/") init_transparent_nav()
+      setCurrentPathname(pathname)
    },[pathname])
 
    // we use navigate to allow us to intercede and tidy nav behaviour (scrollup)
@@ -146,6 +150,7 @@ export default function AppNav() {
                         <AppNavSubDomain 
                            key={child.id}
                            subdomain={child}
+                           current_pathname={current_pathname}
                            load_view={load_view}
                         />
                      )}
