@@ -104,6 +104,7 @@ interface AlbumsList {
 interface Album {
    id:number,
    title:string,
+   tagline:string,
    slug:string,
    created_at:string,
    feature_img:string,
