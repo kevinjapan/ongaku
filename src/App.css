@@ -170,21 +170,21 @@
    /* 
    z-index layers 
    */
-   --app_status_layer:1100;
-   --over_over_over_nav_layer:1000;
-   --over_over_nav_layer:999;
-   --over_nav_layer:998;
-   --nav_layer:900;
+   --app_status_layer:2100;
+   --over_over_over_nav_layer:2000;
+   --over_over_nav_layer:1999;
+   --over_nav_layer:1998;
+   --nav_layer:1900;
    --just_under_nav_layer:880;
    --under_nav_layer:-10;
 
    /* layers within body element */
    --nav_z:1000;
    --button_z:900;
-   --cover_block_overlay_z:800;
-   --cover_block_h1_z:800;
-   --cover_block_z:760;
-   --song_card_z:1750;
+   --cover_block_overlay_z:900;
+   --cover_block_h1_z:900;
+   --cover_block_z:860;
+   --song_card_z:870;
    --music_note_z:600;
    --porthole_z:850;
    --track_listing_z:820;
@@ -218,7 +218,7 @@ html {
 }
 
 #root {
-  /* max-width: 1280px; */
+  max-width: 1600px;
   position:relative;
   width:100%;
   margin: 0 auto;
@@ -235,7 +235,8 @@ p {
 @media screen and (max-width: 768px) {
 
    p {
-      max-width:90%;
+      max-width:100%;
+      
    }
 }
 
@@ -323,12 +324,14 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 }
 h1,h2,h3,h4,h5,h6 {
    color:var(--header_dark_text_color);
+   text-align:left;
+   padding-left:1rem;
 }
 
 h1 {
    font-size:var(--h1_size);
-   font-weight:300;
-   line-height:var(--h1_line_height);
+   font-weight:400;
+   /* line-height:var(--h1_line_height); */
    padding-top:1rem;
    padding-bottom:1rem;
    color:var(--header_text_color_dark);
@@ -336,7 +339,7 @@ h1 {
 
 h2 {
    font-size:var(--h1_size);
-   font-weight:300;
+   font-weight:400;
    line-height:var(--h2_line_height);
    padding-top:1rem;
    padding-bottom:1rem;
@@ -345,7 +348,7 @@ h2 {
 
 h3 {
    font-size:var(--h3_size);
-   font-weight:300;
+   font-weight:400;
    line-height:var(--h3_line_height);
    padding-top:1rem;
    padding-bottom:1rem;
@@ -354,21 +357,21 @@ h3 {
 
 h4 {
    font-size:var(--h4_size);
-   font-weight:300;
+   font-weight:400;
    line-height:var(--h4_line_height);
    padding-top:1rem;
    padding-bottom:1rem;
 }
 h5 {
    font-size:var(--h5_size);
-   font-weight:300;
+   font-weight:400;
    line-height:var(--5_line_height);
    padding-top:1rem;
    padding-bottom:1rem;
 }
 h6 {
    font-size:var(--h6_size);
-   font-weight:300;
+   font-weight:400;
    line-height:var(--6_line_height);
    padding-top:.5rem;
    padding-bottom:.5rem;
@@ -935,8 +938,8 @@ audio::-webkit-media-controls-play-button {
    position:relative;
    z-index:var(--track_listing_z);
    width:fit-content;
-   margin:.5rem 1rem;
-   padding:2rem 3rem;
+   margin:.5rem auto;
+   padding:1rem;
    color:black;   
    background:white;
    border:solid 1px hsl(0, 0%, 90%);
@@ -946,6 +949,7 @@ audio::-webkit-media-controls-play-button {
    text-align:center;
    font-stretch: expanded;
    user-select:none;
+   white-space:nowrap;
 }
 section.track_card > * {
    margin:0;
@@ -983,7 +987,11 @@ section.track_card > p > span.display_block {
       width:94%;
       margin:auto;
       margin-top:1rem;
-      padding:1rem 1rem 1rem 3rem;
+      padding:1rem;
+   }
+   .track_card p {
+      margin:0 auto;
+      white-space:wrap;
    }
 }
 /* section.track_card_bg {
@@ -1200,7 +1208,7 @@ timeline UI
 section.cover_block.timeline {
    position:relative;
    color:white;
-   z-index:var(--song_card_z);
+   /* z-index : background img */
 }
 section.cover_block.timeline h2 {
    color:white;
@@ -1306,7 +1314,7 @@ section.cover_block.timeline > div.overlay > ul > li:hover:has(a)::before {
 }
 section.cover_block h1 {
    font-size:calc(var(--h1_size) * 1);
-   line-height:calc(var(--h1_size) * 1.1);
+   /* line-height:calc(var(--h1_size) * 1.1); */
    margin:0;
    white-space:wrap;
    color:white;
@@ -1317,13 +1325,16 @@ section.cover_block h1 {
    }
 }
 section.cover_block h4 {
+   font-size:1.75rem;
    font-weight:300;
-   background:hsl(47, 81%, 37%);
-   color:white;
-   margin-top:1rem;
-   width:fit-content;
-   padding:0 2rem 0 1rem;padding-right:4rem;
+   color:lightgrey;
+   font-weight:400;
+   opacity:.7;
+   margin:0 1rem !important;
+   line-height:1.75rem;
+   width:fit-content !important;
    white-space:nowrap;
+   padding:0 .5rem !important;
 }
 section.cover_block h4,
 section.cover_block p {
@@ -1352,8 +1363,9 @@ section.cover_block.content_at_end {
       position:relative;
       z-index:var(--cover_block_h1_z);
       font-size:calc(var(--h1_size) * 1.3);
-      line-height:calc(var(--h1_line_height) * 1);
+      /* line-height:calc(var(--h1_line_height) * 1); */
       margin:0;
+      padding:0;
       max-width:50%;
    }
    section.cover_block h1,
@@ -1365,11 +1377,7 @@ section.cover_block.content_at_end {
       margin:0;
       padding:0;
    }
-   section.cover_block h4, 
-   section.cover_block h5,
-   section.cover_block h6 {
-      padding:1rem 2rem 1.25rem 2rem;
-   }
+   
 }
 
 @media screen and (min-width: 910px) {
@@ -1524,7 +1532,8 @@ section.feature_block h3,
 section.feature_block h4,
 section.feature_block h5, 
 section.feature_block h6 {
-   width:100%;
+   max-width:100%;
+   white-space:wrap;
    text-align:center;
 }
 section.feature_block button {
@@ -1548,7 +1557,6 @@ section.feature_block > div > *:not(button) {
       -ms-flex-direction:row;
       flex-direction:row;
 
-      width:75%;
       margin-top:3rem;
       margin-bottom:3rem;
    }
@@ -1815,6 +1823,9 @@ section.feature_block img.porthole {
    section.feature_block img.opacity_4 {opacity:.4;}
    section.feature_block img.opacity_5 {opacity:.5;}
    section.feature_block img.opacity_6 {opacity:.6;}
+   section.feature_block img.opacity_7 {opacity:.7;}
+   section.feature_block img.opacity_8 {opacity:.8;}
+   section.feature_block img.opacity_9 {opacity:.9;}
 
    section.feature_block img.porthole_xs {width:200px;height:200px;}
    section.feature_block img.porthole_sm {width:230px;height:230px;}
@@ -1900,6 +1911,10 @@ section.cover_block div.overlay.type_in_from_left {
    -o-transition:opacity .75s ease-in-out .5s;
    transition:opacity .75s ease-in-out .5s;
 }
+section.cover_block div.overlay h4 {
+   margin:0 .5rem !important;
+   font-size:1.25rem;
+}
 @media screen and (min-width: 768px) {
    /* lg - type_in effect */
    .type_in_from_left_init,
@@ -1927,7 +1942,17 @@ section.cover_block div.overlay.type_in_from_left {
       white-space:nowrap;
       width:100%;
       max-width:100%;
-      padding-left:2rem;
+      padding-left:1rem;
+   }
+   
+   section.cover_block div.overlay h4 {
+      margin:0 .75rem !important;
+   }
+}
+
+@media screen and (min-width: 1000px) {
+   section.cover_block div.overlay h4 {
+      font-size:1.5rem;
    }
 }
 /* 
@@ -1935,17 +1960,31 @@ to retain type_in_from_left using width transition, we don't want to text vertic
 so we always fit text size to screen (approx. using title.length in TypeInTitle component to modify h1 font-size
 */
 @media screen and (min-width: 768px) {
-   div.overlay h1.long_title{font-size:2rem;}
-   div.overlay h1.x_long_title {font-size:1.8rem;}
+   div.overlay h1 {font-size:4rem;font-weight:600;line-height: 4rem !important;}
+   div.overlay h1.long_title{font-size:2.5rem;font-weight:600;line-height: 2.5rem !important;padding-bottom:2rem;}
+   div.overlay h1.x_long_title {font-size:1.75rem;font-weight:600;line-height: 2.5rem !important;}
 }
 @media screen and (min-width: 910px) {
-   div.overlay h1.long_title{font-size:3rem;}
-   div.overlay h1.x_long_title {font-size:2.5rem;}
+   div.overlay h1 {font-size:5rem;font-weight:600;line-height: 5rem !important;}
+   div.overlay h1.long_title{font-size:3rem;font-weight:600;line-height: 3rem !important;padding-bottom:2rem;}
+   div.overlay h1.x_long_title {font-size:2rem;font-weight:600;line-height: 2.75rem !important;}
 }
-@media screen and (min-width: 1110px) {
-   div.overlay h1.long_title{font-size:4rem;}
-   div.overlay h1.x_long_title {font-size:3rem;}
+@media screen and (min-width: 1000px) {
+   div.overlay h1 {font-size:5rem;font-weight:600;line-height: 5rem !important;}
+   div.overlay h1.long_title{font-size:4rem;font-weight:600;line-height: 4rem !important;padding-bottom:2rem;}
+   div.overlay h1.x_long_title {font-size:2.75rem;font-weight:600;line-height: 3.5rem !important;}
 }
+@media screen and (min-width: 1100px) {
+   div.overlay h1 {font-size:6rem;font-weight:600;line-height: 6rem !important;}
+   div.overlay h1.long_title{font-size:5rem;font-weight:600;line-height: 5rem !important;padding-bottom:2rem;}
+   div.overlay h1.x_long_title {font-size:3rem;font-weight:600;line-height: 4.2rem !important;}
+}
+@media screen and (min-width: 1210px) {
+   div.overlay h1 {font-size:7rem;font-weight:600;line-height: 7.2rem !important;}
+   div.overlay h1.long_title{font-size:6rem;font-weight:600;line-height: 6rem !important;padding-bottom:2rem;}
+   div.overlay h1.x_long_title {font-size:3.4rem;font-weight:600;line-height: 4.5rem !important;}
+}
+
 
 /* section/cards fade in */
 .fade_in {
@@ -2123,7 +2162,7 @@ img.snapshot {
    width:120%;
    transform:rotate(2deg);
    overflow:hidden;
-   opacity:.2;
+   opacity:.6;
    background-repeat:no-repeat;
 }
 
