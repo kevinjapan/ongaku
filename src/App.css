@@ -938,6 +938,7 @@ audio::-webkit-media-controls-play-button {
    position:relative;
    z-index:var(--track_listing_z);
    width:fit-content;
+   min-width:500px;
    margin:.5rem auto;
    padding:1rem;
    color:black;   
@@ -985,6 +986,8 @@ section.track_card > p > span.display_block {
 @media screen and (max-width: 768px) {
    .track_card {
       width:94%;
+      min-width:94%;
+      max-width:94%;
       margin:auto;
       margin-top:1rem;
       padding:1rem;
@@ -1994,15 +1997,15 @@ so we always fit text size to screen (approx. using title.length in TypeInTitle 
    transition:opacity .45s ease-in-out;
 }
 .fade_in_slow {
-   -webkit-transition:opacity 1.45s ease-in-out;
-   -o-transition:opacity 1.45s ease-in-out;
-   transition:opacity 1.45s ease-in-out;
+   -webkit-transition:opacity .45s ease-in-out;
+   -o-transition:opacity .45s ease-in-out;
+   transition:opacity .45s ease-in-out;
 }
 .appear {
    opacity:1;
-   -webkit-transition:opacity 1.3s ease-in-out;
-   -o-transition:opacity 1.3s ease-in-out;
-   transition:opacity 1.3s ease-in-out;
+   -webkit-transition:opacity .35s ease-in-out;
+   -o-transition:opacity .35s ease-in-out;
+   transition:opacity .35s ease-in-out;
 }
 /* 
    utility classes
@@ -2162,7 +2165,7 @@ img.snapshot {
    width:120%;
    transform:rotate(2deg);
    overflow:hidden;
-   opacity:.6;
+   opacity:.8;
    background-repeat:no-repeat;
 }
 
@@ -2221,4 +2224,18 @@ button.lyrics_and_links:hover >  a{
 }
 .lyrics_and_links > a:hover {
    color:grey;
+}
+
+/*
+   if route /ablums/unknown_album, we want the notification above the hero block
+*/
+section.not_found_error {
+   position:absolute;
+   top:35%;
+   left:10%;
+   z-index:var(--just_under_nav_layer);
+   width:fit-content;
+   padding:1rem;
+   background:white;
+   border-radius:.5rem;
 }

@@ -2,6 +2,7 @@ import { useRouteError } from 'react-router-dom'
 import { errorMessage } from '../utilities/errors/errors'
 import AppNav from '../components/App/AppNav/AppNav'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
+import AppFooter from '../components/App/AppFooter/AppFooter'
 
 
 export default function HomeView() {
@@ -23,9 +24,11 @@ export default function HomeView() {
 
          <section className="m_2" style={{position:'absolute',top:'5rem',zIndex:'99999999999999',color:'white',height:'120vh'}}>
             <h1 style={{color:'white'}}>Error</h1>
-            <p>Sorry, an unexpected error has occurred.</p>
-            <p>{ error.statusText || error.error?.message } | { errorMessage(error) }</p>
+            <p style={{paddingLeft:'1rem'}}>Sorry, an unexpected error has occurred.</p>
+            <p style={{paddingLeft:'1rem'}}>{ error.statusText || error.error?.message } | { errorMessage(error) }</p>
          </section>
+         
+         <AppFooter/>
 
       </>
    )

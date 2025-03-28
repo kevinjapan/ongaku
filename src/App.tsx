@@ -25,9 +25,6 @@ export default function App() {
             </Suspense>
          </main>
 
-         
-
-
          <AppFooter/>
 
       </AppContextProvider>

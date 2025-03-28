@@ -43,7 +43,13 @@ export default function Album({set_title, set_tagline, set_feature_img}:AlbumPro
    }
 
    if(error) {
-      return <div>There was an error: {error}</div>
+      return (
+         <section className="not_found_error">
+            <div>Sorry, we couldn't find that album.</div>
+            <hr></hr>
+            <div className="font_.9">Error: {error}</div>
+         </section>
+      )
    }
 
    if(payload) {
@@ -52,7 +58,7 @@ export default function Album({set_title, set_tagline, set_feature_img}:AlbumPro
             {payload?.data ?
                <>                  
                   <TrackCardsList tracks={payload?.data?.tracks} />
-                                 <SnapShots/>
+                  <SnapShots/>
                </>
                : null}
          </>
