@@ -20,7 +20,7 @@ export default function AppNavSubDomain({subdomain, current_pathname, load_view}
          {is_sm_screen() || !subdomain.children
             //?  <a onClick={() => load_view(subdomain.route ? subdomain.route : subdomain.label)}>{subdomain.label}</a>
             ? current_pathname !== '/' + subdomain.route
-               ?  <a onClick={() => load_view(subdomain.route ? subdomain.route : subdomain.label)}>{subdomain.label}</a>
+               ?  <a onClick={() => load_view(subdomain.route ? subdomain.route : subdomain.label)} style={{marginRight:'4rem'}}>{subdomain.label}</a>
                :  <div>{subdomain.label}</div>
             :  <a className="nav_subdomain_label">{subdomain.label}</a>}
 
