@@ -23,7 +23,7 @@ export default function AlbumsListView() {
          <>
             <HeroBanner 
                overlayHeading="albums" 
-               featureImg="/imgs/all-sorts-of-questions.jpg"
+               featureImg="all-sorts-of-questions.jpg"
             />
 
             <section className="feature_tiles fade_in">

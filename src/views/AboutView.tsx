@@ -29,7 +29,7 @@ export default function AboutView() {
       <>
          <HeroBanner 
             overlayHeading="about"
-            featureImg="/imgs/edk-workstation.jpg"
+            featureImg="edk-workstation.jpg"
          />
 
          <section className="mb_2 line_height_2 text_center">

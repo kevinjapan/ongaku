@@ -19,7 +19,7 @@ export default function HomeView() {
 
          <HeroBanner 
             overlayHeading={''}
-            featureImg={"/assets/imgs/all-sorts-of-questions.jpg"}
+            featureImg={"all-sorts-of-questions.jpg"}
          />
 
          <section className="m_2" style={{position:'absolute',top:'5rem',zIndex:'99999999999999',color:'white',height:'120vh'}}>

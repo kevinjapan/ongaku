@@ -60,8 +60,8 @@ export default function HeroBanner(props: HeroBannerProps) {
    return (
       <section className="cover_block hero_block bg_navy dim_30">
 
-         <img className="bg_img prev_feature_img z_n1" src={local_prev_feature_img.current} />
-         <img className="bg_img feature_img pre_cover_fade_in" src={props.featureImg} />
+         <img className="bg_img prev_feature_img z_n1" src={"/assets/imgs/" + local_prev_feature_img.current} />
+         <img className="bg_img feature_img pre_cover_fade_in" src={"/assets/imgs/" + props.featureImg} />
 
          <TypeInTitle title={heading} tagline={tagline} />
 

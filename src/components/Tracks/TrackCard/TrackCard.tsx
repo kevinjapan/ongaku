@@ -76,7 +76,7 @@ export default function TrackCard({track, count}: TrackCardProps) {
             <section className={"feature_block fade_in " + (is_odd_index() ? ' reverse_order ' : ' ')}>
 
                <img 
-                  src={payload?.data?.img}
+                  src={"/assets/imgs/" + payload?.data?.img}
                   className={"fade_in_slow fade_in porthole " + random_styles} 
                />
 

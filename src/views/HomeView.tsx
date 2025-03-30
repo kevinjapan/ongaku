@@ -26,7 +26,7 @@ export default function HomeView() {
          "tagline":"if only time stood still",
          "slug":"albums/beneath-the-waves",
          "created_at":"6 Oct 2024",
-         "feature_img":"/imgs/beneath-the-waves-cover.jpg",
+         "feature_img":"beneath-the-waves-cover.jpg",
          "playlist":"https://www.youtube.com/watch?v=ME1ScAtrn28&list=PLKBwV2II2uYLVaidMrnYDB_rwPp7dyPX0",
          "tracks":[]
       },
@@ -36,7 +36,7 @@ export default function HomeView() {
          "tagline":"it pulls you round and round in it's orbit",
          "slug":"albums/river",
          "created_at":"7 Oct 2024",
-         "feature_img":"/imgs/river-cover.jpg",
+         "feature_img":"river-cover.jpg",
          "playlist":"https://www.youtube.com/watch?v=hAwR-3cld54&list=PLKBwV2II2uYJgX3ufirbhVur5WX8H-c_u",
          "tracks":[]
       },
@@ -46,7 +46,7 @@ export default function HomeView() {
          "tagline":"when nothing's secret",
          "slug":"albums/lifes-a-rhetorical-question",
          "created_at":"8 Oct 2024",
-         "feature_img":"/imgs/rhetorical-question-cover.jpg",
+         "feature_img":"rhetorical-question-cover.jpg",
          "playlist":"https://www.youtube.com/watch?v=TnTlFNlFDME&list=PLKBwV2II2uYKHAhgqfQqmWhl2fT1fWnIa",
          "tracks":[]
       }
@@ -57,7 +57,7 @@ export default function HomeView() {
          <HeroBanner 
             overlayHeading="evolution desu ka" 
             overlayTagline="where is your music taking you"
-            featureImg="/imgs/soundscapes.jpg"/>
+            featureImg="soundscapes.jpg"/>
 
          <section className="cover_block timeline dim_40 fade_in mt_0 no_user_select">
 
