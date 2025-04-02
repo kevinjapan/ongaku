@@ -21,7 +21,7 @@ export default function AppNavSubDomain({subdomain, current_pathname, load_view}
             //?  <a onClick={() => load_view(subdomain.route ? subdomain.route : subdomain.label)}>{subdomain.label}</a>
             ? current_pathname !== '/' + subdomain.route
                ?  <a onClick={() => load_view(subdomain.route ? subdomain.route : subdomain.label)} style={{marginRight:'4rem'}}>{subdomain.label}</a>
-               :  <div>{subdomain.label}</div>
+               :  <div >{subdomain.label}</div>
             :  <a className="nav_subdomain_label">{subdomain.label}</a>}
 
             {/* map our sub-domain's children */}
@@ -29,7 +29,7 @@ export default function AppNavSubDomain({subdomain, current_pathname, load_view}
                ?  subdomain.children?.map(grandchild => {
                      return current_pathname !== '/' + grandchild.route
                         ?  <a key={grandchild.id} onClick={() => load_view(grandchild.route ? grandchild.route : grandchild.label)}>{grandchild.label}</a>
-                        :  <div key={grandchild.id} style={{margin:'1rem',padding:'0'}}>{grandchild.label}</div>
+                        :  <div className="current_subdomain_label" key={grandchild.id} style={{margin:'1rem',padding:'0'}}>{grandchild.label}</div>
                   })
                :  null
             }

@@ -35,7 +35,7 @@
    /*
    //    PRIMARY COLORS - 1 - 3 brand colors 
    */
-   --bg_primary:               hsl(190, 87%, 41%); /* #0EA5C3 */
+   --bg_primary:               hsl(208, 100%, 10%); 
    --bg_primary_text:          white;
    --bg_primary_lighter:       hsl(190, 87%, 51%);
    --bg_primary_lighter_text:  black;
@@ -159,9 +159,7 @@
    --section_overlay_text_color:white; /* text color over background images */
 
 
-   --bg_primary:               hsl(190, 87%, 41%);
-   --bg_primary:               hsl(190, 87%, 41%); /* #0EA5C3 */
-   --bg_primary_text:          white;
+
 
    /* utility classes for vars */
    .bg_primary    {color:var(--bg_primary_text);   background-color:var(--bg_primary);}
@@ -193,7 +191,7 @@
    /* local layers within components */
    --cover_block_before_z:100;
 
-   --bg_primary:transparent;
+   /* --bg_primary:transparent; */
 
    --player_tracks_list_height:80vh;
 }
@@ -378,7 +376,7 @@ h6 {
 }
 
 a {
-   font-weight: 500;
+   font-weight: 400;
    color: #646cff;
    text-decoration: inherit;
 }
@@ -421,7 +419,9 @@ nav::before {
    z-index:-10;
    width:100%;
    height:100%;
-   background:hsl(190, 87%, 41%);
+
+   /* the navbar bg color in md/lg */
+   background:var(--bg_primary);
 }
 nav.transparent::before {
    background-color:transparent;
@@ -477,7 +477,7 @@ nav ul.nav_list {
    flex-direction:column;
    
    padding-top:10rem; /* extra padding provides bg underneath transparent nav */
-   background:hsl(190, 87%, 41%);
+   background:var(--bg_primary);
 
    -webkit-transform:translateY(0);
    -ms-transform:translateY(0);
@@ -626,7 +626,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
    }
    /* toggle sm/mobile nav dropdown */
    nav ul.nav_list.extended_nav_dropdown {
-      background:hsl(190, 87%, 41%);
+      background:var(--bg_primary);
       -webkit-transform:0;
       -ms-transform:0;
       transform:0;
@@ -637,6 +637,10 @@ nav ul.nav_list li ul li a {margin:1rem; }
       font-weight:300;
       font-style:italic;
       cursor:unset;
+   }
+   .current_subdomain_label {
+      font-weight:100;
+      border-bottom:solid 1px white;
    }
 
    nav ul.nav_list li a.nav_list_label:hover,
@@ -697,7 +701,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
       width:100%;
       margin:0;
       padding:5rem 0 0 0; /* extra padding provides bg underneath transparent nav */
-      background: hsl(190, 87%, 41%);
+      background:var(--bg_primary);
       color:white;
       text-align:right;
       font-size:1.25rem;
@@ -756,7 +760,7 @@ nav ul.nav_list li ul li a {margin:1rem; }
    margin:0;
    padding:1rem;
    padding-bottom:6rem;
-   background:black;
+   background:var(--bg_primary);
    color:white;
    text-align:left;
    z-index:var(--song_card_z);
@@ -936,7 +940,7 @@ audio::-webkit-media-controls-play-button {
 }
 .track_card {
    position:relative;
-   z-index:var(--track_listing_z);
+   z-index:var(--just_under_nav_layer);
    width:fit-content;
    min-width:500px;
    margin:.5rem auto;
