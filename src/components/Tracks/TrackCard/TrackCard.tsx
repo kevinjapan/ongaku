@@ -48,7 +48,7 @@ export default function TrackCard({track, count}: TrackCardProps) {
       // const m_left: Array<string> = ['margin_left_neg_14','margin_left_neg_14','margin_left_neg_14','margin_left_neg_15']
       const m_left: Array<string> = ['margin_left_neg_2','margin_left_neg_4']
       const m_right: Array<string> = ['margin_right_neg_4','margin_right_neg_6']
-      const opacity: Array<string> = ['opacity_7','opacity_8','opacity_9']
+      const opacity: Array<string> = ['opacity_8','opacity_8','opacity_9']
 
       if(is_odd_index()) {
          return `${random_elem(portholes)} ${random_elem(m_top)} ${random_elem(m_left)} ${random_elem(opacity)}`
@@ -83,7 +83,7 @@ export default function TrackCard({track, count}: TrackCardProps) {
                <section className="track_card" style={{backgroundColor:'white'}}>
                   <h3>{payload?.data?.title}</h3>
                   <h6>music & lyrics copyright &#169; {payload?.data?.copy}</h6>
-                  <img className="play_track_icon" onClick={play_track} src="/src/assets/icons/music-note.svg"/>
+                  <img className="play_track_icon" onClick={play_track} src="/assets/icons/music-note.svg"/>
                   {payload?.data?.sections?.map((section) => {
                      return <TrackCardSection key={my_key++} section={section}/>
                   })}

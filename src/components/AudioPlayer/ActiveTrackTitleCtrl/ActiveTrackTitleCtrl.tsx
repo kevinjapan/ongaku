@@ -17,7 +17,7 @@ export default function ActiveTrackTitleCtrl({track, mouse_over, mouse_out }: Ac
       <section className="audio_track_title_ctrl flex gap_1 justify_center align_items_center cursor_pointer no_user_select"
                onMouseOver={mouse_over} 
                onMouseOut={mouse_out}>
-         <img src="/src/assets/icons/music-note.svg"/>
+         <img src="/assets/icons/music-note.svg"/>
          <div className="active_track italic" >
             {track?.title}
          </div>
