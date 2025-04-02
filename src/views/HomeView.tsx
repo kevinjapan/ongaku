@@ -123,7 +123,7 @@ export default function HomeView() {
             </div>
          </section>
          
-         <section className="feature_tiles bg_white fade_in">
+         <section className="feature_tiles bg_white fade_in bg_lighter">
             <ul>              
                {featured_albums_list?.length ?
                   featured_albums_list?.map((album: Album) => (                 

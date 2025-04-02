@@ -52,7 +52,7 @@
 
    --bg_light:                 hsl(190, 87%, 41%); /* #0EA5C3 */
    --bg_light_text:            black;
-   --bg_light_lighter:         hsl(190, 87%, 51%);
+   --bg_light_lighter:         hsl(190, 87%, 85%);
    --bg_light_lighter_text:    black;
    --bg_light_darker:          hsl(190, 87%, 31%);
    --bg_light_darker_text:     white;
@@ -166,7 +166,7 @@
    /* utility classes for vars */
    .bg_primary    {color:var(--bg_primary_text);   background-color:var(--bg_primary);}
 
-   
+   .bg_lighter    {color:var(--bg_light_lighter_text); background:var(--bg_light_lighter);}
    /* 
    z-index layers 
    */
@@ -1328,11 +1328,11 @@ section.cover_block h1 {
    }
 }
 section.cover_block h4 {
-   font-size:1.75rem;
+   font-size:1.5rem;
    font-weight:300;
-   color:lightgrey;
+   color:hsl(0, 0%, 85%);
    font-weight:400;
-   opacity:.7;
+   opacity:1;
    margin:0 1rem !important;
    line-height:1.75rem;
    width:fit-content !important;
@@ -1870,14 +1870,33 @@ section.feature_tiles {
    z-index:var(--song_card_z);
 }
 li.album_teaser {
-   background:white;
+   /* background:white; */
    border:solid 1px hsl(0, 0%, 70%);
-   border-radius:.5rem;
+   border-radius:2rem;
    -webkit-box-shadow:5px 5px 10px -2px rgba(0,0,0,.1);
    box-shadow:5px 5px 10px -2px rgba(0,0,0,.1); 
+   overflow:hidden;
+   z-index:var(--just_under_nav_layer);
+   cursor:pointer;
 }
 li.album_teaser > img {
    height:200px;
+   border-radius:2rem 2rem 0 0 !important;
+   -webkit-transform:scale(1);
+   -ms-transform:scale(1);
+   transform:scale(1);
+   -webkit-transition:1s;
+   -o-transition:1s;
+   transition:1s; 
+   z-index:-1;
+}
+li.album_teaser:hover > img {
+   -webkit-transform:scale(1.2);
+   -ms-transform:scale(1.2);
+   transform:scale(1.2);
+   -webkit-transition:1s;
+   -o-transition:1s;
+   transition:1s; 
 }
 
 
@@ -2065,6 +2084,8 @@ so we always fit text size to screen (approx. using title.length in TypeInTitle 
 .m_2 {margin:2rem;}
 .ml_2 {margin-left:2rem;}
 .mt_0 {margin-top:0 !important;}
+.mt_1 {margin-top:1rem !important;}
+.mt_2 {margin-top:2rem !important;}
 .mb_2 {margin-bottom:2rem;}
 .my_1 {margin-top:1rem;margin-bottom:1rem;}
 
@@ -2088,6 +2109,10 @@ so we always fit text size to screen (approx. using title.length in TypeInTitle 
 }
 .link {
    color: #646cff;
+   cursor:pointer;
+}
+.link:hover {
+   text-decoration:underline;
 }
 
 .relative {position:relative;}
@@ -2163,10 +2188,35 @@ img.snapshot {
    z-index:1;
    top:200px;
    width:120%;
-   transform:rotate(2deg);
    overflow:hidden;
    opacity:.8;
    background-repeat:no-repeat;
+}
+img.snapshot.top_snapshot {
+   border:none;border:solid 2px navy;
+   top:3%;
+   left:-8%;
+   transform:rotate(-5deg);
+   height:50%;
+}
+img.snapshot.bottom_snapshot {   
+   top:47%;
+   left:-12%;
+   transform:rotate(7deg);
+   width:120%;
+   height:50%;
+}
+
+
+@media screen and (max-width:768px) {
+   img.snapshot.top_snapshot {
+      left:0% !important;
+      transform:rotate(0deg);
+   }
+   img.snapshot.bottom_snapshot {
+      left:0% !important;
+      transform:rotate(0deg);
+   }
 }
 
 a.iteration_link {

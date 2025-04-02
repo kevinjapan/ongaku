@@ -27,13 +27,11 @@ export default function SnapShots() {
       <section className="snapshots_layer fade_in" style={{height:'fit-content',padding: '2rem',overflow:'hidden'}}>
          <img
             src={random_elem(snapshot_imgs)}
-            className="snapshot"
-            style={{top:'3%',left:'-8%',transform:'rotate(-5deg)',height:'50%'}}
+            className="snapshot top_snapshot"
          />
          <img
             src={random_elem(snapshot_imgs)}
-            className="snapshot"
-            style={{top:'47%',left:'-12%',transform:'rotate(7deg)',height:'50%'}}
+            className="snapshot bottom_snapshot"
          />
       </section>
    )  
