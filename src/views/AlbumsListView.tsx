@@ -20,7 +20,7 @@ export default function AlbumsListView() {
 
    if(payload) {
       return (
-         <>
+         <section className="albums_list_view_container" style={{marginTop:'-5rem'}}>
             <HeroBanner 
                overlayHeading="albums" 
                featureImg="all-sorts-of-questions.jpg"
@@ -37,7 +37,7 @@ export default function AlbumsListView() {
                      : (<p><i>No albums</i></p>)}
                </ul>
             </section>
-         </>
+         </section>
       )
    }
    
