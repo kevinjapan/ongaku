@@ -18,7 +18,6 @@ export default function TypeInTitle({ title, tagline }: TypeInTitleProps) {
    const get_modifier = () => {
 
       if(typeof title !== 'undefined' ) {
-         console.log('title: ',title)
          if(title.length < 14) return ''
          return title.length > 22 ? 'x_long_title' : 'long_title'
       }
