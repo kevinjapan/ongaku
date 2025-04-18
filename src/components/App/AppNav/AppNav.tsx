@@ -119,11 +119,25 @@ export default function AppNav() {
       }
    }
 
+   const click_logo = () => {
+
+      // close mobile hamburger & dropdown
+      const dropdown = document.querySelector('nav ul.nav_list')
+      const nav_toggle = document.querySelector('.nav_toggle')
+      if(dropdown && nav_toggle) {
+         // classList.toggle not working, so we use our own 'extended' state to track
+         if(extended) {
+            dropdown.classList.remove('extended_nav_dropdown')
+            nav_toggle.classList.remove('selected_toggle')
+         }
+      }
+   }
+
    return (
       <nav id="nav" className="nav">
 
          <div className="logo_block">
-            <Link to="/" >edk</Link>
+            <Link to="/" onClick={() => click_logo()}>edk</Link>
          </div>
 
          <div className="nav_toggle" onClick={toggle_sm_dropdown}>
