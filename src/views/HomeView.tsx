@@ -9,6 +9,8 @@ import { init_fade_ins } from '../assets/js/behaviour'
 // HomeView
 // overlayTagline="where's your music taking you?"
 
+// to do : click on pages from footer - ensure they scroll to top of page - ? may have just been a timing issue - works ok?
+
 export default function HomeView() {
 
    useEffect(() => {
