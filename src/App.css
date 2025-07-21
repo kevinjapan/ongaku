@@ -2,7 +2,7 @@
 
 :root {
 
-   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+   --font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
    
    line-height: 1.5;
    font-weight: 400;
@@ -142,11 +142,11 @@
    
    --h1_size:3rem;
    --h1_line_height:8rem;
-   --h2_size:3rem;
+   --h2_size:3.5rem;
    --h2_line_height:4rem;
    --h3_size:2.5rem;
    --h3_line_height:4.2rem;
-   --h4_size:1.75rem;
+   --h4_size:2rem;
    --h4_line_height:2.5rem;
    --h5_size:1.3rem;
    --h5_line_height:2rem;
@@ -181,12 +181,12 @@
    --button_z:900;
    --cover_block_overlay_z:900;
    --cover_block_h1_z:900;
-   --cover_block_z:860;
+   --cover_block_z:260;
    --song_card_z:870;
    --music_note_z:600;
    --porthole_z:850;
    --track_listing_z:820;
-   --bubble_z:900;
+   --bubble_z:300;
 
    /* local layers within components */
    --cover_block_before_z:100;
@@ -195,6 +195,77 @@
 
    --player_tracks_list_height:80vh;
 }
+
+
+
+/* custom font */
+/* quicksand-300 - latin */
+@font-face {
+   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+   font-family: 'Quicksand';
+   font-style: normal;
+   font-weight: 300;
+   src: url('/assets/fonts/quicksand/quicksand-v36-latin-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+ }
+ /* quicksand-regular - latin */
+ @font-face {
+   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+   font-family: 'Quicksand';
+   font-style: normal;
+   font-weight: 400;
+   src: url('/assets/fonts/quicksand/quicksand-v36-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+ }
+ /* quicksand-500 - latin */
+ @font-face {
+   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+   font-family: 'Quicksand';
+   font-style: normal;
+   font-weight: 500;
+   src: url('/assets/fonts/quicksand/quicksand-v36-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+ }
+ /* quicksand-600 - latin */
+ @font-face {
+   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+   font-family: 'Quicksand';
+   font-style: normal;
+   font-weight: 600;
+   src: url('/assets/fonts/quicksand/quicksand-v36-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+ }
+ /* quicksand-700 - latin */
+ @font-face {
+   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+   font-family: 'Quicksand';
+   font-style: normal;
+   font-weight: 700;
+   src: url('/assets/fonts/quicksand/quicksand-v36-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+ }
+
+ 
+ /* ibm-plex-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/ibm-plex-sans/ibm-plex-sans-v21-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* ibm-plex-sans-italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'IBM Plex Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/assets/fonts/ibm-plex-sans/ibm-plex-sans-v21-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* ibm-plex-sans-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/assets/fonts/ibm-plex-sans/ibm-plex-sans-v21-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 
 
 
@@ -246,7 +317,7 @@ button {
    background:transparent;
    color:hsl(0, 0%, 70%);
    border:solid 1px hsl(0, 0%, 70%);
-   border-radius:5rem;
+   border-radius:.5rem;
    cursor:pointer;
    font-size:1.1rem;
 }
@@ -305,6 +376,7 @@ body,main,section,img {
    padding:0;
 }
 body {
+   font-family:var(--font-family);
    color:black;
 }
 ul {
@@ -321,12 +393,14 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
    text-decoration:none;
 }
 h1,h2,h3,h4,h5,h6 {
+   font-family:var(--font-family);
    color:var(--header_dark_text_color);
    text-align:left;
    padding-left:1rem;
 }
 
 h1 {
+   font-family:'Quicksand',var(--font-family);
    font-size:var(--h1_size);
    font-weight:400;
    /* line-height:var(--h1_line_height); */
@@ -336,8 +410,9 @@ h1 {
 }
 
 h2 {
-   font-size:var(--h1_size);
-   font-weight:400;
+   font-family:'Quicksand',var(--font-family);
+   font-size:var(--h2_size);
+   font-weight:500;
    line-height:var(--h2_line_height);
    padding-top:1rem;
    padding-bottom:1rem;
@@ -345,6 +420,7 @@ h2 {
 }
 
 h3 {
+   font-family:'Quicksand',var(--font-family);
    font-size:var(--h3_size);
    font-weight:400;
    line-height:var(--h3_line_height);
@@ -354,8 +430,9 @@ h3 {
 }
 
 h4 {
+   font-family:'Quicksand',var(--font-family);
    font-size:var(--h4_size);
-   font-weight:400;
+   font-weight:600;
    line-height:var(--h4_line_height);
    padding-top:1rem;
    padding-bottom:1rem;
@@ -432,7 +509,9 @@ nav.invisible_nav {
    transition:transform .25s ease-in;
 }
 
-nav div.logo_block    {
+nav div.logo_block,
+div.logo_block    {
+   font-family:'Quicksand',var(--font-family);
    position:relative;
    z-index:var(--over_over_nav_layer);
 
@@ -449,6 +528,11 @@ nav div.logo_block    {
 nav div.logo_block a, footer div.logo_block a {
    font-size:3rem;
    font-weight:900;
+}
+span.footer_logo {
+   font-family:'Quicksand',var(--font-family);
+   font-size:3rem;
+   font-weight:700;
 }
 nav a {
    font-size:var(--nav_font_size);
@@ -1145,7 +1229,7 @@ section.hero_block {
    min-height:var(--header_height);
    margin-top:-120px !important; /* displace nav_bar height */
    z-index:var(--cover_block_z);
-   border-bottom:solid 2px white;
+   /* border-bottom:solid 2px white; */
  }
 section.cover_block p {
    margin-left:0;
@@ -1205,8 +1289,9 @@ section.cover_block div.overlay {
    -webkit-box-pack:center;
    -ms-flex-pack:center;
    justify-content:center;
+   
 
-   max-width:90%;
+   max-width:100%;
    margin-left:.5rem;
    margin-right:.5rem;
    padding:.5rem;
@@ -1216,8 +1301,8 @@ section.cover_block div.overlay {
 timeline UI 
 */
 section.cover_block.timeline {
-   position:relative;
    color:white;
+   width:100%;
    /* z-index : background img */
 }
 section.cover_block.timeline h2 {
@@ -1226,7 +1311,6 @@ section.cover_block.timeline h2 {
    margin-top:2rem;
 }
 section.cover_block.timeline img {
-   position:fixed;
    top:0;
    z-index:-900;
 }
@@ -1242,6 +1326,7 @@ section.cover_block.timeline > div.overlay {
    -ms-flex-align:center;
    align-items:center;
    /* gap:1rem; */
+   width:100%;
    padding:0;
 }
 section.cover_block.timeline > div.overlay > ul {
@@ -1254,6 +1339,7 @@ section.cover_block.timeline > div.overlay > ul {
    -ms-flex-pack:center;
    justify-content:center;
    gap:1rem;
+   width:100%;
    height:100%;
    padding:0;
 }
@@ -1317,8 +1403,7 @@ section.cover_block.timeline > div.overlay > ul > li:hover:has(a)::before {
       -ms-flex-item-align:start;
       align-self:flex-start;
       padding-left:2rem;
-      font-size:2.5rem;
-      font-weight:300;
+      font-weight:500;
       letter-spacing:1rem;
    }
 }
@@ -1336,9 +1421,7 @@ section.cover_block h1 {
 }
 section.cover_block h4 {
    font-size:1.5rem;
-   font-weight:300;
    color:hsl(0, 0%, 85%);
-   font-weight:400;
    opacity:1;
    margin:0 1rem !important;
    line-height:1.75rem;
@@ -1948,7 +2031,7 @@ section.cover_block div.overlay.type_in_from_left {
 }
 section.cover_block div.overlay h4 {
    margin:0 .5rem !important;
-   font-size:1.25rem;
+   /* font-size:1.25rem; */
 }
 @media screen and (min-width: 768px) {
    /* lg - type_in effect */
@@ -1986,9 +2069,9 @@ section.cover_block div.overlay h4 {
 }
 
 @media screen and (min-width: 1000px) {
-   section.cover_block div.overlay h4 {
+   /* section.cover_block div.overlay h4 {
       font-size:1.5rem;
-   }
+   } */
 }
 /* 
 to retain type_in_from_left using width transition, we don't want to text vertically stacking as the width changes - 
@@ -2111,6 +2194,7 @@ so we always fit text size to screen (approx. using title.length in TypeInTitle 
 .px_2 {padding-left:2rem;padding-right:2rem;}
 .px_\.5 {padding-left:.5rem;padding-right:.5rem;}
 .pl_\.5 {padding-left:.5rem;}
+.pt_3 {padding-top:3rem;}
 
 .border {border:solid 1px lightgrey;}
 
@@ -2304,4 +2388,38 @@ section.not_found_error {
    padding:1rem;
    background:white;
    border-radius:.5rem;
+}
+
+section.leading_text {
+   font-size:2rem;
+   font-weight:400;
+   font-style:italic;
+   color:hsl(0, 0%, 10%);
+   padding:4rem 2rem;
+   text-align:center;
+}
+section.leading_text_src {
+   margin-top:1rem;
+   font-size:1.5rem;
+   display:flex;
+   font-style:normal;
+   justify-content:space-around;
+   
+}
+@media screen and (max-width: 768px) {
+  
+   section.leading_text {
+      font-size:1.25rem !important;
+   }
+}
+@media screen and (max-width: 910px) {
+   
+   section.leading_text {
+      font-size:1.25rem !important;
+      font-weight:400;
+   }
+   section.leading_text_src {
+      font-size:1rem;
+      font-weight:700;
+   }
 }

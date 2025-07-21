@@ -11,6 +11,12 @@ export default function AppFooter() {
          <ul>
             <li>
                <ul>
+                  <li><span className="footer_logo">
+                     <Link className="" to="/">edk</Link></span></li>
+               </ul>
+            </li>
+            <li>
+               <ul>
                   <li>
                      <Link className="link" to="/">Home</Link>
                   </li>
