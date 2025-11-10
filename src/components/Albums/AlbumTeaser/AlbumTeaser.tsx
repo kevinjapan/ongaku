@@ -22,7 +22,8 @@ export default function AlbumTeaser(props: { album: Album }) {
 
    return (
       <li className="album_teaser flex flex_col no_user_select" style={{padding:'0'}}>
-         <img src={"/assets/imgs/" + props.album.feature_img} onClick={open_album} className="cursor_pointer album_teaser_img" />
+         <img src={"/assets/imgs/" + props.album.feature_img} onClick={open_album} 
+              style={{objectFit:'cover',minHeight:'200px'}} className="cursor_pointer album_teaser_img" />
          <div style={{height:'100%',width:'100%',background:'white'}}>
             <h4 onClick={open_album} 
                className="cursor_pointer m_0 p_0 ml_2"
