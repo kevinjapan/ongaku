@@ -14,6 +14,7 @@ interface AppNavSubDomainProps {
 
 export default function AppNavSubDomain({subdomain, current_pathname, load_view} : AppNavSubDomainProps) {
 
+   console.log('current_pathname',current_pathname)
    return (
       <li key={subdomain.id}>
          {/* subdomain labels */}
@@ -22,6 +23,7 @@ export default function AppNavSubDomain({subdomain, current_pathname, load_view}
             ? current_pathname !== '/' + subdomain.route
                ?  <a onClick={() => load_view(subdomain.route ? subdomain.route : subdomain.label)} style={{marginRight:'4rem'}}>{subdomain.label}</a>
                :  <div >{subdomain.label}</div>
+               
             :  <a className="nav_subdomain_label">{subdomain.label}</a>}
 
             {/* map our sub-domain's children */}
